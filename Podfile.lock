@@ -1,4 +1,5 @@
 PODS:
+  - DropDown (2)
   - GoogleMaps (2.4.0):
     - GoogleMaps/Maps (= 2.4.0)
   - GoogleMaps/Base (2.4.0)
@@ -10,17 +11,19 @@ PODS:
   - SwiftyJSON (3.1.4)
 
 DEPENDENCIES:
+  - DropDown
   - GoogleMaps
   - GooglePlaces
   - IQKeyboardManagerSwift
   - SwiftyJSON
 
 SPEC CHECKSUMS:
+  DropDown: 744784d9c9aa505100e942c16acd05430cbb2f0a
   GoogleMaps: 8436ab5d1c25e36915b2f7416d0c8e3fa2e76c61
   GooglePlaces: aafe5990fa7951e98e078761bbdaaf236d7e0c65
   IQKeyboardManagerSwift: fb399c4cddcd8d9bbcd2d0c7c81ed290b61c088e
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
 
-PODFILE CHECKSUM: 6d88af426dcc3e792f0455d242dad62d606f79c2
+PODFILE CHECKSUM: 5c8d36eeb406a4373687097591e625856aa9131c
 
 COCOAPODS: 1.3.1

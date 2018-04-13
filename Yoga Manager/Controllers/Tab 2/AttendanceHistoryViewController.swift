@@ -1,63 +1,89 @@
 //
-//  AttendanceViewModel.swift
+//  HistoryViewController.swift
 //  Yoga Manager
 //
-//  Created by Faiez Altamimi on 4/12/18.
+//  Created by Fayez Altamimi on 13/04/2018.
 //  Copyright © 2018 Fayez Altamimi. All rights reserved.
 //
 
-import Foundation
 import UIKit
-import CoreData
+import DropDown
 
-class AttendanceModelView : BasicViewModel
-{
-    func getAllAttendance() -> [Attendance]{
+class HistoryViewController: UIViewController {
+    
+    let groups = MainViewModel().getGroups()
+    
+    let attendanceHistory = AttendanceModelView().getAllAttendance()
+    
+    var groupAttendanceHistory: [Attendance]!
+    
+    @IBOutlet weak var historyTableView: UITableView!
+    
+    var selectedAttendance: [Attendance]!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
         
-        let attendance = coreDataHelper.getEntities(entityName: "Attendance") as! [Attendance]
+        historyTableView.dataSource = self
+        historyTableView.delegate = self
         
-        return attendance
+        
+        
+        
+        // Do any additional setup after loading the view.
     }
     
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
     
-    func addANewAttendance (attendanceDate: Date,  isPaid: Bool, attended: Bool, student : Student, session: Session){
+    func filterBygGroup(specificGroup: Group) {
         
-        let attendance = Attendance(context: managedContext)
+        groupAttendanceHistory = [Attendance]()
         
-        attendance.attendance_date = attendanceDate
-        
-        attendance.attended = attended
-        
-        attendance.is_paid = isPaid
-        
-        attendance.student = student
-        
-        attendance.session = session
+        for record in attendanceHistory {
+            
+            if record.group == specificGroup
+            {
+                groupAttendanceHistory.append(record)
+            }
+        }
         
         
+        // do something with results
+    }
+    /*
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
+}
+
+extension HistoryViewController: UITableViewDataSource, UITableViewDelegate{
+    
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
+        return attendanceHistory.count
         
-        saveData()
         
     }
     
-    func updateAnAt (attendance: Attendance, attendanceDate: Date,  isPaid: Bool, attended: Bool){
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        attendance.setValue(attendanceDate, forKey: "attendance_date")
+        let cell = tableView.dequeueReusableCell(withIdentifier: "AttendanceHistoryCell") as! AttendanceHistoryCell
         
-        attendance.setValue(isPaid, forKey: "attended")
-        
-        attendance.setValue(attended, forKey: "is_paid")
-        
-        saveData()
-        
-    }
-    
-    func deleteALocation(entity: NSManagedObject){
-        
-        coreDataHelper.deleteAnEntity(entity: entity)
-        
-        saveData()
+        cell.ceceee
+        return cell //4.
         
     }
     

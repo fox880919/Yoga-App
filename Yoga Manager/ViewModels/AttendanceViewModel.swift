@@ -12,14 +12,14 @@ import CoreData
 
 class AttendanceModelView : BasicViewModel
 {
-    func getAllAttendance() -> [Location]{
+    func getAllAttendance() -> [Attendance]{
         
-        let locations = coreDataHelper.getEntities(entityName: "Location") as! [Location]
+        let attendance = coreDataHelper.getEntities(entityName: "Attendance") as! [Attendance]
         
-        return locations
+        return attendance
     }
     
-
+    
     func addANewAttendance (attendanceDate: Date,  isPaid: Bool, attended: Bool, student : Student, session: Session){
         
         let attendance = Attendance(context: managedContext)
@@ -33,7 +33,10 @@ class AttendanceModelView : BasicViewModel
         attendance.student = student
         
         attendance.session = session
- 
+        
+        
+        
+        
         saveData()
         
     }
@@ -59,3 +62,4 @@ class AttendanceModelView : BasicViewModel
     }
     
 }
+

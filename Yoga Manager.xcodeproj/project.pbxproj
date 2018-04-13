@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A308D21E2081456800A96418 /* AttendanceHistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A308D21D2081456800A96418 /* AttendanceHistoryCell.swift */; };
 		A30B98D1207552E100722847 /* SessionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30B98D0207552E100722847 /* SessionViewModel.swift */; };
 		A3290EFE207FFC4F00D05ACB /* AttendanceStudentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3290EFD207FFC4F00D05ACB /* AttendanceStudentsViewController.swift */; };
 		A344D413206EC97300262E80 /* StudentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A344D412206EC97300262E80 /* StudentViewController.swift */; };
@@ -51,6 +52,7 @@
 		005F6E47C38891D11993EFB2 /* Pods-Yoga Manager.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Yoga Manager.release.xcconfig"; path = "Pods/Target Support Files/Pods-Yoga Manager/Pods-Yoga Manager.release.xcconfig"; sourceTree = "<group>"; };
 		121603224B8F240A854BCAFC /* Pods-Yoga Manager.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Yoga Manager.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Yoga Manager/Pods-Yoga Manager.debug.xcconfig"; sourceTree = "<group>"; };
 		3EFA20DCDE4B097D7FC1CEB8 /* Pods_Yoga_Manager.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Yoga_Manager.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A308D21D2081456800A96418 /* AttendanceHistoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttendanceHistoryCell.swift; sourceTree = "<group>"; };
 		A30B98D0207552E100722847 /* SessionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionViewModel.swift; sourceTree = "<group>"; };
 		A3290EFD207FFC4F00D05ACB /* AttendanceStudentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttendanceStudentsViewController.swift; sourceTree = "<group>"; };
 		A344D412206EC97300262E80 /* StudentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentViewController.swift; sourceTree = "<group>"; };
@@ -261,6 +263,7 @@
 				A39DB5D32078344000F21FAF /* SessionCell.swift */,
 				CBB07184207F1A0600DB3DE9 /* LocationTableCell.swift */,
 				A36775F42080BC6F00821265 /* AttendanceStudentCell.swift */,
+				A308D21D2081456800A96418 /* AttendanceHistoryCell.swift */,
 			);
 			path = "Custom Cells";
 			sourceTree = "<group>";
@@ -389,11 +392,13 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Yoga Manager/Pods-Yoga Manager-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/DropDown/DropDown.framework",
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DropDown.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
@@ -437,6 +442,7 @@
 				A37EC28E206E9E740018D317 /* GroupStudentCell.swift in Sources */,
 				A39DB5D220782F1400F21FAF /* SectionHeader.swift in Sources */,
 				A3E78EF52077F5CC001B7706 /* SelectedGroupViewController.swift in Sources */,
+				A308D21E2081456800A96418 /* AttendanceHistoryCell.swift in Sources */,
 				A36775F02080B9D200821265 /* BEMPathManager.m in Sources */,
 				A39DB5D42078344000F21FAF /* SessionCell.swift in Sources */,
 				A344D413206EC97300262E80 /* StudentViewController.swift in Sources */,

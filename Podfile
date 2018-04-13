@@ -7,6 +7,7 @@ pod 'IQKeyboardManagerSwift'
 pod 'SwiftyJSON'
 pod 'GoogleMaps'
 pod 'GooglePlaces'
+pod 'DropDown'
 
 
 end

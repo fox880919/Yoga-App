@@ -231,6 +231,7 @@ class SessionMapViewController: UIViewController, UIPickerViewDelegate, UIPicker
         })
         
         
+        
         alert.addAction(yesAction)
         
         alert.addAction(noAction)

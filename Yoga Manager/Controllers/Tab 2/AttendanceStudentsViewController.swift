@@ -9,40 +9,70 @@
 import UIKit
 
 class AttendanceStudentsViewController: UIViewController {
-
+    
     var selectedGroupStudents: [Student]!
     
     var selectedStudents = [Student]()
     
+    var selectedCells = [AttendanceStudentCell]()
+    
+    var session : Session!
+    
     var defaultColor : UIColor?
+    
+    let attendanceViewModel = AttendanceModelView()
     
     @IBOutlet weak var studentsCollectionView: UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let saveBtn = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveBtnPressed))
+        
+        self.navigationItem.rightBarButtonItem = saveBtn
+        
         studentsCollectionView.dataSource = self
         studentsCollectionView.delegate = self
-
+        
         // Do any additional setup after loading the view.
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-
+    
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
+    
+    @objc func saveBtnPressed()
+    {
+        
+        let date = Date()
+        
+        var i = 0
+        
+        for student in selectedStudents {
+            
+            let isPaid = selectedCells[i].isPaidCheckBox.on
+            
+            attendanceViewModel.addANewAttendance(attendanceDate: date, isPaid: isPaid, attended: true, student: student, session: session)
+            
+            i = i + 1;
+        }
+        
+        
     }
-    */
-
+    
 }
 
 extension AttendanceStudentsViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
@@ -61,17 +91,17 @@ extension AttendanceStudentsViewController: UICollectionViewDelegate, UICollecti
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-
+        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AttendanceStudentCell", for: indexPath)
             as! AttendanceStudentCell
         
         
         if defaultColor == nil {
-           defaultColor = cell.backgroundColor
+            defaultColor = cell.backgroundColor
         }
         
         
-      //  cell.isPaidCheckBox.isEnabled = false
+        //  cell.isPaidCheckBox.isEnabled = false
         // Configure the cell
         
         cell.studentNameLabel.text! = selectedGroupStudents[indexPath.row].name!
@@ -93,14 +123,18 @@ extension AttendanceStudentsViewController: UICollectionViewDelegate, UICollecti
         
         if(selectedStudents.contains(selectedStudent))
         {
-           cell.backgroundColor = defaultColor
+            cell.backgroundColor = defaultColor
             
             cell.isPaidCheckBox.isHidden = true
             
             selectedStudents.remove(at: selectedStudents.index(of: selectedStudent)!)
-                
+            selectedCells.remove(at: selectedCells.index(of: cell)!)
+            
+            
         }
         else{
+            
+            selectedCells.append(cell)
             
             selectedStudents.append(selectedStudent)
             
@@ -109,12 +143,12 @@ extension AttendanceStudentsViewController: UICollectionViewDelegate, UICollecti
             cell.isPaidCheckBox.on = false
             cell.isPaidCheckBox.isHidden = false
             
-
-
+            
+            
             //collectionView.cellForItem(at: indexPath)?.backgroundColor = UIColor.cyan
             
         }
-      
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize
