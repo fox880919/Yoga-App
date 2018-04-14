@@ -13,9 +13,11 @@
     <entity name="Group" representedClassName="Group" syncable="YES" codeGenerationType="class">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="session_price" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="subscriptionPrice" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <relationship name="attendance" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Attendance" inverseName="group" inverseEntity="Attendance" syncable="YES"/>
         <relationship name="sessions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Session" inverseName="groups" inverseEntity="Session" syncable="YES"/>
         <relationship name="students" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Student" inverseName="groups" inverseEntity="Student" syncable="YES"/>
+        <relationship name="subscription" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="StudentSubscription" inverseName="group" inverseEntity="StudentSubscription" syncable="YES"/>
     </entity>
     <entity name="Location" representedClassName="Location" syncable="YES" codeGenerationType="class">
         <attribute name="address" optional="YES" attributeType="String" syncable="YES"/>
@@ -44,6 +46,13 @@
         <attribute name="photo" optional="YES" attributeType="Binary" syncable="YES"/>
         <relationship name="attendance" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Attendance" inverseName="student" inverseEntity="Attendance" syncable="YES"/>
         <relationship name="groups" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Group" inverseName="students" inverseEntity="Group" syncable="YES"/>
+        <relationship name="subscription" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="StudentSubscription" inverseName="student" inverseEntity="StudentSubscription" syncable="YES"/>
+    </entity>
+    <entity name="StudentSubscription" representedClassName="StudentSubscription" syncable="YES" codeGenerationType="class">
+        <attribute name="end_date" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="start_date" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="group" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Group" inverseName="subscription" inverseEntity="Group" syncable="YES"/>
+        <relationship name="student" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Student" inverseName="subscription" inverseEntity="Student" syncable="YES"/>
     </entity>
     <entity name="Teacher" representedClassName="Teacher" syncable="YES" codeGenerationType="class">
         <attribute name="address" optional="YES" attributeType="String" syncable="YES"/>
@@ -56,10 +65,11 @@
     </entity>
     <elements>
         <element name="Attendance" positionX="-36" positionY="108" width="128" height="165"/>
-        <element name="Group" positionX="-36" positionY="81" width="128" height="120"/>
+        <element name="Group" positionX="-36" positionY="81" width="128" height="150"/>
         <element name="Location" positionX="-36" positionY="108" width="128" height="120"/>
         <element name="Session" positionX="-9" positionY="99" width="128" height="165"/>
-        <element name="Student" positionX="-63" positionY="-18" width="128" height="180"/>
+        <element name="Student" positionX="-63" positionY="-18" width="128" height="195"/>
         <element name="Teacher" positionX="-54" positionY="45" width="128" height="150"/>
+        <element name="StudentSubscription" positionX="-36" positionY="117" width="128" height="105"/>
     </elements>
 </model>
