@@ -24,9 +24,7 @@ class SessionViewController: UIViewController, UIPickerViewDataSource, UIPickerV
     @IBOutlet weak var locationLabel: UILabel!
     
     let weekDaysValues = ["Sunday", "Monday", "Tuesday", "Wednesay", "Thursday", "Friday", "Saturday"]
-    
-    var oldSession: Session!
-    
+        
     var selectedSession : Session!
     
     var newSession : Session!
@@ -69,15 +67,8 @@ class SessionViewController: UIViewController, UIPickerViewDataSource, UIPickerV
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-    
-        if let session = newSession {
-            
-            if session.location?.name != nil {
-                locationLabel.text! = session.location!.name!
-            }
-        }
-        
-        else if let session = selectedSession {
+
+        if let session = selectedSession {
             
             if let location = session.location?.name {
                 
@@ -117,6 +108,9 @@ class SessionViewController: UIViewController, UIPickerViewDataSource, UIPickerV
             oldLocation = session.location
             
             weekDayPickerView.selectRow(getDayComponent(dayName: session.week_day!), inComponent: 0, animated: true)
+            
+            selectedDay = session.week_day!
+            
             if(session.is_weekly == true)
             {
                 recurrenceSegment.selectedSegmentIndex = 0
@@ -155,11 +149,14 @@ class SessionViewController: UIViewController, UIPickerViewDataSource, UIPickerV
     
     @objc func saveBtnPressed()
     {
-
-        newSession = nil
-
+        if(newSession != nil)
+        {
+            sessionViewModel.deleteASession(entity: (newSession))
+        }
+        
         saveSession()
         
+        sessionViewModel.saveData()
         
         navigationController?.popViewController(animated: true)
     }

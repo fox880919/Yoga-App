@@ -58,8 +58,6 @@ class SessionViewModel  : BasicViewModel
         session.is_weekly = isWeekly
         
         session.addToGroups(sessionGroup)
-
-        saveData()
         
         return session
 

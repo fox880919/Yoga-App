@@ -20,6 +20,8 @@ class AttendanceViewController: UIViewController{
     
     var selectedGroupStudents: [Student]!
     
+    var selectedGroup: Group!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -92,9 +94,9 @@ extension AttendanceViewController: UITableViewDataSource, UITableViewDelegate{
 
         tableView.deselectRow(at: indexPath, animated: true)
 
-        let group = groupViewModel.getGroups()[indexPath.section]
+         selectedGroup = groupViewModel.getGroups()[indexPath.section]
         
-         selectedGroupStudents = studentViewModel.getGroupStudents(studentsGroup: group)
+         selectedGroupStudents = studentViewModel.getGroupStudents(studentsGroup: selectedGroup)
         
         performSegue(withIdentifier: "goToStudentCheckListSegue", sender: self)
 
@@ -128,6 +130,8 @@ extension AttendanceViewController: UITableViewDataSource, UITableViewDelegate{
             if let destination = segue.destination as? AttendanceStudentsViewController{
 
                 destination.selectedGroupStudents = selectedGroupStudents
+                
+                destination.selectedGroup = selectedGroup
         
             }
         }
