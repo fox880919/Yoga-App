@@ -16,11 +16,11 @@ func saveLang(isArabic: Bool)
     if (isArabic)
     {
         defaults.set(true, forKey: "isArabic")
-
+        
     }
     else{
         defaults.set(false, forKey: "isArabic")
-
+        
     }
 }
 
@@ -40,22 +40,22 @@ func getDayComponent (dayName: String) ->Int
         return 0;
         
     case "Monday":
-         return 1;
+        return 1;
         
     case "Tuesday":
-         return 2;
+        return 2;
         
     case "Wednesday":
-         return 3;
+        return 3;
         
     case "Thursday":
-         return 4;
+        return 4;
         
     case "Friday":
-         return 5;
+        return 5;
         
     case "Saturday":
-         return 6;
+        return 6;
         
         
     default:
@@ -64,7 +64,7 @@ func getDayComponent (dayName: String) ->Int
 }
 
 func getDayName (componentInt: Int) -> String{
-
+    
     switch  componentInt{
         
     case 0:
@@ -117,3 +117,14 @@ func dateFromString(dateString : String) -> Date {
     return date!
     
 }
+
+func getDayDate(date: Date) -> String
+{
+    let formatter = DateFormatter()
+    formatter.dateFormat = "dd/MM/yyyy"
+    
+    let result = formatter.string(from: date)
+    
+    return result
+}
+

@@ -20,7 +20,7 @@ class AttendanceModelView : BasicViewModel
     }
     
     
-    func addANewAttendance (attendanceDate: Date,  isPaid: Bool, attended: Bool, student : Student, session: Session){
+    func addANewAttendance (attendanceDate: String,  isPaid: Bool, attended: Bool, student : Student, session: Session, group: Group){
         
         let attendance = Attendance(context: managedContext)
         
@@ -32,11 +32,13 @@ class AttendanceModelView : BasicViewModel
         
         attendance.student = student
         
-        attendance.session = session
+        attendance.week_day = session.week_day
         
+        attendance.start_time = session.start_time
         
+        attendance.end_time = session.end_time
         
-        
+        attendance.group = group
         saveData()
         
     }
@@ -53,7 +55,7 @@ class AttendanceModelView : BasicViewModel
         
     }
     
-    func deleteALocation(entity: NSManagedObject){
+    func deleteAnAttendance(entity: NSManagedObject){
         
         coreDataHelper.deleteAnEntity(entity: entity)
         

@@ -18,8 +18,6 @@ class AttendanceViewController: UIViewController{
     
     let studentViewModel = StudentViewModel()
     
-    var sectionGroup : Group!
-    
     var selectedGroupStudents: [Student]!
     
     override func viewDidLoad() {
@@ -59,9 +57,7 @@ extension AttendanceViewController: UITableViewDataSource, UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        sectionGroup = groupViewModel.getGroups()[section]
-        
-        return sessionViewModel.getGroupSessions(studentsGroup: sectionGroup).count
+        return (groupViewModel.getGroups()[section].sessions?.count)!
         
         
     }
@@ -74,6 +70,8 @@ extension AttendanceViewController: UITableViewDataSource, UITableViewDelegate{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "attendanceCell1") as! SessionCell
+        
+        let sectionGroup = groupViewModel.getGroups()[indexPath.section]
         
         let allSessions = sessionViewModel.getGroupSessions(studentsGroup: sectionGroup)
         

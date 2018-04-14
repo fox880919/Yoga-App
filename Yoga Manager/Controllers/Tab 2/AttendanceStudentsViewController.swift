@@ -16,6 +16,8 @@ class AttendanceStudentsViewController: UIViewController {
     
     var selectedCells = [AttendanceStudentCell]()
     
+    var selectedGroup: Group!
+    
     var session : Session!
     
     var defaultColor : UIColor?
@@ -57,7 +59,7 @@ class AttendanceStudentsViewController: UIViewController {
     @objc func saveBtnPressed()
     {
         
-        let date = Date()
+        let date = getDayDate(date: Date())
         
         var i = 0
         
@@ -65,7 +67,7 @@ class AttendanceStudentsViewController: UIViewController {
             
             let isPaid = selectedCells[i].isPaidCheckBox.on
             
-            attendanceViewModel.addANewAttendance(attendanceDate: date, isPaid: isPaid, attended: true, student: student, session: session)
+            attendanceViewModel.addANewAttendance(attendanceDate: date, isPaid: isPaid, attended: true, student: student, session: session, group: selectedGroup)
             
             i = i + 1;
         }

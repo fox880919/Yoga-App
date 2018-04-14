@@ -22,7 +22,7 @@ class AttendanceHistoryCell : UITableViewCell {
     
     @IBOutlet weak var timeFromLbl: UILabel!
     
-    @IBOutlet weak var toFromLbl: UILabel!
+    @IBOutlet weak var timeToLbl: UILabel!
     
     
 }
