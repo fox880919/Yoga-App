@@ -22,6 +22,8 @@ class AttendanceViewController: UIViewController{
     
     var selectedGroup: Group!
     
+    var selectedSession: Session!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -96,6 +98,8 @@ extension AttendanceViewController: UITableViewDataSource, UITableViewDelegate{
 
          selectedGroup = groupViewModel.getGroups()[indexPath.section]
         
+        selectedSession = sessionViewModel.getGroupSessions(studentsGroup: selectedGroup)[indexPath.row]
+        
          selectedGroupStudents = studentViewModel.getGroupStudents(studentsGroup: selectedGroup)
         
         performSegue(withIdentifier: "goToStudentCheckListSegue", sender: self)
@@ -131,8 +135,10 @@ extension AttendanceViewController: UITableViewDataSource, UITableViewDelegate{
 
                 destination.selectedGroupStudents = selectedGroupStudents
                 
+                destination.selectedSession = selectedSession
+                
                 destination.selectedGroup = selectedGroup
-        
+                
             }
         }
     }

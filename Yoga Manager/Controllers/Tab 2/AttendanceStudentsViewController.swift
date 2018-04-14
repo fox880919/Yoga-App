@@ -18,7 +18,7 @@ class AttendanceStudentsViewController: UIViewController {
     
     var selectedGroup: Group!
     
-    var session : Session!
+    var selectedSession : Session!
     
     var defaultColor : UIColor?
     
@@ -67,12 +67,13 @@ class AttendanceStudentsViewController: UIViewController {
             
             let isPaid = selectedCells[i].isPaidCheckBox.on
             
-            attendanceViewModel.addANewAttendance(attendanceDate: date, isPaid: isPaid, attended: true, student: student, session: session, group: selectedGroup)
+            attendanceViewModel.addANewAttendance(attendanceDate: date, isPaid: isPaid, attended: true, student: student, session: selectedSession, group: selectedGroup)
             
             i = i + 1;
         }
         
-        
+        navigationController?.popViewController(animated: true)
+
     }
     
 }
