@@ -14,15 +14,14 @@ class SessionMapViewController: UIViewController, UIPickerViewDelegate, UIPicker
     
     let marker = GMSMarker()
     
-    var currentLocation: Location!
-    
     var session : Session!
-
-    var oldLocation : Location?
     
-    var locationBeforePickerView : Location?
+    var currentLocation: Location?
+    
+    var locationBeforePickerView : Location!
 
     var newInputView : UIView!
+    
     var newLocation : Location?
     
     var allLocations: [Location]!
@@ -55,31 +54,25 @@ class SessionMapViewController: UIViewController, UIPickerViewDelegate, UIPicker
         if let session = session {
             
             if let location = session.location {
-                
-                oldLocation = locationModelView.addANewLocation(name: location.name!, latitude: location.latitude!, longitude: location.longitude!, address: location.address!)
 
                 locationNameTxtField.text = location.name
                 
                 marker.position.latitude = Double(location.latitude!)!
                 
                 marker.position.longitude = Double(location.longitude!)!
+                
             }
         }
         
         else if let location = currentLocation {
-            
-            oldLocation = locationModelView.addANewLocation(name: location.name!, latitude: location.latitude!, longitude: location.longitude!, address: location.address!)
             
             locationNameTxtField.text = location.name
             
             marker.position.latitude = Double(location.latitude!)!
             
             marker.position.longitude = Double(location.longitude!)!
-            
         }
         
-        
-
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
 //        locationManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -95,9 +88,14 @@ class SessionMapViewController: UIViewController, UIPickerViewDelegate, UIPicker
 
     @IBAction func savedLocationBtnPressed(_ sender: Any) {
         
-        if let location = session.location {
+        if(currentLocation == nil)
+        {
             
-            locationBeforePickerView = location
+            locationBeforePickerView = session.location
+        }
+        else{
+            
+            locationBeforePickerView = currentLocation
         }
         
       savedLocationBtnPicker = UIPickerView(frame:CGRect(x: 0, y: 30, width: self.view.frame.size.width, height: 216))
@@ -135,16 +133,54 @@ class SessionMapViewController: UIViewController, UIPickerViewDelegate, UIPicker
     
     @objc func cancelPicker()
     {
-        session.location = locationBeforePickerView
         
+        if(currentLocation == nil)
+        {
+            
+             session.location = locationBeforePickerView
+        }
+        else{
+            
+            currentLocation = locationBeforePickerView
+        }
+        
+        locationModelView.deleteALocation(entity: locationBeforePickerView)
+    
         savedLocationBtnPicker.resignFirstResponder()
         newInputView.removeFromSuperview()
     }
     
     @objc func donePicker()
     {
+        if(currentLocation == nil)
+        {
+            
+            locationNameTxtField.text = session.location!.name
+            
+            if let latitude = session.location!.latitude, let longitude = session.location!.longitude {
+                
+                marker.position.latitude = Double(latitude)!
+                
+                marker.position.longitude = Double(longitude)!
+                
+            }
+        }
+        else{
+            
+            locationNameTxtField.text = currentLocation!.name
+            
+            if let latitude = currentLocation!.latitude, let longitude = currentLocation!.longitude {
+                
+                marker.position.latitude = Double(latitude)!
+                
+                marker.position.longitude = Double(longitude)!
+            }
+        }
+        
+     
         
         getLocation()
+        
         savedLocationBtnPicker.resignFirstResponder()
         newInputView.removeFromSuperview()
 
@@ -168,86 +204,71 @@ class SessionMapViewController: UIViewController, UIPickerViewDelegate, UIPicker
         
        else
         {
-            if session?.location != nil  {
+            if currentLocation == nil{
                 
-             saveLocation()
+                saveSessionLocation()
             }
-            
-            else if currentLocation != nil {
+            else{
                 
-                locationModelView.deleteALocation(entity: oldLocation!)
-                saveLocation()
-            }
-                
-            else {
-                
-                newLocation = locationModelView.addANewLocation(name: locationNameTxtField.text!, latitude: "\(marker.position.latitude)", longitude: "\(marker.position.longitude)", address: self.addressLabel.text!)
-                
-               session.location = newLocation
+                locationModelView.updateALocation(location: currentLocation!, name: locationNameTxtField.text!, latitude: "\(marker.position.latitude)", longitude: "\(marker.position.longitude)", address: addressLabel.text!)
                 
                 dismiss(animated: true, completion: nil)
-                
-            }
 
+            }
         }
-            
+        
 
     }
     
-    func saveLocation()
+    func saveSessionLocation()
     {
         
-        let alert = UIAlertController(title: "Saving Options", message: "Add as a new location", preferredStyle: UIAlertControllerStyle.alert)
-        
-        let yesAction = UIAlertAction(title: "Yes", style: UIAlertActionStyle.default, handler: { action in
+        if(session?.location != nil)
+        {
             
-            self.newLocation = self.locationModelView.addANewLocation(name: self.locationNameTxtField.text!, latitude: "\(self.marker.position.latitude)", longitude: "\(self.marker.position.longitude)", address: self.addressLabel.text!)
+            let alert = UIAlertController(title: "Saving Options", message: "Add as a new location", preferredStyle: UIAlertControllerStyle.alert)
             
-            if let session = self.session {
+            let yesAction = UIAlertAction(title: "Yes", style: UIAlertActionStyle.default, handler: { action in
                 
-                self.session.location = session.location
-
-            }
-            else if self.currentLocation != nil{
+                self.newLocation = self.locationModelView.addANewLocation(name: self.locationNameTxtField.text!, latitude: "\(self.marker.position.latitude)", longitude: "\(self.marker.position.longitude)", address: self.addressLabel.text!)
                 
-            }
-
-            
-            self.dismiss(animated: true, completion: nil)
-            
-        })
-        
-        let noAction = UIAlertAction(title: "No, change this location", style: UIAlertActionStyle.cancel, handler: { action in
-            
-            let location = self.session?.location ?? self.currentLocation
-
-            self.locationModelView.updateALocation(location: location!, name: self.locationNameTxtField.text!, latitude: "\(self.marker.position.latitude)", longitude: "\(self.marker.position.longitude)", address: self.addressLabel.text!)
-            
-                self.locationModelView.deleteALocation(entity: self.oldLocation!)
-            
+                self.session.location = self.newLocation
+                
                 self.dismiss(animated: true, completion: nil)
+                
+            })
+            
+            let noAction = UIAlertAction(title: "No, update this location", style: UIAlertActionStyle.cancel, handler: { action in
+                
+                self.locationModelView.updateALocation(location: self.session.location!, name: self.locationNameTxtField.text!, latitude: "\(self.marker.position.latitude)", longitude: "\(self.marker.position.longitude)", address: self.addressLabel.text!)
+                
+                self.dismiss(animated: true, completion: nil)
+            })
             
             
-        })
-        
-        
-        
-        alert.addAction(yesAction)
-        
-        alert.addAction(noAction)
-        
-        
-        self.present(alert, animated: true)
+            alert.addAction(yesAction)
+            
+            alert.addAction(noAction)
+            
+            
+            self.present(alert, animated: true)
+        }
+        else{
+            
+            session.location = locationModelView.addANewLocation(name: locationNameTxtField.text!, latitude: "\(marker.position.latitude)", longitude: "\(marker.position.longitude)", address: addressLabel.text!)
+            
+            dismiss(animated: true, completion: nil)
+
+        }
+
     }
     
     @IBAction func cancelBtn(_ sender: Any) {
         
-        if let location = currentLocation {
-            
-            currentLocation = location
-            
-            locationModelView.deleteALocation(entity: oldLocation!)
-        }
+//        if  currentLocation != nil {
+//
+//            locationModelView.deleteALocation(entity: currentLocation!)
+//        }
         
         dismiss(animated: true, completion: nil)
 
@@ -305,27 +326,10 @@ class SessionMapViewController: UIViewController, UIPickerViewDelegate, UIPicker
         {
             
         }
+            
         else{
             
             session.location = allLocations[row - 1]
-            
-            locationNameTxtField.text = allLocations[row - 1].name
-
-
-            if let location = session.location {
-                
-                if let latitude = location.latitude, let longitude = location.longitude {
-                    
-                    marker.position.latitude = Double(latitude)!
-                    
-                    marker.position.longitude = Double(longitude)!
-                }
-                
-
-            }
-            
-            
-        
         }
     }
     

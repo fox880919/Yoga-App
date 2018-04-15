@@ -51,15 +51,11 @@ class LocationModelView : BasicViewModel
         
         location.setValue(address, forKey: "address")
         
-        saveData()
-        
     }
     
     func deleteALocation(entity: NSManagedObject){
         
         coreDataHelper.deleteAnEntity(entity: entity)
-        
-        saveData()
-        
+                
     }
 }

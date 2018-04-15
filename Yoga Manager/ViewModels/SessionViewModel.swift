@@ -42,9 +42,7 @@ class SessionViewModel  : BasicViewModel
     }
 
     func addANewSession (cost: Int, day : String, startTime: Date, endTime: Date, createdDate: Date, isWeekly: Bool,  sessionGroup: Group) -> Session{
- 
-
-        
+  
        let session = Session(context: managedContext)
 
         session.cost = Int16(cost)
@@ -71,7 +69,6 @@ class SessionViewModel  : BasicViewModel
         
         let newcost = Int16(cost)
 
-
         currentSession.setValue(newcost, forKey: "cost")
 
         currentSession.setValue(stringFromDate(date: startTime), forKey: "start_time")
@@ -81,8 +78,6 @@ class SessionViewModel  : BasicViewModel
         currentSession.setValue(day, forKey: "week_day")
         
         currentSession.setValue(isWeekly, forKey: "is_weekly")
-
-        saveData()
 
     }
 

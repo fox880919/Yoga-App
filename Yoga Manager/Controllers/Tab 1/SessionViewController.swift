@@ -24,7 +24,13 @@ class SessionViewController: UIViewController, UIPickerViewDataSource, UIPickerV
     @IBOutlet weak var locationLabel: UILabel!
     
     let weekDaysValues = ["Sunday", "Monday", "Tuesday", "Wednesay", "Thursday", "Friday", "Saturday"]
-        
+    
+    var newCopyOfLocation: Location!
+    
+    var sameCopyOfLocation: Location!
+    
+    var isSavedButtonPessed = false
+    
     var selectedSession : Session!
     
     var newSession : Session!
@@ -37,9 +43,10 @@ class SessionViewController: UIViewController, UIPickerViewDataSource, UIPickerV
     
     var rotationAngle : CGFloat!
     
-    var oldLocation : Location!
-
     let sessionViewModel = SessionViewModel()
+    
+    let locationViewModel = LocationModelView()
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -83,15 +90,31 @@ class SessionViewController: UIViewController, UIPickerViewDataSource, UIPickerV
         
         if self.isMovingFromParentViewController {
             
-            if let session = newSession {
-                
-                if selectedSession != nil
-                {
-                    sessionViewModel.deleteASession(entity: session)
+            if isSavedButtonPessed != true
+            {
+                if selectedSession != nil {
+                    
+                    if(newCopyOfLocation != nil)
+                    {
+                        selectedSession.location = sameCopyOfLocation
+                        
+                        locationViewModel.updateALocation(location: selectedSession.location!, name: newCopyOfLocation.name!, latitude: newCopyOfLocation.latitude!, longitude: newCopyOfLocation.longitude!, address: newCopyOfLocation.address!)
+                        
+                        locationViewModel.deleteALocation(entity: newCopyOfLocation)
+                    }
+                        
+                    else{
+                        
+                        selectedSession.location = nil
+                        
+                    }
 
                 }
+                else if newSession != nil{
+                    
+                    sessionViewModel.deleteASession(entity: newSession)
+                }
             }
-            
             
         }
     }
@@ -102,10 +125,16 @@ class SessionViewController: UIViewController, UIPickerViewDataSource, UIPickerV
     }
     
     func setSessionValues(){
-    
+        
         if let session = selectedSession {
-    
-            oldLocation = session.location
+            
+            if let location = selectedSession.location
+            {
+                
+                newCopyOfLocation = locationViewModel.addANewLocation(name: location.name!, latitude: location.latitude!, longitude: location.longitude!, address: location.address!)
+                
+                sameCopyOfLocation = location
+            }
             
             weekDayPickerView.selectRow(getDayComponent(dayName: session.week_day!), inComponent: 0, animated: true)
             
@@ -149,14 +178,20 @@ class SessionViewController: UIViewController, UIPickerViewDataSource, UIPickerV
     
     @objc func saveBtnPressed()
     {
-        if(newSession != nil)
-        {
-            sessionViewModel.deleteASession(entity: (newSession))
-        }
+        isSavedButtonPessed = true
         
         saveSession()
         
         sessionViewModel.saveData()
+        
+        if selectedSession != nil
+        {
+            if(newCopyOfLocation != nil)
+            {
+                
+                locationViewModel.deleteALocation(entity: newCopyOfLocation)
+            }
+        }
         
         navigationController?.popViewController(animated: true)
     }
@@ -173,13 +208,21 @@ class SessionViewController: UIViewController, UIPickerViewDataSource, UIPickerV
         if let session = selectedSession{
             
             sessionViewModel.updateASession(cost: Int(costTextField.text!)!, day: selectedDay, startTime: startTimePicker.date, endTime: endDatePicker.date, isWeekly: isWeekly, currentSession: session)
-            
-            oldLocation = session.location
-        }
+                    }
             
         else {
             
-            newSession = sessionViewModel.addANewSession(cost: Int(costTextField.text!)!, day: selectedDay, startTime:  startTimePicker.date, endTime: endDatePicker.date, createdDate: Date(), isWeekly: isWeekly, sessionGroup: selectedGroup)
+            if(newSession == nil)
+            {
+                
+                newSession = sessionViewModel.addANewSession(cost: Int(costTextField.text!)!, day: selectedDay, startTime:  startTimePicker.date, endTime: endDatePicker.date, createdDate: Date(), isWeekly: isWeekly, sessionGroup: selectedGroup)
+            }
+            else
+            {
+                
+                sessionViewModel.updateASession(cost: Int(costTextField.text!)!, day: selectedDay, startTime:  startTimePicker.date, endTime: endDatePicker.date, isWeekly: isWeekly, currentSession: newSession)
+            }
+          // newSession.location =
             
         }
     }
@@ -232,7 +275,7 @@ class SessionViewController: UIViewController, UIPickerViewDataSource, UIPickerV
     @IBAction func sessionMapBtnPressed(_ sender: Any) {
         
         saveSession()
-        
+  
         self.performSegue(withIdentifier: "SessionMapSegue", sender: self)
 
     }
@@ -240,6 +283,9 @@ class SessionViewController: UIViewController, UIPickerViewDataSource, UIPickerV
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if segue.identifier == "SessionMapSegue" {
+            
+
+            
             
             if let destination = segue.destination as? SessionMapViewController{
                 
@@ -251,8 +297,7 @@ class SessionViewController: UIViewController, UIPickerViewDataSource, UIPickerV
                 else if let session = newSession {
                     
                     destination.session = session
-
-                    
+                 
                 }
  
             }

@@ -43,7 +43,7 @@ class AttendanceModelView : BasicViewModel
         
     }
     
-    func updateAnAt (attendance: Attendance, attendanceDate: Date,  isPaid: Bool, attended: Bool){
+    func updateAnAttendance (attendance: Attendance, attendanceDate: Date,  isPaid: Bool, attended: Bool){
         
         attendance.setValue(attendanceDate, forKey: "attendance_date")
         
