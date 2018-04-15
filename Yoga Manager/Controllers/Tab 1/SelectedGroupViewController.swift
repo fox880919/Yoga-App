@@ -57,10 +57,9 @@ class SelectedGroupViewController: UIViewController, UICollectionViewDelegate, U
         
         sessionsTableView.delegate = self
         
-        newInputView = UIView(frame: CGRect(x: 0, y: 200, width: self.view.frame.size.width, height: 300))
+        newInputView = UIView(frame: CGRect(x: 0, y: 200, width: self.view.frame.size.width, height: 360))
         
         allPickerGroups.remove(at: allPickerGroups.index(of: studentsGroup)!)
-
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -305,17 +304,27 @@ class SelectedGroupViewController: UIViewController, UICollectionViewDelegate, U
                 
                 let alert = UIAlertController(title: "Deleting Session number \(indexPath.row + 1)", message: "Are your sure?", preferredStyle: UIAlertControllerStyle.alert)
                 
-                
-                
                 let deleteAction = UIAlertAction(title: "Delete", style: UIAlertActionStyle.default, handler: { action in
                     
-                    self.sessionViewModel.deleteASession (entity: self.allGroupSessions[indexPath.row])
+                    let sessionToDelete = self.allGroupSessions[indexPath.row]
                     
-                    self.allGroupSessions = self.sessionViewModel.getGroupSessions(studentsGroup: self.studentsGroup)
                     
-                    self.lastRowPosition = self.allGroupSessions.count
+                    if(sessionToDelete.groups!.count > 1)
+                    {
+                        self.deletingSessionOptions(sessionToDelete: sessionToDelete)
+                    }
+                    else{
+                        
+                        self.sessionViewModel.deleteASession(entity: self.allGroupSessions[indexPath.row])
+                        
+                        self.allGroupSessions = self.sessionViewModel.getGroupSessions(studentsGroup: self.studentsGroup)
+                        
+                        self.lastRowPosition = self.allGroupSessions.count
+                        
+                        tableView.reloadData()
+                    }
+                    
 
-                    tableView.reloadData()
                     
                 })
                 let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil)
@@ -364,7 +373,11 @@ class SelectedGroupViewController: UIViewController, UICollectionViewDelegate, U
     func addExistingSession(){
         
         
-        savedGroupsBtnPicker = UIPickerView(frame:CGRect(x: 0, y: 30, width: self.view.frame.size.width, height: 100))
+        savedGroupsBtnPicker = UIPickerView(frame:CGRect(x: 0, y: 80, width: self.view.frame.size.width, height: 100))
+        
+        let groupLabel = UILabel(frame: CGRect(x: 0, y: 50, width: self.view.frame.size.width, height: 20))
+        groupLabel.textAlignment = .center
+        groupLabel.text = "Groups"
         
         savedGroupsBtnPicker.delegate = self
         savedGroupsBtnPicker.dataSource = self
@@ -375,7 +388,13 @@ class SelectedGroupViewController: UIViewController, UICollectionViewDelegate, U
         
         savedGroupsBtnPicker.tag = 10;
         
-        savedSessionBtnPicker = UIPickerView(frame:CGRect(x: 0, y: 130, width: self.view.frame.size.width, height: 100))
+
+        
+        savedSessionBtnPicker = UIPickerView(frame:CGRect(x: 0, y: 240, width: self.view.frame.size.width, height: 100))
+        
+        let sessionsLabel = UILabel(frame: CGRect(x: 0, y: 200, width: self.view.frame.size.width, height: 20))
+        sessionsLabel.textAlignment = .center
+        sessionsLabel.text = "Selected Group Sessions"
         
         savedSessionBtnPicker.delegate = self
         savedSessionBtnPicker.dataSource = self
@@ -412,6 +431,10 @@ class SelectedGroupViewController: UIViewController, UICollectionViewDelegate, U
         
         newInputView.addSubview(savedSessionBtnPicker)
         
+        newInputView.addSubview(groupLabel)
+        
+        newInputView.addSubview(sessionsLabel)
+        
         newInputView.backgroundColor = UIColor.cyan
         
         self.view.addSubview(newInputView)
@@ -420,6 +443,10 @@ class SelectedGroupViewController: UIViewController, UICollectionViewDelegate, U
     
     @objc func donePicker(){
         
+        if(pickerSelectedSession != nil)
+        {
+            addAndSaveSession()
+        }
         savedGroupsBtnPicker.resignFirstResponder()
         
         newInputView.removeFromSuperview()
@@ -427,6 +454,149 @@ class SelectedGroupViewController: UIViewController, UICollectionViewDelegate, U
     
     @objc func cancelPicker(){
         
+        savedGroupsBtnPicker.resignFirstResponder()
+        
+        newInputView.removeFromSuperview()
+    }
+    
+    func addAndSaveSession(){
+        
+        if(studentsGroup.sessions?.contains(pickerSelectedSession))!
+        {
+            showAlert(message: "This session exist in this group")
+        }
+        else
+        {
+            if(checkSessionConflict() == false){
+
+                studentsGroup.addToSessions(pickerSelectedSession)
+                
+                sessionViewModel.saveData()
+                
+                allGroupSessions = sessionViewModel.getGroupSessions(studentsGroup: studentsGroup)
+                
+                self.sessionsTableView.reloadData()
+
+                
+            }
+            else{
+                
+                showConflictAlert()
+            }
+        }
+    }
+    
+    func showAlert(message: String!){
+        
+        let alert = UIAlertController(title: "Error", message: message, preferredStyle: UIAlertControllerStyle.alert)
+        
+                        let okAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: { action in
+                        })
+        
+                        alert.addAction(okAction)
+        
+                        self.present(alert, animated: true)
+    }
+    
+    func showConflictAlert(){
+    
+        let alert = UIAlertController(title: "Warning ", message: "The new session has a conflict with another session in this group, \(studentsGroup.name!), do you want to continue adding the session?", preferredStyle: UIAlertControllerStyle.alert)
+        
+        let yesAction = UIAlertAction(title: "Yes", style: UIAlertActionStyle.default, handler: { action in
+        
+            self.studentsGroup.addToSessions(self.pickerSelectedSession)
+            
+            self.sessionViewModel.saveData()
+            
+            self.allGroupSessions = self.sessionViewModel.getGroupSessions(studentsGroup: self.studentsGroup)
+            
+            self.sessionsTableView.reloadData()
+            
+        })
+        
+        let noAction = UIAlertAction(title: "No", style: UIAlertActionStyle.cancel, handler: { action in
+            print("testing deletion")
+            
+            self.pickerSelectedSession = nil
+        })
+        
+        alert.addAction(yesAction)
+        alert.addAction(noAction)
+        
+        
+        self.present(alert, animated: true)
+    }
+    
+    func checkSessionConflict() -> Bool
+    {
+        let sessions = sessionViewModel.getGroupSessions(studentsGroup: studentsGroup)
+        
+        for session in sessions{
+            
+            if(session.week_day! == pickerSelectedSession.week_day!)
+            {
+
+                let sessionStartTime = dateFromString(dateString: session.start_time!)
+                
+                let sessionEndTime = dateFromString(dateString: session.end_time!)
+                
+                let addedSessionStartTime = dateFromString(dateString: pickerSelectedSession.start_time!)
+                
+                let addedsessionEndTime = dateFromString(dateString: pickerSelectedSession.end_time!)
+                
+                if ( addedSessionStartTime >= sessionStartTime &&  addedSessionStartTime <= sessionEndTime)
+                {
+                    
+                    return true
+                }
+                else if ( addedsessionEndTime >= sessionStartTime &&  addedsessionEndTime <= sessionEndTime)
+                {
+                    
+                    return true
+                }
+            }
+
+        }
+        
+        return false
+    }
+    
+    func deletingSessionOptions(sessionToDelete: Session!)
+    {
+
+        let deletingOptionsAlert = UIAlertController(title: "Options for deleting", message: " This session exists in another group !!", preferredStyle: UIAlertControllerStyle.alert)
+        
+        
+        deletingOptionsAlert.addAction(UIAlertAction(title: "Remove from this group Only", style: .default, handler: { (action: UIAlertAction!) in
+            
+            self.studentsGroup.removeFromSessions(sessionToDelete)
+
+            self.allGroupSessions = self.sessionViewModel.getGroupSessions(studentsGroup: self.studentsGroup)
+            
+            self.lastRowPosition = self.allGroupSessions.count
+            
+            self.sessionsTableView.reloadData()
+        }))
+        
+        deletingOptionsAlert.addAction(UIAlertAction(title: "Delete from here and all groups", style: .destructive, handler: { (action: UIAlertAction!) in
+            
+            self.sessionViewModel.deleteASession(entity: sessionToDelete)
+
+            self.allGroupSessions = self.sessionViewModel.getGroupSessions(studentsGroup: self.studentsGroup)
+            
+            self.lastRowPosition = self.allGroupSessions.count
+            
+            self.sessionsTableView.reloadData()
+            
+        }))
+        
+        deletingOptionsAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action: UIAlertAction!) in
+            
+        }))
+        
+        present(deletingOptionsAlert, animated: true, completion: nil)
+        
+
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -483,8 +653,6 @@ class SelectedGroupViewController: UIViewController, UICollectionViewDelegate, U
                     destination.title = "All Students"
                     destination.registeredStudents = students
                     destination.studentsGroup = studentsGroup
-                    
-                    
                 }
             }
         
@@ -498,8 +666,6 @@ extension SelectedGroupViewController: UIPickerViewDelegate, UIPickerViewDataSou
     }
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         
-        let test = pickerView.tag
-
         if pickerView.tag == 10 {
             
                 return allPickerGroups.count + 1
@@ -522,7 +688,6 @@ extension SelectedGroupViewController: UIPickerViewDelegate, UIPickerViewDataSou
     }
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         
-        let test = pickerView.tag
         
         if pickerView.tag == 10{
             
@@ -571,14 +736,16 @@ extension SelectedGroupViewController: UIPickerViewDelegate, UIPickerViewDataSou
                 savedSessionBtnPicker.reloadAllComponents()
             }
             else{
-
+                
+                pickerSelectedSession = nil
                 //savedSessionBtnPicker.isHidden = false
 
                 allPickerSessionsForAGroup = sessionViewModel.getGroupSessions(studentsGroup: allPickerGroups[row - 1])
-                
-                let test = savedSessionBtnPicker.tag
-                
+
                 savedSessionBtnPicker.reloadAllComponents()
+                
+                savedSessionBtnPicker.selectRow(0, inComponent: 0, animated: false)
+
             }
             
         }

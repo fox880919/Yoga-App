@@ -129,7 +129,11 @@ class SessionViewController: UIViewController, UIPickerViewDataSource, UIPickerV
             
             else {
                 
-                sessionViewModel.deleteASession(entity: newCopyOfSession)
+                if(newCopyOfSession != nil)
+                {
+                    sessionViewModel.deleteASession(entity: newCopyOfSession)
+
+                }
                 
                 if(newCopyOfLocation != nil)
                 {
@@ -203,6 +207,36 @@ class SessionViewController: UIViewController, UIPickerViewDataSource, UIPickerV
     
     @objc func saveBtnPressed()
     {
+        if(selectedSession != nil)
+        {
+            if(checkSessionConflict(testingSession: selectedSession) == true)
+            {
+                
+                showConflictAlert()
+                return
+            }
+            
+        }
+        else if(newSession != nil){
+            
+            if(checkSessionConflict(testingSession: newSession) == true)
+            {
+                
+                showConflictAlert()
+                return
+            }
+        }
+    
+        else{
+            
+        safeToSaveSession()
+        }
+    }
+
+    func safeToSaveSession()
+    {
+        
+        
         isSavedButtonPessed = true
         
         saveSession()
@@ -219,6 +253,63 @@ class SessionViewController: UIViewController, UIPickerViewDataSource, UIPickerV
         }
         
         navigationController?.popViewController(animated: true)
+    }
+
+        
+    func showConflictAlert(){
+        
+        let alert = UIAlertController(title: "Warning ", message: "The new session has a conflict with this another session in this group, \(selectedGroup.name!), do you want to continue saving the session?", preferredStyle: UIAlertControllerStyle.alert)
+        
+        let yesAction = UIAlertAction(title: "Yes", style: UIAlertActionStyle.default, handler: { action in
+            
+            self.safeToSaveSession()
+            
+        })
+        
+        let noAction = UIAlertAction(title: "No", style: UIAlertActionStyle.cancel, handler: { action in
+            print("testing deletion")
+            
+        })
+        
+        alert.addAction(yesAction)
+        alert.addAction(noAction)
+        
+        
+        self.present(alert, animated: true)
+    }
+
+    func checkSessionConflict(testingSession: Session) -> Bool
+    {
+        let sessions = sessionViewModel.getGroupSessions(studentsGroup: selectedGroup)
+        
+        for session in sessions{
+            
+            if(session.week_day! == testingSession.week_day!)
+            {
+                
+                let sessionStartTime = dateFromString(dateString: session.start_time!)
+                
+                let sessionEndTime = dateFromString(dateString: session.end_time!)
+                
+                let addedSessionStartTime = dateFromString(dateString: testingSession.start_time!)
+                
+                let addedsessionEndTime = dateFromString(dateString: testingSession.end_time!)
+                
+                if ( addedSessionStartTime > sessionStartTime &&  addedSessionStartTime < sessionEndTime)
+                {
+                    
+                    return true
+                }
+                else if ( addedsessionEndTime > sessionStartTime &&  addedsessionEndTime < sessionEndTime)
+                {
+                    
+                    return true
+                }
+            }
+            
+        }
+        
+        return false
     }
     
     func saveSession()

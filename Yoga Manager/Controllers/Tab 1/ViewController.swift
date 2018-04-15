@@ -17,7 +17,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     let studentViewModel = StudentViewModel()
     
-    let groups = MainViewModel().getGroups()
+    var groups = MainViewModel().getGroups()
     
     let sessionModelView = SessionViewModel()
     
@@ -43,6 +43,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         super.viewDidAppear(animated)
         
         lastRowPosition = mainViewModel.getGroups().count
+        
+        groups = MainViewModel().getGroups()
         
         tableView.reloadData()
     }
