@@ -19,7 +19,7 @@ class SelectedGroupViewController: UIViewController, UICollectionViewDelegate, U
     
     var selectedSession : Session!
 
-     var allSessions: [Session]!
+     var allGroupSessions: [Session]!
     
     var studentsGroup : Group!
     
@@ -29,6 +29,22 @@ class SelectedGroupViewController: UIViewController, UICollectionViewDelegate, U
     
      var lastRowPosition = 0
     
+    var savedGroupsBtnPicker = UIPickerView()
+
+    var savedSessionBtnPicker = UIPickerView()
+    
+    var allPickerGroups = MainViewModel().getGroups()
+
+    var allPickerSessionsForAGroup: [Session]!
+    
+    
+    var pickerSelectedSessionsGroup: Group!
+    
+    var pickerSelectedSession: Session!
+    
+    
+
+    var newInputView : UIView!    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,6 +56,11 @@ class SelectedGroupViewController: UIViewController, UICollectionViewDelegate, U
         sessionsTableView.dataSource = self
         
         sessionsTableView.delegate = self
+        
+        newInputView = UIView(frame: CGRect(x: 0, y: 200, width: self.view.frame.size.width, height: 300))
+        
+        allPickerGroups.remove(at: allPickerGroups.index(of: studentsGroup)!)
+
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -69,7 +90,7 @@ class SelectedGroupViewController: UIViewController, UICollectionViewDelegate, U
         
         self.studentsCollectionView.reloadData()
         
-        allSessions = sessionViewModel.getGroupSessions(studentsGroup: studentsGroup)
+        allGroupSessions = sessionViewModel.getGroupSessions(studentsGroup: studentsGroup)
         
         self.sessionsTableView.reloadData()
     }
@@ -243,7 +264,7 @@ class SelectedGroupViewController: UIViewController, UICollectionViewDelegate, U
             
             let cell = tableView.dequeueReusableCell(withIdentifier: "sessionsCell1") as! SessionCell
             
-            let session = allSessions[indexPath.row]
+            let session = allGroupSessions[indexPath.row]
             
             cell.sessionDayLabel.text! = session.week_day!
             
@@ -269,7 +290,7 @@ class SelectedGroupViewController: UIViewController, UICollectionViewDelegate, U
             
         else{
             
-            selectedSession = allSessions[indexPath.row]
+            selectedSession = allGroupSessions[indexPath.row]
             
             self.performSegue(withIdentifier: "editSessionSegue", sender: self)
             
@@ -288,11 +309,11 @@ class SelectedGroupViewController: UIViewController, UICollectionViewDelegate, U
                 
                 let deleteAction = UIAlertAction(title: "Delete", style: UIAlertActionStyle.default, handler: { action in
                     
-                    self.sessionViewModel.deleteASession (entity: self.allSessions[indexPath.row])
+                    self.sessionViewModel.deleteASession (entity: self.allGroupSessions[indexPath.row])
                     
-                    self.allSessions = self.sessionViewModel.getGroupSessions(studentsGroup: self.studentsGroup)
+                    self.allGroupSessions = self.sessionViewModel.getGroupSessions(studentsGroup: self.studentsGroup)
                     
-                    self.lastRowPosition = self.allSessions.count
+                    self.lastRowPosition = self.allGroupSessions.count
 
                     tableView.reloadData()
                     
@@ -319,8 +340,93 @@ class SelectedGroupViewController: UIViewController, UICollectionViewDelegate, U
     
     func addSession()
     {
-        self.performSegue(withIdentifier: "addSessionSegue", sender: self)
+        
+        let PhotoAlert = UIAlertController(title: "Adding Session", message: "Add a new or an existing session?", preferredStyle: UIAlertControllerStyle.alert)
+        
+        
+        PhotoAlert.addAction(UIAlertAction(title: "New", style: .default, handler: { (action: UIAlertAction!) in
+            
+            self.performSegue(withIdentifier: "addSessionSegue", sender: self)
 
+        }))
+        
+        PhotoAlert.addAction(UIAlertAction(title: "Existing", style: .default, handler: { (action: UIAlertAction!) in
+            
+            self.addExistingSession()
+            
+        }))
+        
+        present(PhotoAlert, animated: true, completion: nil)
+        
+
+    }
+    
+    func addExistingSession(){
+        
+        
+        savedGroupsBtnPicker = UIPickerView(frame:CGRect(x: 0, y: 30, width: self.view.frame.size.width, height: 100))
+        
+        savedGroupsBtnPicker.delegate = self
+        savedGroupsBtnPicker.dataSource = self
+        
+        savedGroupsBtnPicker.backgroundColor = UIColor.white
+        
+        savedGroupsBtnPicker.showsSelectionIndicator = true
+        
+        savedGroupsBtnPicker.tag = 10;
+        
+        savedSessionBtnPicker = UIPickerView(frame:CGRect(x: 0, y: 130, width: self.view.frame.size.width, height: 100))
+        
+        savedSessionBtnPicker.delegate = self
+        savedSessionBtnPicker.dataSource = self
+        
+        savedSessionBtnPicker.backgroundColor = UIColor.white
+        
+        savedSessionBtnPicker.showsSelectionIndicator = true
+        
+        savedSessionBtnPicker.tag = 20;
+        
+        //savedSessionBtnPicker.isHidden = true
+
+        
+        let toolBar = UIToolbar()
+        toolBar.barStyle = UIBarStyle.default
+        toolBar.isTranslucent = true
+        toolBar.tintColor = UIColor(red: 76/255, green: 217/255, blue: 100/255, alpha: 1)
+        toolBar.sizeToFit()
+        
+        let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.plain, target: self, action: #selector(donePicker))
+        
+        let spaceButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        
+        let cancelButton = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.plain, target: self, action: #selector(cancelPicker))
+        
+        toolBar.setItems([cancelButton, spaceButton, doneButton], animated: false)
+        
+        toolBar.isUserInteractionEnabled = true
+        
+        
+        newInputView.addSubview(toolBar)
+
+        newInputView.addSubview(savedGroupsBtnPicker)
+        
+        newInputView.addSubview(savedSessionBtnPicker)
+        
+        newInputView.backgroundColor = UIColor.cyan
+        
+        self.view.addSubview(newInputView)
+        
+    }
+    
+    @objc func donePicker(){
+        
+        savedGroupsBtnPicker.resignFirstResponder()
+        
+        newInputView.removeFromSuperview()
+    }
+    
+    @objc func cancelPicker(){
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -385,7 +491,111 @@ class SelectedGroupViewController: UIViewController, UICollectionViewDelegate, U
     }
 }
     
+extension SelectedGroupViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1;
+    }
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        
+        let test = pickerView.tag
 
+        if pickerView.tag == 10 {
+            
+                return allPickerGroups.count + 1
+        }
+
+            else  if pickerView.tag == 20 {
+            
+            if(allPickerSessionsForAGroup != nil )
+            {
+                pickerView.backgroundColor = UIColor.white
+
+                return allPickerSessionsForAGroup.count + 1
+                
+            }
+        }
+        
+        pickerView.backgroundColor = UIColor.darkGray
+        
+        return 0;
+    }
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        
+        let test = pickerView.tag
+        
+        if pickerView.tag == 10{
+            
+            if(row == 0)
+            {
+                
+                return "None"
+            }
+            else{
+
+                return allPickerGroups[row - 1].name!
+            }
+        }
+            
+       else if pickerView.tag == 20{
+            
+            if(row == 0)
+            {
+                
+                return "None"
+            }
+            else{
+            
+                let session = allPickerSessionsForAGroup[row - 1]
+                
+                return "\(session.week_day!) from:\(session.start_time!) to:\(session.end_time!)"
+            }
+        }
+        else{
+            
+            return ""
+        }
+
+    }
+    
+    func pickerView( _ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        
+        if pickerView.tag == 10{
+            
+            if(row == 0)
+            {
+                //    savedSessionBtnPicker.isHidden = true
+
+                allPickerSessionsForAGroup = nil
+                
+                savedSessionBtnPicker.reloadAllComponents()
+            }
+            else{
+
+                //savedSessionBtnPicker.isHidden = false
+
+                allPickerSessionsForAGroup = sessionViewModel.getGroupSessions(studentsGroup: allPickerGroups[row - 1])
+                
+                let test = savedSessionBtnPicker.tag
+                
+                savedSessionBtnPicker.reloadAllComponents()
+            }
+            
+        }
+        else    if pickerView.tag == 20{
+            
+            if(row == 0)
+            {
+                pickerSelectedSession = nil
+            }
+            else{
+                
+                pickerSelectedSession = allPickerSessionsForAGroup[row - 1]
+            }
+        }
+        
+    }
+}
     /*
     // MARK: - Navigation
 

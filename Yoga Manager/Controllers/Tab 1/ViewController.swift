@@ -135,6 +135,17 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             }
         }
             
+        else if segue.identifier == "editGroupSegue" {
+            
+            if let destination = segue.destination as? AddingGroupPopupViewController{
+                
+                destination.title = "Edit \(currentSelectedGroup.name!) Group"
+                
+                destination.selectedGroup = currentSelectedGroup
+                
+            }
+        }
+            
             else if segue.identifier == "selectedGroupSegue" {
                 
                 if let destination = segue.destination as? SelectedGroupViewController{
@@ -143,10 +154,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                     
                     destination.studentsGroup = currentSelectedGroup
                     
-                    destination.allSessions = sessionModelView.getGroupSessions(studentsGroup: currentSelectedGroup)
+                    destination.allGroupSessions = sessionModelView.getGroupSessions(studentsGroup: currentSelectedGroup)
                 }
                     
             }
+            
         
         else if segue.identifier == "goToSettingsSegue" {
             
@@ -212,7 +224,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]?
     {
         if (indexPath.row != lastRowPosition) {
-        let shareAction = UITableViewRowAction(style: UITableViewRowActionStyle.default, title: "Delete" , handler: { (action:UITableViewRowAction, indexPath: IndexPath) -> Void in
+        let deleteGroupAction = UITableViewRowAction(style: UITableViewRowActionStyle.default, title: "Delete" , handler: { (action:UITableViewRowAction, indexPath: IndexPath) -> Void in
 
             let alert = UIAlertController(title: "Deleting \(self.mainViewModel.getGroups()[indexPath.row].name!) Group", message: "Are your sure?", preferredStyle: UIAlertControllerStyle.alert)
             
@@ -234,10 +246,19 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
             self.present(alert, animated: true)
         })
+            
+            let EditGroupAction = UITableViewRowAction(style: UITableViewRowActionStyle.normal, title: "Edit" , handler: { (action:UITableViewRowAction, indexPath: IndexPath) -> Void in
+                
+                self.currentSelectedGroup = self.mainViewModel.getGroups()[indexPath.row]
+                
+                self.performSegue(withIdentifier: "editGroupSegue", sender: self)
+                
 
+            })
 
-
-        return [shareAction]
+            EditGroupAction.backgroundColor = UIColor(red:0.20, green:0.80, blue:0.20, alpha:1.0)
+            
+        return [deleteGroupAction, EditGroupAction]
         }
 
         else {

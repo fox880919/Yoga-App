@@ -144,7 +144,11 @@ class SessionMapViewController: UIViewController, UIPickerViewDelegate, UIPicker
             currentLocation = locationBeforePickerView
         }
         
-        locationModelView.deleteALocation(entity: locationBeforePickerView)
+        if(locationBeforePickerView != nil)
+        {
+            locationModelView.deleteALocation(entity: locationBeforePickerView)
+
+        }
     
         savedLocationBtnPicker.resignFirstResponder()
         newInputView.removeFromSuperview()

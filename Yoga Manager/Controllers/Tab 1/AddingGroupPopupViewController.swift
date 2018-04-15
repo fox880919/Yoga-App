@@ -14,12 +14,32 @@ class AddingGroupPopupViewController: UIViewController {
     
     @IBOutlet weak var priceTextField: UITextField!
     
+    @IBOutlet weak var subscriptionPriceTextField: UITextField!
+    
+    var selectedGroup: Group?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+
 
         priceTextField.keyboardType = UIKeyboardType.numberPad
         
         priceTextField.text! = "0"
+        
+        subscriptionPriceTextField.keyboardType = UIKeyboardType.numberPad
+        
+        subscriptionPriceTextField.text! = "0"
+        
+        if let group = selectedGroup {
+            
+            grouNameTextField.text = group.name
+            
+            priceTextField.text! = "\(group.session_price)"
+            
+            subscriptionPriceTextField.text! = "\(group.subscription_price)"
+
+        }
         
         // Do any additional setup after loading the view.
     }
@@ -39,7 +59,15 @@ class AddingGroupPopupViewController: UIViewController {
     
     @IBAction func submitGroupName(_ sender: Any) {
         
-        MainViewModel().addANewGroup(groupName: grouNameTextField.text!, sessionPrice: Int(priceTextField.text!)!)
+        if let group = selectedGroup {
+            
+            MainViewModel().updateAgroup(oldGroup: group, newName: grouNameTextField.text!, newSessionPrice: Int(priceTextField.text!)!, newSubscriptionPrice:  Int(subscriptionPriceTextField.text!)!)
+        }
+        
+        else {
+            
+            MainViewModel().addANewGroup(groupName: grouNameTextField.text!, sessionPrice: Int(priceTextField.text!)!, subscriptionPrice: Int(subscriptionPriceTextField.text!)!)
+        } 
         
         dismiss(animated: true, completion: nil)
 

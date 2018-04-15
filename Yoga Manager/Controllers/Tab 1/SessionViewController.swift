@@ -85,6 +85,15 @@ class SessionViewController: UIViewController, UIPickerViewDataSource, UIPickerV
 
             }
         }
+        
+        else if let session = newSession {
+            
+            if let location = session.location?.name {
+                
+                locationLabel.text! = location
+                
+            }
+        }
     }
     
     override func viewWillDisappear(_ animated : Bool) {
@@ -116,10 +125,18 @@ class SessionViewController: UIViewController, UIPickerViewDataSource, UIPickerV
                     }
 
                 }
-                else if newSession != nil{
+            }
+            
+            else {
+                
+                sessionViewModel.deleteASession(entity: newCopyOfSession)
+                
+                if(newCopyOfLocation != nil)
+                {
                     
-                    sessionViewModel.deleteASession(entity: newSession)
+                    locationViewModel.deleteALocation(entity: newCopyOfLocation)
                 }
+                
             }
             
         }

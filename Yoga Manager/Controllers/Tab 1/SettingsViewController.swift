@@ -128,7 +128,7 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate{
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]?
     {
 
-            let shareAction = UITableViewRowAction(style: UITableViewRowActionStyle.default, title: "Delete" , handler: { (action:UITableViewRowAction, indexPath: IndexPath) -> Void in
+            let deleteLocationAction = UITableViewRowAction(style: UITableViewRowActionStyle.default, title: "Delete" , handler: { (action:UITableViewRowAction, indexPath: IndexPath) -> Void in
                 
                 let alert = UIAlertController(title: "Deleting \(self.allLocations[indexPath.row].name!) Location", message: "Are your sure?", preferredStyle: UIAlertControllerStyle.alert)
                 
@@ -152,15 +152,14 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate{
             })
         
         
-        let copyAction = UITableViewRowAction(style: UITableViewRowActionStyle.normal, title: "Copy URL" , handler: { (action:UITableViewRowAction, indexPath: IndexPath) -> Void in
+        let copyLocationAction = UITableViewRowAction(style: UITableViewRowActionStyle.normal, title: "Copy URL" , handler: { (action:UITableViewRowAction, indexPath: IndexPath) -> Void in
             
             let thisLocation = self.allLocations[indexPath.row]
             
             UIPasteboard.general.string = googleURL + thisLocation.latitude! + "," + thisLocation.longitude!
         })
-            
         
-            return [shareAction, copyAction]
+            return [deleteLocationAction, copyLocationAction]
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
