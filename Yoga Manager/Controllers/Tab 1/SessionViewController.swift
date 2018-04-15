@@ -27,6 +27,8 @@ class SessionViewController: UIViewController, UIPickerViewDataSource, UIPickerV
     
     var newCopyOfLocation: Location!
     
+    var newCopyOfSession: Session!
+    
     var sameCopyOfLocation: Location!
     
     var isSavedButtonPessed = false
@@ -94,6 +96,10 @@ class SessionViewController: UIViewController, UIPickerViewDataSource, UIPickerV
             {
                 if selectedSession != nil {
                     
+                    sessionViewModel.updateASession(cost: Int(newCopyOfSession.cost), day: newCopyOfSession.week_day!, startTime: dateFromString(dateString: newCopyOfSession.start_time!), endTime: dateFromString(dateString: newCopyOfSession.end_time!), isWeekly: newCopyOfSession.is_weekly, currentSession: selectedSession)
+                    
+                    sessionViewModel.deleteASession(entity: newCopyOfSession)
+
                     if(newCopyOfLocation != nil)
                     {
                         selectedSession.location = sameCopyOfLocation
@@ -127,6 +133,8 @@ class SessionViewController: UIViewController, UIPickerViewDataSource, UIPickerV
     func setSessionValues(){
         
         if let session = selectedSession {
+            
+            newCopyOfSession = sessionViewModel.addANewSession(cost: Int(session.cost), day: session.week_day!, startTime: dateFromString(dateString: session.start_time!), endTime: dateFromString(dateString: session.end_time!), createdDate: Date(), isWeekly: session.is_weekly, sessionGroup: selectedGroup)
             
             if let location = selectedSession.location
             {
