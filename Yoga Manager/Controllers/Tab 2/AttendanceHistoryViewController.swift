@@ -18,6 +18,13 @@ class HistoryViewController: UIViewController {
     
     var filteredAttendanceHistory: [Attendance]!
     
+    var AllFilteredAttendanceHistory: [Attendance]!
+
+    var attendedFilteredAttendanceHistory: [Attendance]!
+
+    var absentilteredAttendanceHistory: [Attendance]!
+
+    
     var lastGroupBeforePicker: Group!
     
     var lastStudentBeforePicker: Student!
@@ -36,6 +43,8 @@ class HistoryViewController: UIViewController {
     
     @IBOutlet weak var sortTypeSegmentCntrl: UISegmentedControl!
     
+    @IBOutlet weak var attendanceSegmentCntrl: UISegmentedControl!
+    
     @IBOutlet weak var historyTableView: UITableView!
     
     var selectedAttendance: [Attendance]!
@@ -49,11 +58,12 @@ class HistoryViewController: UIViewController {
         
         prepareTextFieldUiPicker()
         
-        sortTypeSegmentCntrl.addTarget(self, action: #selector(segmentValueChanged), for: .valueChanged)
+        sortTypeSegmentCntrl.addTarget(self, action: #selector(sortTypeSegmentValueChanged), for: .valueChanged)
+        
+        attendanceSegmentCntrl.addTarget(self, action: #selector(attendanceSegmentValueChanged), for: .valueChanged)
         
         historyTableView.dataSource = self
         historyTableView.delegate = self
-        
         
         // Do any additional setup after loading the view.
     }
@@ -107,13 +117,16 @@ class HistoryViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @objc func segmentValueChanged() {
+    @objc func sortTypeSegmentValueChanged() {
         
+        sortTextFieldPickerView.resignFirstResponder()
+
         if(sortTypeSegmentCntrl.selectedSegmentIndex == 0)
         {
             isSortedByStudentType = false
             
             selectedStudent = nil
+            
         }
         else{
             
@@ -123,6 +136,52 @@ class HistoryViewController: UIViewController {
         }
         
         sortTextFieldPickerView.text! = ""
+    }
+    
+
+    
+    @objc func attendanceSegmentValueChanged(){
+
+        var tempFilteredAttendanceHistory = [Attendance]()
+        
+        for attendance in filteredAttendanceHistory
+        {
+            tempFilteredAttendanceHistory.append(attendance)
+        }
+        
+        if(attendanceSegmentCntrl.selectedSegmentIndex == 0)
+        {
+            tempFilteredAttendanceHistory = filteredAttendanceHistory
+        }
+        else if(attendanceSegmentCntrl.selectedSegmentIndex == 1){
+            
+            for attendance in filteredAttendanceHistory{
+                
+                if(attendance.attended)
+                {
+                    tempFilteredAttendanceHistory.append(attendance)
+                }
+            }
+            
+        }
+        else{
+            
+            for attendance in filteredAttendanceHistory{
+                
+                if !(attendance.attended)
+                {
+                    tempFilteredAttendanceHistory.append(attendance)
+                }
+            }
+        }
+        
+        filteredAttendanceHistory = tempFilteredAttendanceHistory
+        
+        filteredAttendanceHistory.reverse()
+        
+        historyTableView.reloadData()
+        
+        
     }
     
     @IBAction func textDidEdittingBegun(_ sender: Any) {
@@ -151,6 +210,9 @@ class HistoryViewController: UIViewController {
                 filteredAttendanceHistory.reverse()
                 
                 historyTableView.reloadData()
+                
+                attendanceSegmentValueChanged()
+
             }
         }
             
@@ -160,7 +222,6 @@ class HistoryViewController: UIViewController {
             {
                 filterByGroup(specificGroup: selectedGroup)
 
-                
             }
             else {
                 
@@ -169,6 +230,9 @@ class HistoryViewController: UIViewController {
                 filteredAttendanceHistory.reverse()
                 
                 historyTableView.reloadData()
+                
+                attendanceSegmentValueChanged()
+
             }
 
         }
@@ -394,8 +458,14 @@ extension HistoryViewController: UITableViewDataSource, UITableViewDelegate{
             
             cell.paidLbl.text! = "No"
             
-            cell.paidLbl.textColor = UIColor.darkGray
-            
+            cell.paidLbl.textColor = UIColor.red
+            cell.backgroundColor = UIColor.white
+
+        }
+        
+        if !(attendance.attended)
+        {
+            cell.backgroundColor = UIColor.lightGray
         }
         
         cell.sessionDateLbl.text! = attendance.attendance_date!

@@ -1532,13 +1532,13 @@
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DQ3-DO-InA">
                                                             <rect key="frame" x="0.0" y="0.0" width="100" height="34"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                            <color key="textColor" red="1" green="0.2527923882" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <color key="textColor" red="0.016804177310000001" green="0.19835099580000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D1J-Mj-k7g">
                                                             <rect key="frame" x="0.0" y="34" width="100" height="34"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                            <color key="textColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <color key="textColor" red="1" green="0.2527923882" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
@@ -1694,13 +1694,13 @@
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Fd-ML-r5Y">
                                                             <rect key="frame" x="0.0" y="0.0" width="100" height="28"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                            <color key="textColor" red="1" green="0.2527923882" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <color key="textColor" red="0.016804177310000001" green="0.19835099580000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zyd-qp-zCT">
                                                             <rect key="frame" x="0.0" y="28" width="100" height="28"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                            <color key="textColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <color key="textColor" red="1" green="0.2527923882" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m50-tm-DS1">
@@ -1832,37 +1832,48 @@
                                 </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Exj-JV-XXB" customClass="RoundButton" customModule="Yoga_Manager" customModuleProvider="target">
-                                <rect key="frame" x="142" y="126" width="91" height="30"/>
+                                <rect key="frame" x="263" y="126" width="90" height="18"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="91" id="ipJ-oy-3c3"/>
+                                    <constraint firstAttribute="width" constant="90" id="3zQ-Lo-z0Q"/>
                                 </constraints>
                                 <state key="normal" title="Delete All"/>
                                 <connections>
                                     <action selector="deleteAllBtnPressed:" destination="2Dg-RG-0Bf" eventType="touchUpInside" id="u4f-TE-8E7"/>
                                 </connections>
                             </button>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="jT3-dC-fvb">
+                                <rect key="frame" x="10" y="126" width="241" height="29"/>
+                                <segments>
+                                    <segment title="All"/>
+                                    <segment title="Attended"/>
+                                    <segment title="Absent"/>
+                                </segments>
+                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" red="0.99215686270000003" green="0.87058823529999996" blue="0.97254901959999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="Exj-JV-XXB" firstAttribute="top" secondItem="ue2-1I-TQt" secondAttribute="bottom" constant="16" id="1OS-Ow-9fR"/>
+                            <constraint firstItem="jT3-dC-fvb" firstAttribute="leading" secondItem="Ar4-8L-OjC" secondAttribute="leading" constant="10" id="2Wd-PC-iZs"/>
                             <constraint firstItem="Kkf-Mc-VVk" firstAttribute="trailing" secondItem="Ar4-8L-OjC" secondAttribute="trailing" id="3pA-d5-2Vo"/>
                             <constraint firstItem="ue2-1I-TQt" firstAttribute="top" secondItem="Ar4-8L-OjC" secondAttribute="top" constant="16" id="AOZ-pJ-3ps"/>
                             <constraint firstItem="vjV-J6-5vS" firstAttribute="top" secondItem="Ar4-8L-OjC" secondAttribute="top" constant="20" id="Bx8-l2-FID"/>
-                            <constraint firstItem="Exj-JV-XXB" firstAttribute="centerX" secondItem="Ar4-8L-OjC" secondAttribute="centerX" id="Hvp-mi-XnA"/>
                             <constraint firstItem="vjV-J6-5vS" firstAttribute="top" secondItem="Ar4-8L-OjC" secondAttribute="top" constant="20" id="ObX-m6-YV7"/>
                             <constraint firstAttribute="bottom" secondItem="Kkf-Mc-VVk" secondAttribute="bottom" id="P6s-fr-VsL"/>
                             <constraint firstItem="6TW-05-Ssy" firstAttribute="leading" secondItem="vjV-J6-5vS" secondAttribute="trailing" constant="23" id="Qaa-A2-sve"/>
                             <constraint firstItem="ue2-1I-TQt" firstAttribute="leading" secondItem="6TW-05-Ssy" secondAttribute="trailing" constant="16" id="UK8-zK-DgJ"/>
                             <constraint firstItem="vjV-J6-5vS" firstAttribute="leading" secondItem="Ar4-8L-OjC" secondAttribute="leading" constant="10" id="Y0C-pw-fYW"/>
                             <constraint firstItem="vjV-J6-5vS" firstAttribute="leading" secondItem="Ar4-8L-OjC" secondAttribute="leading" constant="10" id="bev-8N-2Ia"/>
-                            <constraint firstItem="Kkf-Mc-VVk" firstAttribute="top" secondItem="Exj-JV-XXB" secondAttribute="bottom" constant="8" id="dyx-pk-JHU"/>
-                            <constraint firstItem="Exj-JV-XXB" firstAttribute="top" secondItem="6TW-05-Ssy" secondAttribute="bottom" constant="17.5" id="h2A-Jk-geN"/>
+                            <constraint firstItem="Exj-JV-XXB" firstAttribute="trailing" secondItem="ue2-1I-TQt" secondAttribute="trailing" id="jX6-Cx-BkQ"/>
                             <constraint firstItem="Kkf-Mc-VVk" firstAttribute="leading" secondItem="Ar4-8L-OjC" secondAttribute="leading" id="mIg-Yg-XfP"/>
                             <constraint firstItem="6TW-05-Ssy" firstAttribute="centerY" secondItem="vjV-J6-5vS" secondAttribute="centerY" id="n3m-Qq-F7T"/>
+                            <constraint firstItem="Exj-JV-XXB" firstAttribute="leading" secondItem="jT3-dC-fvb" secondAttribute="trailing" constant="12" id="oSf-aW-his"/>
                             <constraint firstItem="Kkf-Mc-VVk" firstAttribute="top" secondItem="Ar4-8L-OjC" secondAttribute="top" constant="100" id="qtL-g8-d0M"/>
+                            <constraint firstItem="jT3-dC-fvb" firstAttribute="top" secondItem="6TW-05-Ssy" secondAttribute="bottom" constant="17.5" id="tUR-gM-ZXs"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Ar4-8L-OjC"/>
                     </view>
                     <connections>
+                        <outlet property="attendanceSegmentCntrl" destination="jT3-dC-fvb" id="rqS-Il-yP8"/>
                         <outlet property="historyTableView" destination="Kkf-Mc-VVk" id="3Mk-N2-LZD"/>
                         <outlet property="sortTextFieldPickerView" destination="ue2-1I-TQt" id="M7O-y9-B7Y"/>
                         <outlet property="sortTypeSegmentCntrl" destination="6TW-05-Ssy" id="ho4-TA-M0h"/>

@@ -63,14 +63,33 @@ class AttendanceStudentsViewController: UIViewController {
         
         var i = 0
         
-        for student in selectedStudents {
+        let allStudent = StudentViewModel().getGroupStudents(studentsGroup: selectedGroup)
+        
+        let isPaid = selectedCells[i].isPaidCheckBox.on
+        
+        
+        for student in allStudent {
             
-            let isPaid = selectedCells[i].isPaidCheckBox.on
+            if (selectedStudents.contains(student))
+            {
+                
+                attendanceViewModel.addANewAttendance(attendanceDate: date, isPaid: isPaid, attended: true, student: student, session: selectedSession, group: selectedGroup)
+                
+                i = i + 1;
+            }
+
+            else{
+                
+                attendanceViewModel.addANewAttendance(attendanceDate: date, isPaid: isPaid, attended: false, student: student, session: selectedSession, group: selectedGroup)
+
+            }
             
-            attendanceViewModel.addANewAttendance(attendanceDate: date, isPaid: isPaid, attended: true, student: student, session: selectedSession, group: selectedGroup)
-            
-            i = i + 1;
         }
+        
+//        for student in selectedStudents {
+//
+//
+//        }
         
         navigationController?.popViewController(animated: true)
 
