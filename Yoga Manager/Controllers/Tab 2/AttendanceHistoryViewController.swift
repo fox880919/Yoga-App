@@ -213,6 +213,39 @@ class HistoryViewController: UIViewController {
     }
     
     
+    @IBAction func deleteAllBtnPressed(_ sender: Any) {
+        
+
+        
+        let alert = UIAlertController(title: "Deleting records", message: "Are you sure to delete all the records below?", preferredStyle: UIAlertControllerStyle.alert)
+        
+        let deleteAction = UIAlertAction(title: "Delete", style: UIAlertActionStyle.default, handler: { action in
+            
+            self.sortTypeSegmentCntrl.selectedSegmentIndex = 0
+            
+            for attendance in self.filteredAttendanceHistory {
+                
+                
+                self.attendanceModelView.deleteAnAttendance(entity: attendance)
+                
+                
+            }
+            
+            self.filteredAttendanceHistory = self.attendanceModelView.getAllAttendance()
+            
+            self.sortTextFieldPickerView.text! = ""
+            
+            self.historyTableView.reloadData()
+            
+        })
+        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil)
+        
+        alert.addAction(deleteAction)
+        alert.addAction(cancelAction)
+        
+        self.present(alert, animated: true)
+     
+    }
     /*
      // MARK: - Navigation
      
@@ -344,16 +377,24 @@ extension HistoryViewController: UITableViewDataSource, UITableViewDelegate{
         
         cell.studentNameLbl.text! = (attendance.student?.name)!
         
-        cell.groupNameLbl.text! = (attendance.group?.name)!
+        if(attendance.group?.name != nil)
+        {
+            cell.groupNameLbl.text! = (attendance.group?.name)!
+
+        }
         
         if(attendance.is_paid)
         {
             cell.paidLbl.text! = "Yes"
             
+            cell.paidLbl.textColor = UIColor(red: 76/255, green: 217/255, blue: 100/255, alpha: 1)
+            
         }
         else{
             
             cell.paidLbl.text! = "No"
+            
+            cell.paidLbl.textColor = UIColor.darkGray
             
         }
         

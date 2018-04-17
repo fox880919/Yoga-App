@@ -157,6 +157,7 @@ class SelectedGroupViewController: UIViewController, UICollectionViewDelegate, U
     }
     
      func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+       
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "studentCell1", for: indexPath)
             as! GroupStudentCell
         

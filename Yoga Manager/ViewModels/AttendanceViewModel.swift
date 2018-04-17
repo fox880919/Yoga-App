@@ -19,6 +19,14 @@ class AttendanceModelView : BasicViewModel
         return attendance
     }
     
+    func getGroupAttendance(studentsGroup: Group) -> [Attendance]{
+        
+        let attendanceList = coreDataHelper.getEntitiesWithPredicate(entityName: "Attendance", predicate: NSPredicate(format: "ANY group == %@",studentsGroup)) as! [Attendance]
+        
+        return attendanceList
+    }
+    
+    
     
     func addANewAttendance (attendanceDate: String,  isPaid: Bool, attended: Bool, student : Student, session: Session, group: Group){
         

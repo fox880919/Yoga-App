@@ -228,14 +228,24 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         if (indexPath.row != lastRowPosition) {
         let deleteGroupAction = UITableViewRowAction(style: UITableViewRowActionStyle.default, title: "Delete" , handler: { (action:UITableViewRowAction, indexPath: IndexPath) -> Void in
 
-            let alert = UIAlertController(title: "Deleting \(self.mainViewModel.getGroups()[indexPath.row].name!) Group", message: "Are your sure?", preferredStyle: UIAlertControllerStyle.alert)
+            let alert = UIAlertController(title: "Deleting \(self.mainViewModel.getGroups()[indexPath.row].name!) Group", message: "Deleting this group will delete its attendance history as well?", preferredStyle: UIAlertControllerStyle.alert)
             
 
 
             let deleteAction = UIAlertAction(title: "Delete", style: UIAlertActionStyle.default, handler: { action in
                 
-                self.mainViewModel.deleteAGroup(entity: self.mainViewModel.getGroups()[indexPath.row])
+                let group = self.mainViewModel.getGroups()[indexPath.row]
                 
+                let groupAttendance = AttendanceModelView().getGroupAttendance(studentsGroup: group)
+                
+                
+                for attendance in groupAttendance {
+                    
+                    AttendanceModelView().deleteAnAttendance(entity: attendance)
+                }
+                
+                self.mainViewModel.deleteAGroup(entity: group)
+
                 self.lastRowPosition = self.mainViewModel.getGroups().count
                 
                 tableView.reloadData()
