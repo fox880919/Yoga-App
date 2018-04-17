@@ -136,6 +136,14 @@ class HistoryViewController: UIViewController {
         }
         
         sortTextFieldPickerView.text! = ""
+        
+        filteredAttendanceHistory = attendanceModelView.getAllAttendance()
+        
+        filteredAttendanceHistory.reverse()
+        
+        historyTableView.reloadData()
+        
+        attendanceSegmentValueChanged()
     }
     
 
@@ -144,15 +152,20 @@ class HistoryViewController: UIViewController {
 
         var tempFilteredAttendanceHistory = [Attendance]()
         
-        for attendance in filteredAttendanceHistory
-        {
-            tempFilteredAttendanceHistory.append(attendance)
+        var copyOfFilteredAttendanceHistory = [Attendance]()
+        
+        for attendance in filteredAttendanceHistory {
+            
+            copyOfFilteredAttendanceHistory.append(attendance)
+
         }
+        
         
         if(attendanceSegmentCntrl.selectedSegmentIndex == 0)
         {
             tempFilteredAttendanceHistory = filteredAttendanceHistory
         }
+            
         else if(attendanceSegmentCntrl.selectedSegmentIndex == 1){
             
             for attendance in filteredAttendanceHistory{
@@ -181,6 +194,7 @@ class HistoryViewController: UIViewController {
         
         historyTableView.reloadData()
         
+        filteredAttendanceHistory = copyOfFilteredAttendanceHistory
         
     }
     
@@ -436,7 +450,7 @@ extension HistoryViewController: UITableViewDataSource, UITableViewDelegate{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "attendanceHistoryCell") as! AttendanceHistoryCell
-        
+
         let attendance = filteredAttendanceHistory[indexPath.row]
         
         cell.studentNameLbl.text! = (attendance.student?.name)!
@@ -459,13 +473,16 @@ extension HistoryViewController: UITableViewDataSource, UITableViewDelegate{
             cell.paidLbl.text! = "No"
             
             cell.paidLbl.textColor = UIColor.red
-            cell.backgroundColor = UIColor.white
 
         }
         
         if !(attendance.attended)
         {
             cell.backgroundColor = UIColor.lightGray
+        }
+        else{
+            
+            cell.backgroundColor = UIColor.white
         }
         
         cell.sessionDateLbl.text! = attendance.attendance_date!
