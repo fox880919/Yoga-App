@@ -108,6 +108,7 @@ class HistoryViewController: UIViewController {
    @objc func donePicker(_ sender: UIBarButtonItem) {
     
         filterTable()
+    
         sortTextFieldPickerView.resignFirstResponder()
 
             }
@@ -139,63 +140,46 @@ class HistoryViewController: UIViewController {
         
         filteredAttendanceHistory = attendanceModelView.getAllAttendance()
         
+        filterByAttendance()
+        
         filteredAttendanceHistory.reverse()
         
         historyTableView.reloadData()
         
-        attendanceSegmentValueChanged()
+        
     }
     
 
     
     @objc func attendanceSegmentValueChanged(){
-
-        var tempFilteredAttendanceHistory = [Attendance]()
         
-        var copyOfFilteredAttendanceHistory = [Attendance]()
+        filterTable()
         
-        for attendance in filteredAttendanceHistory {
-            
-            copyOfFilteredAttendanceHistory.append(attendance)
-
-        }
-        
-        
-        if(attendanceSegmentCntrl.selectedSegmentIndex == 0)
+        filterByAttendance()
+    }
+    
+    func filterByAttendance()
+    {
+    
+        for attendance in filteredAttendanceHistory
         {
-            tempFilteredAttendanceHistory = filteredAttendanceHistory
-        }
-            
-        else if(attendanceSegmentCntrl.selectedSegmentIndex == 1){
-            
-            for attendance in filteredAttendanceHistory{
+            if(attendanceSegmentCntrl.selectedSegmentIndex == 1){
                 
-                if(attendance.attended)
+                if(attendance.attended == false)
                 {
-                    tempFilteredAttendanceHistory.append(attendance)
+                    
+                    filteredAttendanceHistory.remove(at: filteredAttendanceHistory.index(of: attendance)!)
                 }
             }
-            
-        }
-        else{
-            
-            for attendance in filteredAttendanceHistory{
+            else if(attendanceSegmentCntrl.selectedSegmentIndex == 2){
                 
-                if !(attendance.attended)
+                if(attendance.attended == true)
                 {
-                    tempFilteredAttendanceHistory.append(attendance)
+                    
+                    filteredAttendanceHistory.remove(at: filteredAttendanceHistory.index(of: attendance)!)
                 }
             }
         }
-        
-        filteredAttendanceHistory = tempFilteredAttendanceHistory
-        
-        filteredAttendanceHistory.reverse()
-        
-        historyTableView.reloadData()
-        
-        filteredAttendanceHistory = copyOfFilteredAttendanceHistory
-        
     }
     
     @IBAction func textDidEdittingBegun(_ sender: Any) {
@@ -220,13 +204,6 @@ class HistoryViewController: UIViewController {
             else {
                 
                 filteredAttendanceHistory = attendanceModelView.getAllAttendance()
-                
-                filteredAttendanceHistory.reverse()
-                
-                historyTableView.reloadData()
-                
-                attendanceSegmentValueChanged()
-
             }
         }
             
@@ -234,22 +211,22 @@ class HistoryViewController: UIViewController {
             
             if(selectedGroup != nil)
             {
+                
                 filterByGroup(specificGroup: selectedGroup)
-
             }
             else {
                 
                 filteredAttendanceHistory = attendanceModelView.getAllAttendance()
                 
-                filteredAttendanceHistory.reverse()
-                
-                historyTableView.reloadData()
-                
-                attendanceSegmentValueChanged()
-
             }
 
         }
+        
+        filterByAttendance()
+        
+        filteredAttendanceHistory.reverse()
+        
+        historyTableView.reloadData()
     }
     
     func filterByStudent(specificStudent: Student) {
@@ -263,10 +240,6 @@ class HistoryViewController: UIViewController {
                 filteredAttendanceHistory.append(record)
             }
         }
-        
-        filteredAttendanceHistory.reverse()
-        
-        historyTableView.reloadData()
         
         // do something with results
     }
@@ -282,11 +255,6 @@ class HistoryViewController: UIViewController {
                 filteredAttendanceHistory.append(record)
             }
         }
-        
-        filteredAttendanceHistory.reverse()
-        
-        historyTableView.reloadData()
-        
         // do something with results
     }
     
@@ -449,6 +417,8 @@ extension HistoryViewController: UITableViewDataSource, UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
+
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "attendanceHistoryCell") as! AttendanceHistoryCell
 
         let attendance = filteredAttendanceHistory[indexPath.row]
@@ -474,6 +444,11 @@ extension HistoryViewController: UITableViewDataSource, UITableViewDelegate{
             
             cell.paidLbl.textColor = UIColor.red
 
+        }
+        
+        for attendance in filteredAttendanceHistory
+        {
+            print(attendance.attended)
         }
         
         if !(attendance.attended)
