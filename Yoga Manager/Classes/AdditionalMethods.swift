@@ -94,7 +94,7 @@ func getDayName (componentInt: Int) -> String{
     }
 }
 
-func stringFromDate(date : Date) -> String {
+func stringFromTime(date : Date) -> String {
     
     let dateFormatter = DateFormatter()
     
@@ -106,11 +106,35 @@ func stringFromDate(date : Date) -> String {
     
 }
 
-func dateFromString(dateString : String) -> Date {
+func timeFromString(dateString : String) -> Date {
     
     let dateFormatter = DateFormatter()
     
     dateFormatter.dateFormat =  "HH:mm"
+    
+    let date = dateFormatter.date(from: dateString)
+    
+    return date!
+    
+}
+
+func stringFromDate(date : Date) -> String {
+    
+    let dateFormatter = DateFormatter()
+    
+    dateFormatter.dateFormat =  "dd/MM/yyyy"
+    
+    let newDateString = dateFormatter.string(from: date)
+    
+    return newDateString
+    
+}
+
+func DateFromString(dateString : String) -> Date {
+    
+    let dateFormatter = DateFormatter()
+    
+    dateFormatter.dateFormat =  "dd/MM/yyyy"
     
     let date = dateFormatter.date(from: dateString)
     

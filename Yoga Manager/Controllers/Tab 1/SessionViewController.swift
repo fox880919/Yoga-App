@@ -105,7 +105,7 @@ class SessionViewController: UIViewController, UIPickerViewDataSource, UIPickerV
             {
                 if selectedSession != nil {
                     
-                    sessionViewModel.updateASession(cost: Int(newCopyOfSession.cost), day: newCopyOfSession.week_day!, startTime: dateFromString(dateString: newCopyOfSession.start_time!), endTime: dateFromString(dateString: newCopyOfSession.end_time!), isWeekly: newCopyOfSession.is_weekly, currentSession: selectedSession)
+                    sessionViewModel.updateASession(cost: Int(newCopyOfSession.cost), day: newCopyOfSession.week_day!, startTime: timeFromString(dateString: newCopyOfSession.start_time!), endTime: timeFromString(dateString: newCopyOfSession.end_time!), isWeekly: newCopyOfSession.is_weekly, currentSession: selectedSession)
                     
                     sessionViewModel.deleteASession(entity: newCopyOfSession)
 
@@ -155,7 +155,7 @@ class SessionViewController: UIViewController, UIPickerViewDataSource, UIPickerV
         
         if let session = selectedSession {
             
-            newCopyOfSession = sessionViewModel.addANewSession(cost: Int(session.cost), day: session.week_day!, startTime: dateFromString(dateString: session.start_time!), endTime: dateFromString(dateString: session.end_time!), createdDate: Date(), isWeekly: session.is_weekly, sessionGroup: selectedGroup)
+            newCopyOfSession = sessionViewModel.addANewSession(cost: Int(session.cost), day: session.week_day!, startTime: timeFromString(dateString: session.start_time!), endTime: timeFromString(dateString: session.end_time!), createdDate: Date(), isWeekly: session.is_weekly, sessionGroup: selectedGroup)
             
             if let location = selectedSession.location
             {
@@ -180,8 +180,8 @@ class SessionViewController: UIViewController, UIPickerViewDataSource, UIPickerV
 
             }
             
-            startTimePicker.date = dateFromString(dateString: session.start_time!)
-            endDatePicker.date = dateFromString(dateString: session.end_time!)
+            startTimePicker.date = timeFromString(dateString: session.start_time!)
+            endDatePicker.date = timeFromString(dateString: session.end_time!)
             
             costTextField.text! = "\(session.cost)"
             
@@ -214,6 +214,11 @@ class SessionViewController: UIViewController, UIPickerViewDataSource, UIPickerV
                 
                 showConflictAlert()
                 return
+            }
+                
+            else{
+                
+                safeToSaveSession()
             }
             
         }
@@ -287,13 +292,13 @@ class SessionViewController: UIViewController, UIPickerViewDataSource, UIPickerV
             if(session.week_day! == testingSession.week_day!)
             {
                 
-                let sessionStartTime = dateFromString(dateString: session.start_time!)
+                let sessionStartTime = timeFromString(dateString: session.start_time!)
                 
-                let sessionEndTime = dateFromString(dateString: session.end_time!)
+                let sessionEndTime = timeFromString(dateString: session.end_time!)
                 
-                let addedSessionStartTime = dateFromString(dateString: testingSession.start_time!)
+                let addedSessionStartTime = timeFromString(dateString: testingSession.start_time!)
                 
-                let addedsessionEndTime = dateFromString(dateString: testingSession.end_time!)
+                let addedsessionEndTime = timeFromString(dateString: testingSession.end_time!)
                 
                 if ( addedSessionStartTime > sessionStartTime &&  addedSessionStartTime < sessionEndTime)
                 {

@@ -24,15 +24,23 @@ class SubscriptionsViewController: UIViewController {
     
     var allPickerStudentsForAGroup: [Student]!
     
-    var pickerSelectedSessionsGroup: Group!
+    var pickerSelectedStudentsGroup: Group!
+    
+    var pickerSelectedStartDate: Date?
+    
+    var pickerSelectedEndDate: Date?
     
     var pickerSelectedStudent: Student!
     
     var newInputView : UIView!
     
-    let subscriptions = StudentSubscriptionVIewModel().getSubscriptions()
+    var subscriptions = StudentSubscriptionViewModel().getSubscriptions()
+    
+    var selectedSubscription: StudentSubscription?
     
     let groups = MainViewModel().getGroups()
+    
+    var isPickersViewOn = false
     
 
     
@@ -41,7 +49,7 @@ class SubscriptionsViewController: UIViewController {
 
         self.title = "Subscriptions"
         
-        newInputView = UIView(frame: CGRect(x: 0, y: 200, width: self.view.frame.size.width, height: 360))
+        newInputView = UIView(frame: CGRect(x: 0, y: 200, width: self.view.frame.size.width, height: self.view.frame.size.height))
 
         let addSubscription = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addSubscriptionBtnPressed))
         
@@ -59,11 +67,25 @@ class SubscriptionsViewController: UIViewController {
     
     @objc func addSubscriptionBtnPressed(){
         
-        GroupsBtnPicker = UIPickerView(frame:CGRect(x: 0, y: 80, width: self.view.frame.size.width, height: 100))
+        prepareAndShowPickers()
+        
+        
+    }
+    
+    
+    func prepareAndShowPickers(){
+    
+        if(isPickersViewOn == true)
+        {
+        }
+        else{
+        newInputView = UIView(frame: CGRect(x: 0, y: 70, width: self.view.frame.size.width, height: self.view.frame.size.height - 10))
         
         let groupLabel = UILabel(frame: CGRect(x: 0, y: 50, width: self.view.frame.size.width, height: 20))
         groupLabel.textAlignment = .center
         groupLabel.text = "Groups"
+        
+        GroupsBtnPicker = UIPickerView(frame:CGRect(x: 0, y: 80, width: self.view.frame.size.width, height: 60))
         
         GroupsBtnPicker.delegate = self
         GroupsBtnPicker.dataSource = self
@@ -74,12 +96,12 @@ class SubscriptionsViewController: UIViewController {
         
         GroupsBtnPicker.tag = 10;
         
-        GroupStudentsBtnPicker = UIPickerView(frame:CGRect(x: 0, y: 240, width: self.view.frame.size.width, height: 100))
-        
-        let sessionsLabel = UILabel(frame: CGRect(x: 0, y: 200, width: self.view.frame.size.width, height: 20))
+        let sessionsLabel = UILabel(frame: CGRect(x: 0, y: 160, width: self.view.frame.size.width, height: 20))
         sessionsLabel.textAlignment = .center
         sessionsLabel.text = "Selected Group Students"
         
+        GroupStudentsBtnPicker = UIPickerView(frame:CGRect(x: 0, y: 190, width: self.view.frame.size.width, height: 60))
+    
         GroupStudentsBtnPicker.delegate = self
         GroupStudentsBtnPicker.dataSource = self
         
@@ -88,19 +110,65 @@ class SubscriptionsViewController: UIViewController {
         GroupStudentsBtnPicker.showsSelectionIndicator = true
         
         GroupStudentsBtnPicker.tag = 20;
+        
+        let startDateLbl = UILabel(frame: CGRect(x: 10, y: 270, width: self.view.frame.size.width, height: 20))
+
+        startDateLbl.textAlignment = .center
+        
+        startDateLbl.text = "From Date:"
+        
+        startDatePicker = UIDatePicker(frame:CGRect(x: 10, y: 300, width: self.view.frame.size.width - 20, height: 50))
+        
+        startDatePicker.tag = 30
+        
+        startDatePicker.datePickerMode = UIDatePickerMode.date
+        
 
         
+//        let startDateStackView   = UIStackView(frame: CGRect(x: 10, y: 360,width: self.view.frame.size.width, height: 60))
+//        startDateStackView.axis  = UILayoutConstraintAxis.horizontal
+//        startDateStackView.distribution  = UIStackViewDistribution.fill
+//        startDateStackView.alignment = UIStackViewAlignment.center
+//        startDateStackView.spacing   = 16.0
+//
+//        startDateStackView.addArrangedSubview(startDateLbl)
+//        startDateStackView.addArrangedSubview(startDatePicker)
+
+        let endDateLbl = UILabel(frame: CGRect(x: 10, y: 370, width: self.view.frame.size.width, height: 20))
+        endDateLbl.textAlignment = .center
+        endDateLbl.text = "To Date:"
+        
+        endDatePicker = UIDatePicker(frame:CGRect(x: 10, y: 400, width: self.view.frame.size.width  - 20, height: 50))
+
+        endDatePicker.tag = 40
+        
+        endDatePicker.datePickerMode = UIDatePickerMode.date
+
+        
+
+        
+//        let endDateStackView   = UIStackView(frame: CGRect(x: 10, y: 440, width: self.view.frame.size.width - 10, height: 60))
+//        endDateStackView.axis  = UILayoutConstraintAxis.horizontal
+//        endDateStackView.distribution  = UIStackViewDistribution.fillProportionally
+//        endDateStackView.alignment = UIStackViewAlignment.center
+        
+//        endDateStackView.spacing   = 16.0
+//
+//
+//        endDateStackView.addArrangedSubview(endDateLbl)
+//        endDateStackView.addArrangedSubview(endDatePicker)
+
         let toolBar = UIToolbar()
         toolBar.barStyle = UIBarStyle.default
         toolBar.isTranslucent = true
         toolBar.tintColor = UIColor(red: 76/255, green: 217/255, blue: 100/255, alpha: 1)
         toolBar.sizeToFit()
         
-        let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.plain, target: self, action: #selector(donePicker))
+        let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.plain, target: self, action: #selector(doneAdding))
         
         let spaceButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         
-        let cancelButton = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.plain, target: self, action: #selector(cancelPicker))
+        let cancelButton = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.plain, target: self, action: #selector(cancelView))
         
         toolBar.setItems([cancelButton, spaceButton, doneButton], animated: false)
         
@@ -116,10 +184,89 @@ class SubscriptionsViewController: UIViewController {
         
         newInputView.addSubview(sessionsLabel)
         
+        newInputView.addSubview(startDateLbl)
+        
+        newInputView.addSubview(startDatePicker)
+
+        newInputView.addSubview(endDateLbl)
+
+        newInputView.addSubview(endDatePicker)
+        
         newInputView.backgroundColor = UIColor.cyan
         
         self.view.addSubview(newInputView)
         
+        }
+    
+    }
+    
+    func editASubscription(){
+    
+        if(isPickersViewOn == true)
+        {
+        }
+        else{
+            newInputView = UIView(frame: CGRect(x: 0, y: 70, width: self.view.frame.size.width, height: self.view.frame.size.height - 10))
+            
+            
+            let startDateLbl = UILabel(frame: CGRect(x: 10, y: 270, width: self.view.frame.size.width, height: 20))
+            
+            startDateLbl.textAlignment = .center
+            
+            startDateLbl.text = "From Date:"
+            
+            startDatePicker = UIDatePicker(frame:CGRect(x: 10, y: 300, width: self.view.frame.size.width - 20, height: 50))
+            
+            startDatePicker.tag = 30
+            
+            startDatePicker.datePickerMode = UIDatePickerMode.date
+            
+            startDatePicker.date = DateFromString(dateString: (selectedSubscription?.start_date!)!)
+            
+            let endDateLbl = UILabel(frame: CGRect(x: 10, y: 370, width: self.view.frame.size.width, height: 20))
+            endDateLbl.textAlignment = .center
+            endDateLbl.text = "To Date:"
+            
+            endDatePicker = UIDatePicker(frame:CGRect(x: 10, y: 400, width: self.view.frame.size.width  - 20, height: 50))
+            
+            endDatePicker.tag = 40
+            
+            endDatePicker.datePickerMode = UIDatePickerMode.date
+            
+            endDatePicker.date = DateFromString(dateString: (selectedSubscription?.end_date!)!)
+
+            
+            let toolBar = UIToolbar()
+            toolBar.barStyle = UIBarStyle.default
+            toolBar.isTranslucent = true
+            toolBar.tintColor = UIColor(red: 76/255, green: 217/255, blue: 100/255, alpha: 1)
+            toolBar.sizeToFit()
+            
+            let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.plain, target: self, action: #selector(doneEditting))
+            
+            let spaceButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+            
+            let cancelButton = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.plain, target: self, action: #selector(cancelView))
+            
+            toolBar.setItems([cancelButton, spaceButton, doneButton], animated: false)
+            
+            toolBar.isUserInteractionEnabled = true
+            
+            newInputView.addSubview(toolBar)
+            
+            newInputView.addSubview(startDateLbl)
+            
+            newInputView.addSubview(startDatePicker)
+            
+            newInputView.addSubview(endDateLbl)
+            
+            newInputView.addSubview(endDatePicker)
+            
+            newInputView.backgroundColor = UIColor.cyan
+            
+            self.view.addSubview(newInputView)
+            
+        }
     }
     
     func showAlert(message: String!){
@@ -134,20 +281,74 @@ class SubscriptionsViewController: UIViewController {
         self.present(alert, animated: true)
     }
     
-    @objc func donePicker(){
+    @objc func doneAdding(){
         
-        if(pickerSelectedStudent != nil)
+        if(pickerSelectedStudentsGroup == nil)
         {
-            addAndSaveStudent()
+            showAlert(message: "No group was selected")
         }
-        GroupsBtnPicker.resignFirstResponder()
         
-        newInputView.removeFromSuperview()
+        else if(pickerSelectedStudent == nil){
+            
+            showAlert(message: "No student was selected")
+
+        }
+        
+        else{
+            
+            pickerSelectedStartDate = startDatePicker.date
+            
+            pickerSelectedEndDate = endDatePicker.date
+            
+            StudentSubscriptionViewModel().addANewSubscription(startDate: pickerSelectedStartDate!, endDate: pickerSelectedEndDate!, student: pickerSelectedStudent, group: pickerSelectedStudentsGroup)
+            
+            subscriptions = StudentSubscriptionViewModel().getSubscriptions()
+
+            subscriptions.reverse()
+            
+            subscriptionTableView.reloadData()
+            
+            newInputView.removeFromSuperview()
+
+        }
+        
+        cancelView()
     }
     
-    @objc func cancelPicker(){
+    @objc func doneEditting(){
+        
+        if(selectedSubscription != nil){
+            
+            pickerSelectedStartDate = startDatePicker.date
+            
+            pickerSelectedEndDate = endDatePicker.date
+            
+            StudentSubscriptionViewModel().updateASubscrtiption(subscription: selectedSubscription!, startDate: pickerSelectedStartDate!, endDate: pickerSelectedEndDate!)
+            
+            subscriptions = StudentSubscriptionViewModel().getSubscriptions()
+            
+            subscriptions.reverse()
+            
+            subscriptionTableView.reloadData()
+            
+            newInputView.removeFromSuperview()
+
+        }
+        
+        cancelView()
+    }
+    
+    @objc func cancelView(){
+        
+        selectedSubscription = nil
         
         GroupsBtnPicker.resignFirstResponder()
+        
+        GroupStudentsBtnPicker.resignFirstResponder()
+        
+        startDatePicker.resignFirstResponder()
+        
+        endDatePicker.resignFirstResponder()
         
         newInputView.removeFromSuperview()
     }
@@ -254,11 +455,15 @@ extension SubscriptionsViewController: UIPickerViewDelegate, UIPickerViewDataSou
                 allPickerStudentsForAGroup = nil
                 
                 GroupStudentsBtnPicker.reloadAllComponents()
+                
+                pickerSelectedStudentsGroup = nil
             }
             else{
                 
                 pickerSelectedStudent = nil
                 //savedSessionBtnPicker.isHidden = false
+                
+                pickerSelectedStudentsGroup = allPickerGroups[row - 1]
                 
                 allPickerStudentsForAGroup = StudentViewModel().getGroupStudents(studentsGroup: allPickerGroups[row - 1])
                 
@@ -269,7 +474,7 @@ extension SubscriptionsViewController: UIPickerViewDelegate, UIPickerViewDataSou
             }
             
         }
-        else    if pickerView.tag == 20{
+        else if pickerView.tag == 20{
             
             if(row == 0)
             {
@@ -286,20 +491,25 @@ extension SubscriptionsViewController: UIPickerViewDelegate, UIPickerViewDataSou
 
 extension SubscriptionsViewController: UITableViewDataSource, UITableViewDelegate{
     
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        
+        return groups[section].name
+    }
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         
         return groups.count
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        let groupSubscriptions = StudentSubscriptionVIewModel().getGroupSubscriptions(studentsGroup: groups[section])
+        let groupSubscriptions = StudentSubscriptionViewModel().getGroupSubscriptions(studentsGroup: groups[section])
         
         return groupSubscriptions.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let groupSubscriptions = StudentSubscriptionVIewModel().getGroupSubscriptions(studentsGroup: groups[indexPath.section])
+        let groupSubscriptions = StudentSubscriptionViewModel().getGroupSubscriptions(studentsGroup: groups[indexPath.section])
         
         let studentSubscription = groupSubscriptions[indexPath.row]
         
@@ -307,7 +517,7 @@ extension SubscriptionsViewController: UITableViewDataSource, UITableViewDelegat
             as! SubscriptionCell
         
         
-        cell.groupNameLbl.text! = (studentSubscription.group?.name)!
+        cell.costLbl.text! = "\((studentSubscription.group?.subscription_price)!)"
 
         cell.studentNameLbl.text! = (studentSubscription.student?.name)!
 
@@ -315,9 +525,44 @@ extension SubscriptionsViewController: UITableViewDataSource, UITableViewDelegat
         
         cell.endDateLbl.text! = studentSubscription.end_date!
 
-
-        
        return cell
+        
+    }
+    
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]?
+    {
+        let deleteSubscriptionAction = UITableViewRowAction(style: UITableViewRowActionStyle.default, title: "Delete" , handler: { (action:UITableViewRowAction, indexPath: IndexPath) -> Void in
+            
+            let alert = UIAlertController(title: "Deleting A Subscription", message: "Are your sure?", preferredStyle: UIAlertControllerStyle.alert)
+            
+            let deleteAction = UIAlertAction(title: "Delete", style: UIAlertActionStyle.default, handler: { action in
+                
+                StudentSubscriptionViewModel().deleteASubscription(entity: self.subscriptions[indexPath.row])
+                
+                self.subscriptions =  StudentSubscriptionViewModel().getSubscriptions()
+                
+                self.subscriptions.reverse()
+                
+                tableView.reloadData()
+            })
+            let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil)
+            
+            alert.addAction(deleteAction)
+            alert.addAction(cancelAction)
+            
+            self.present(alert, animated: true)
+        })
+        
+        let EditSubscriptionAction = UITableViewRowAction(style: UITableViewRowActionStyle.normal, title: "Edit" , handler: { (action:UITableViewRowAction, indexPath: IndexPath) -> Void in
+            
+            self.selectedSubscription = self.subscriptions[indexPath.row]
+            
+            self.editASubscription()
+            
+        })
+        
+        return [deleteSubscriptionAction, EditSubscriptionAction]
+        
     }
     
     

@@ -12,7 +12,7 @@ class SubscriptionCell: UITableViewCell {
     
     @IBOutlet weak var studentNameLbl: UILabel!
     
-    @IBOutlet weak var groupNameLbl: UILabel!
+    @IBOutlet weak var costLbl: UILabel!
     
     
     @IBOutlet weak var startDateLbl: UILabel!

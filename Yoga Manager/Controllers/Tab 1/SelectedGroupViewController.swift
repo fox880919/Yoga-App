@@ -535,13 +535,13 @@ class SelectedGroupViewController: UIViewController, UICollectionViewDelegate, U
             if(session.week_day! == pickerSelectedSession.week_day!)
             {
 
-                let sessionStartTime = dateFromString(dateString: session.start_time!)
+                let sessionStartTime = timeFromString(dateString: session.start_time!)
                 
-                let sessionEndTime = dateFromString(dateString: session.end_time!)
+                let sessionEndTime = timeFromString(dateString: session.end_time!)
                 
-                let addedSessionStartTime = dateFromString(dateString: pickerSelectedSession.start_time!)
+                let addedSessionStartTime = timeFromString(dateString: pickerSelectedSession.start_time!)
                 
-                let addedsessionEndTime = dateFromString(dateString: pickerSelectedSession.end_time!)
+                let addedsessionEndTime = timeFromString(dateString: pickerSelectedSession.end_time!)
                 
                 if ( addedSessionStartTime >= sessionStartTime &&  addedSessionStartTime <= sessionEndTime)
                 {

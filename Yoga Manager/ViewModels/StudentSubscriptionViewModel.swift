@@ -9,7 +9,7 @@
 import Foundation
 import CoreData
 
-class StudentSubscriptionVIewModel : BasicViewModel{
+class StudentSubscriptionViewModel : BasicViewModel{
     
     func getSubscriptions() -> [StudentSubscription]{
         
@@ -42,14 +42,14 @@ class StudentSubscriptionVIewModel : BasicViewModel{
     
     func updateASubscrtiption(subscription: StudentSubscription, startDate: Date , endDate: Date)
     {
-        subscription.setValue(startDate, forKey: "start_date")
+        subscription.setValue(stringFromDate(date: startDate), forKey: "start_date")
         
-        subscription.setValue(endDate, forKey: "end_date")
+        subscription.setValue(stringFromDate(date: endDate), forKey: "end_date")
         
         super.saveData()
     }
     
-    func deleteAGroup(entity: NSManagedObject){
+    func deleteASubscription(entity: NSManagedObject){
         
         coreDataHelper.deleteAnEntity(entity: entity)
     }

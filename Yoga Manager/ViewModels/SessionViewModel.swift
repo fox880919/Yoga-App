@@ -49,8 +49,8 @@ class SessionViewModel  : BasicViewModel
 
 //        session.session_time = SessionDate(day: day, starttime: startTime, endTime: endDate)
 
-        session.start_time = stringFromDate(date: startTime)
-        session.end_time = stringFromDate(date: endTime)
+        session.start_time = stringFromTime(date: startTime)
+        session.end_time = stringFromTime(date: endTime)
         session.week_day = day
         session.created_date = createdDate
         session.is_weekly = isWeekly
@@ -62,8 +62,6 @@ class SessionViewModel  : BasicViewModel
     }
 
     func updateASession (cost: Int, day : String, startTime: Date, endTime: Date, isWeekly: Bool, currentSession: Session){
-        
-  
 
         // let newSessionDate = SessionDate(day: day, starttime: startTime, endTime: endDate)
         
@@ -71,9 +69,9 @@ class SessionViewModel  : BasicViewModel
 
         currentSession.setValue(newcost, forKey: "cost")
 
-        currentSession.setValue(stringFromDate(date: startTime), forKey: "start_time")
+        currentSession.setValue(stringFromTime(date: startTime), forKey: "start_time")
         
-        currentSession.setValue(stringFromDate(date: endTime), forKey: "end_time")
+        currentSession.setValue(stringFromTime(date: endTime), forKey: "end_time")
         
         currentSession.setValue(day, forKey: "week_day")
         
