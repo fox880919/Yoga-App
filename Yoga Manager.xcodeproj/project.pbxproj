@@ -39,6 +39,7 @@
 		A3E68598207D59E6000E12F6 /* LocationModelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E68597207D59E6000E12F6 /* LocationModelView.swift */; };
 		A3E78EF52077F5CC001B7706 /* SelectedGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E78EF42077F5CC001B7706 /* SelectedGroupViewController.swift */; };
 		B3F129559F9E0ABCE6CF4FDA /* Pods_Yoga_Manager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EFA20DCDE4B097D7FC1CEB8 /* Pods_Yoga_Manager.framework */; };
+		CB065AAB20873422006C1860 /* StudentSubscriptionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB065AAA20873422006C1860 /* StudentSubscriptionViewModel.swift */; };
 		CB455AFC2070D1DC008EA09D /* AllStudentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB455AFB2070D1DC008EA09D /* AllStudentsViewController.swift */; };
 		CBB07185207F1A0600DB3DE9 /* LocationTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB07184207F1A0600DB3DE9 /* LocationTableCell.swift */; };
 		CBB07187207F1A4900DB3DE9 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB07186207F1A4900DB3DE9 /* SettingsViewController.swift */; };
@@ -92,6 +93,7 @@
 		A3E68595207D56C5000E12F6 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		A3E68597207D59E6000E12F6 /* LocationModelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationModelView.swift; sourceTree = "<group>"; };
 		A3E78EF42077F5CC001B7706 /* SelectedGroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedGroupViewController.swift; sourceTree = "<group>"; };
+		CB065AAA20873422006C1860 /* StudentSubscriptionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentSubscriptionViewModel.swift; sourceTree = "<group>"; };
 		CB455AFB2070D1DC008EA09D /* AllStudentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllStudentsViewController.swift; sourceTree = "<group>"; };
 		CBB07184207F1A0600DB3DE9 /* LocationTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationTableCell.swift; sourceTree = "<group>"; };
 		CBB07186207F1A4900DB3DE9 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -226,6 +228,7 @@
 				A30B98D0207552E100722847 /* SessionViewModel.swift */,
 				A3E68597207D59E6000E12F6 /* LocationModelView.swift */,
 				CBB0718F207F734A00DB3DE9 /* AttendanceViewModel.swift */,
+				CB065AAA20873422006C1860 /* StudentSubscriptionViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -437,6 +440,7 @@
 				A354722C207E464300C1C1C5 /* AdditionalMethods.swift in Sources */,
 				A3C62F51206AD8F400D8B295 /* ViewController.swift in Sources */,
 				CB455AFC2070D1DC008EA09D /* AllStudentsViewController.swift in Sources */,
+				CB065AAB20873422006C1860 /* StudentSubscriptionViewModel.swift in Sources */,
 				A3C62F4F206AD8F400D8B295 /* AppDelegate.swift in Sources */,
 				CBB07190207F734A00DB3DE9 /* AttendanceViewModel.swift in Sources */,
 				A36775F52080BC6F00821265 /* AttendanceStudentCell.swift in Sources */,

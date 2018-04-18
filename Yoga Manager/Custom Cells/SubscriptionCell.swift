@@ -17,5 +17,5 @@ class SubscriptionCell: UITableViewCell {
     
     @IBOutlet weak var startDateLbl: UILabel!
     
-    @IBOutlet weak var endDate: UILabel!
+    @IBOutlet weak var endDateLbl: UILabel!
 }

@@ -59,18 +59,41 @@ class AddingGroupPopupViewController: UIViewController {
     
     @IBAction func submitGroupName(_ sender: Any) {
         
-        if let group = selectedGroup {
-            
-            MainViewModel().updateAgroup(oldGroup: group, newName: grouNameTextField.text!, newSessionPrice: Int(priceTextField.text!)!, newSubscriptionPrice:  Int(subscriptionPriceTextField.text!)!)
+        
+        if(grouNameTextField.text!.isEmpty)
+        {
+         
+            showAlert(message: "Group name can't be emp")
         }
         
-        else {
+        else{
+         
+            if let group = selectedGroup {
+                
+                MainViewModel().updateAgroup(oldGroup: group, newName: grouNameTextField.text!, newSessionPrice: Int(priceTextField.text!)!, newSubscriptionPrice:  Int(subscriptionPriceTextField.text!)!)
+            }
+                
+            else {
+                
+                MainViewModel().addANewGroup(groupName: grouNameTextField.text!, sessionPrice: Int(priceTextField.text!)!, subscriptionPrice: Int(subscriptionPriceTextField.text!)!)
+            }
             
-            MainViewModel().addANewGroup(groupName: grouNameTextField.text!, sessionPrice: Int(priceTextField.text!)!, subscriptionPrice: Int(subscriptionPriceTextField.text!)!)
-        } 
-        
-        dismiss(animated: true, completion: nil)
+            dismiss(animated: true, completion: nil)
 
+        }
+
+    }
+    
+    func showAlert(message: String!){
+        
+        let alert = UIAlertController(title: "Error", message: message, preferredStyle: UIAlertControllerStyle.alert)
+        
+        let okAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: { action in
+        })
+        
+        alert.addAction(okAction)
+        
+        self.present(alert, animated: true)
     }
     
     

@@ -41,8 +41,6 @@ class SelectedGroupViewController: UIViewController, UICollectionViewDelegate, U
     var pickerSelectedSessionsGroup: Group!
     
     var pickerSelectedSession: Session!
-    
-    
 
     var newInputView : UIView!    
     

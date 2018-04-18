@@ -1608,7 +1608,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="endDate" destination="aVh-tm-lhq" id="oOz-EC-q4j"/>
+                                            <outlet property="endDateLbl" destination="aVh-tm-lhq" id="9Mo-a4-Wku"/>
                                             <outlet property="groupNameLbl" destination="D1J-Mj-k7g" id="an0-w7-aQh"/>
                                             <outlet property="startDateLbl" destination="COn-9V-iCd" id="705-AD-aSy"/>
                                             <outlet property="studentNameLbl" destination="DQ3-DO-InA" id="eSy-ky-6qH"/>
