@@ -28,6 +28,18 @@ class AttendanceStudentsViewController: UIViewController {
     
     var subscriptions: [StudentSubscription]!
     
+    var newInputView : UIView!
+
+    var isPickersViewOn = false
+
+    var DayDatePicker = UIPickerView()
+    
+    var pickerArray: [String]!
+    
+    var attendanceDate: String!
+
+
+    
     @IBOutlet weak var studentsCollectionView: UICollectionView!
     
     override func viewDidLoad() {
@@ -40,9 +52,13 @@ class AttendanceStudentsViewController: UIViewController {
         studentsCollectionView.dataSource = self
         studentsCollectionView.delegate = self
         
+
+        
         subscriptions = StudentSubscriptionViewModel().getGroupSubscriptions(studentsGroup: selectedGroup)
         
         // Do any additional setup after loading the view.
+        
+        pickerArray = getArrayOfWeekDays(weekDay: Date.Weekday(rawValue: selectedSession.week_day!.lowercased())!, numberOfForwardDays: 0, numberOfBackwardDays: 4)
     }
     
     override func didReceiveMemoryWarning() {
@@ -64,55 +80,112 @@ class AttendanceStudentsViewController: UIViewController {
     
     @objc func saveBtnPressed()
     {
+
+        if(isPickersViewOn == true)
+        {
+        }
+        else{
+            
+            isPickersViewOn = true
+            
+            newInputView = UIView(frame: CGRect(x: 0, y: 70, width: self.view.frame.size.width, height: 120))
+            
+            let DayDateLbl = UILabel(frame: CGRect(x: 10, y: 10, width: self.view.frame.size.width, height: 20))
+            
+            DayDateLbl.textAlignment = .center
+            
+            DayDateLbl.text = "Which \(selectedSession.week_day!)"
+            
+            DayDatePicker = UIPickerView(frame:CGRect(x: 10, y: 40, width: self.view.frame.size.width - 20, height: 50))
+            
+            DayDatePicker.delegate = self
+            DayDatePicker.dataSource = self
+            
+            DayDatePicker.backgroundColor = UIColor.white
+            
+            DayDatePicker.showsSelectionIndicator = true
+            
+            DayDatePicker.selectRow(pickerArray.count - 1, inComponent: 0, animated: false)
+            
+            let toolBar = UIToolbar()
+            toolBar.barStyle = UIBarStyle.default
+            toolBar.isTranslucent = true
+            toolBar.tintColor = UIColor(red: 76/255, green: 217/255, blue: 100/255, alpha: 1)
+            toolBar.sizeToFit()
+            
+            let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.plain, target: self, action: #selector(donePickingDate))
+            
+            let spaceButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+            
+            let cancelButton = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.plain, target: self, action: #selector(cancelView))
+            
+            toolBar.setItems([cancelButton, spaceButton, doneButton], animated: false)
+            
+            toolBar.isUserInteractionEnabled = true
+            
+            newInputView.addSubview(toolBar)
+            
+            newInputView.addSubview(DayDateLbl)
+            
+            newInputView.addSubview(DayDatePicker)
+            
+            newInputView.backgroundColor = UIColor.cyan
+            
+            self.view.addSubview(newInputView)
+            
+        }
+     
+    }
+    
+   func saveAttendance(){
+    
+    var i = 0
+    
+    let allStudent = StudentViewModel().getGroupStudents(studentsGroup: selectedGroup)
+    
+    attendanceDate = pickerArray[DayDatePicker.selectedRow(inComponent: 0)]
+    
+    for student in allStudent {
         
-        let date = getDayDate(date: Date())
+        let isPaid = allCells[i].isPaidCheckBox.on
         
-        var i = 0
-        
-        let allStudent = StudentViewModel().getGroupStudents(studentsGroup: selectedGroup)
+        i = i + 1;
         
         
-        
-        for student in allStudent {
+        if (selectedStudents.contains(student))
+        {
             
             
-            let count = allCells.count
-            let isPaid = allCells[i].isPaidCheckBox.on
+            attendanceViewModel.addANewAttendance(attendanceDate: attendanceDate, isPaid: isPaid, attended: true, student: student, session: selectedSession, group: selectedGroup)
             
-            let testName = allCells[i].studentNameLabel
-
-
-            i = i + 1;
-
+        }
             
-            if (selectedStudents.contains(student))
-            {
+        else{
 
-                
-                attendanceViewModel.addANewAttendance(attendanceDate: date, isPaid: isPaid, attended: true, student: student, session: selectedSession, group: selectedGroup)
-                
-
-            }
-
-            else{
-                
-                attendanceViewModel.addANewAttendance(attendanceDate: date, isPaid: isPaid, attended: false, student: student, session: selectedSession, group: selectedGroup)
-
-            }
+            attendanceViewModel.addANewAttendance(attendanceDate: attendanceDate, isPaid: isPaid, attended: false, student: student, session: selectedSession, group: selectedGroup)
             
-            
-
         }
         
-//        for student in selectedStudents {
-//
-//
-//        }
+    }
+    
+    navigationController?.popViewController(animated: true)
+    
+    }
+    
+    @objc func donePickingDate(){
         
-        navigationController?.popViewController(animated: true)
+        saveAttendance()
 
     }
     
+    @objc func cancelView(){
+        
+        isPickersViewOn = false
+        
+        DayDatePicker.resignFirstResponder()
+        
+    newInputView.removeFromSuperview()
+    }
 }
 
 extension AttendanceStudentsViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
@@ -255,4 +328,26 @@ extension AttendanceStudentsViewController: UICollectionViewDelegate, UICollecti
         return sectionInset
     }
     
+}
+
+
+extension AttendanceStudentsViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1;
+    }
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        
+        return pickerArray.count;
+    }
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        
+        return pickerArray[row]
+    }
+    
+    func pickerView( _ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        
+        attendanceDate = pickerArray[row]
+        
+    }
 }

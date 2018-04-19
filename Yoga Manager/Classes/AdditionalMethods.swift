@@ -169,4 +169,226 @@ func getCustomizedMagneta() -> UIColor
 }
 
 
+//func getDaysofWeekDay (weekday : Int){
+//
+//    var dateComponents = DateComponents()
+//    dateComponents.weekday = 1
+//
+//    let calendar = NSCalendar.current
+//
+//    Calendar.current.ne
+//    let date = calendar.date(from: dateComponents)!
+//
+//    let range = calendar.range(of: .weekday, in: .month, for: Date())
+//
+//    for day in range{
+//
+//        let test = day
+//        print "\(day)"
+//    }
+//]   // return range
+//    // New code starts here:
+//
+//    var numberOfSundays = 0
+//
+//    let dateFormatter = DateFormatter()
+//
+//    }
+
+extension Date {
+    
+    static func today() -> Date {
+        return Date()
+    }
+    
+    func next(_ weekday: Weekday, considerToday: Bool = false) -> Date {
+        return get(.Next,
+                   weekday,
+                   considerToday: considerToday)
+    }
+    
+    func previous(_ weekday: Weekday, considerToday: Bool = false) -> Date {
+        return get(.Previous,
+                   weekday,
+                   considerToday: considerToday)
+    }
+    
+    func get(_ direction: SearchDirection,
+             _ weekDay: Weekday,
+             considerToday consider: Bool = false) -> Date {
+        
+        let dayName = weekDay.rawValue
+        
+        let weekdaysName = getWeekDaysInEnglish().map { $0.lowercased() }
+        
+        assert(weekdaysName.contains(dayName), "weekday symbol should be in form \(weekdaysName)")
+        
+        let searchWeekdayIndex = weekdaysName.index(of: dayName)! + 1
+        
+        let calendar = Calendar(identifier: .gregorian)
+        
+        if consider && calendar.component(.weekday, from: self) == searchWeekdayIndex {
+            return self
+        }
+        
+        var nextDateComponent = DateComponents()
+        nextDateComponent.weekday = searchWeekdayIndex
+        
+        
+        let date = calendar.nextDate(after: self,
+                                     matching: nextDateComponent,
+                                     matchingPolicy: .nextTime,
+                                     direction: direction.calendarSearchDirection)
+        
+        return date!
+    }
+    
+}
+
+// MARK: Helper methods
+extension Date {
+    func getWeekDaysInEnglish() -> [String] {
+        var calendar = Calendar(identifier: .gregorian)
+        calendar.locale = Locale(identifier: "en_US_POSIX")
+        return calendar.weekdaySymbols
+    }
+    
+    enum Weekday: String {
+        case monday, tuesday, wednesday, thursday, friday, saturday, sunday
+    }
+    
+    enum SearchDirection {
+        case Next
+        case Previous
+        
+        var calendarSearchDirection: Calendar.SearchDirection {
+            switch self {
+            case .Next:
+                return .forward
+            case .Previous:
+                return .backward
+            }
+        }
+    }
+    
+    func dayOfTheWeek() -> String? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "EEEE"
+        return dateFormatter.string(from: self)
+    }
+}
+
+func getArrayOfWeekDays(weekDay: Date.Weekday, numberOfForwardDays: Int, numberOfBackwardDays: Int) -> [String]
+{
+ 
+    var array = [String]()
+    
+    if(numberOfBackwardDays > 0) {
+        
+        for i in 1 ... numberOfBackwardDays {
+            
+            var backWardDate  = Date()
+            
+            if(numberOfBackwardDays > 0)
+            {
+                
+                let j = numberOfBackwardDays - i + 1
+                
+                backWardDate = Date.today()
+                
+                for _ in 1 ... j {
+                    
+                    backWardDate = backWardDate.previous(weekDay)
+                    
+                }
+                
+                array.append(stringFromDate(date: backWardDate))
+            }
+        }
+    }
+
+    
+    if(Date().dayOfTheWeek()?.lowercased() == weekDay.rawValue)
+    {
+        array.append(stringFromDate(date: Date()))
+    }
+    
+   
+    var forwardDate: Date
+    
+    forwardDate = Date.today().next(weekDay)
+
+    if(numberOfForwardDays >= 1)
+    {
+        
+        array.append(stringFromDate(date: forwardDate))
+    }
+
+    if(numberOfForwardDays > 2)
+    {
+        
+        for _ in 2 ... numberOfForwardDays {
+            
+            forwardDate = forwardDate.next(weekDay)
+            
+            array.append(stringFromDate(date: forwardDate))
+        }
+    }
+
+    
+    return array
+
+}
+
+func getDatesArrayforGroupSessions(group: Group) -> [String]
+{
+    let sessions = SessionViewModel().getGroupSessions(studentsGroup: group)
+    
+    var ArraysofDaysArrays = [[Date]]()
+    
+    for session in sessions {
+        
+        var tempStringArrays = [String]()
+                
+        tempStringArrays = getArrayOfWeekDays(weekDay:  Date.Weekday(rawValue: (session.week_day!.lowercased()))!, numberOfForwardDays: 6, numberOfBackwardDays: 5)
+        
+        var tempDateArrays = [Date]()
+        
+        for string in tempStringArrays {
+            
+            tempDateArrays.append(DateFromString(dateString: string))
+        }
+        
+       ArraysofDaysArrays.append(tempDateArrays)
+    }
+    
+    var tempFinalArray = [Date]()
+    
+    for array in ArraysofDaysArrays {
+        
+        for date in array {
+            
+            tempFinalArray.append(date)
+        }
+        
+    }
+    
+    var finalArray = [Date]()
+    
+    while tempFinalArray.count > 0{
+        
+        finalArray.append(tempFinalArray.min()!)
+        
+        tempFinalArray.remove(at: tempFinalArray.index(of: tempFinalArray.min()!)!)
+    }
+
+    var stringArray = [String]()
+    
+    for date in finalArray{
+        
+        stringArray.append(stringFromDate(date: date))
+    }
+    
+    return stringArray
+}
 

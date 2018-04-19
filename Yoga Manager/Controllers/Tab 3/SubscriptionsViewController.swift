@@ -20,6 +20,8 @@ class SubscriptionsViewController: UIViewController {
     
     var endDatePicker = UIDatePicker()
     
+    var sessionDatesHelperPicker = UIPickerView()
+    
     var allPickerGroups = MainViewModel().getGroups()
     
     var allPickerStudentsForAGroup: [Student]!
@@ -30,6 +32,8 @@ class SubscriptionsViewController: UIViewController {
     
     var pickerSelectedEndDate: Date?
     
+    var pickerHelperDatesArray: [String]?
+
     var pickerSelectedStudent: Student!
     
     var newInputView : UIView!
@@ -42,6 +46,9 @@ class SubscriptionsViewController: UIViewController {
     
     var isPickersViewOn = false
     
+    var scrollView: UIScrollView!
+    
+    
 
     
     override func viewDidLoad() {
@@ -49,7 +56,6 @@ class SubscriptionsViewController: UIViewController {
 
         self.title = "Subscriptions"
         
-        newInputView = UIView(frame: CGRect(x: 0, y: 200, width: self.view.frame.size.width, height: self.view.frame.size.height))
 
         let addSubscription = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addSubscriptionBtnPressed))
         
@@ -57,6 +63,8 @@ class SubscriptionsViewController: UIViewController {
         
         subscriptionTableView.dataSource = self
         subscriptionTableView.delegate = self
+        
+        scrollView = UIScrollView(frame: view.bounds)
         // Do any additional setup after loading the view.
     }
 
@@ -79,74 +87,89 @@ class SubscriptionsViewController: UIViewController {
         {
         }
         else{
-        newInputView = UIView(frame: CGRect(x: 0, y: 70, width: self.view.frame.size.width, height: self.view.frame.size.height - 10))
+            
+            isPickersViewOn = true
+            
+            newInputView = UIView(frame: CGRect(x: 0, y: 70, width: self.view.frame.size.width, height: 700))
+            
+            let groupLabel = UILabel(frame: CGRect(x: 0, y: 50, width: self.view.frame.size.width, height: 20))
+            groupLabel.textAlignment = .center
+            groupLabel.text = "Groups"
+            
+            GroupsBtnPicker = UIPickerView(frame:CGRect(x: 0, y: 80, width: self.view.frame.size.width, height: 60))
+            
+            GroupsBtnPicker.delegate = self
+            GroupsBtnPicker.dataSource = self
+            
+            GroupsBtnPicker.backgroundColor = UIColor.white
+            
+            GroupsBtnPicker.showsSelectionIndicator = true
+            
+            GroupsBtnPicker.tag = 10;
+            
+            let sessionsLabel = UILabel(frame: CGRect(x: 0, y: 160, width: self.view.frame.size.width, height: 20))
+            sessionsLabel.textAlignment = .center
+            sessionsLabel.text = "Selected Group Students"
+            
+            GroupStudentsBtnPicker = UIPickerView(frame:CGRect(x: 0, y: 190, width: self.view.frame.size.width, height: 60))
         
-        let groupLabel = UILabel(frame: CGRect(x: 0, y: 50, width: self.view.frame.size.width, height: 20))
-        groupLabel.textAlignment = .center
-        groupLabel.text = "Groups"
-        
-        GroupsBtnPicker = UIPickerView(frame:CGRect(x: 0, y: 80, width: self.view.frame.size.width, height: 60))
-        
-        GroupsBtnPicker.delegate = self
-        GroupsBtnPicker.dataSource = self
-        
-        GroupsBtnPicker.backgroundColor = UIColor.white
-        
-        GroupsBtnPicker.showsSelectionIndicator = true
-        
-        GroupsBtnPicker.tag = 10;
-        
-        let sessionsLabel = UILabel(frame: CGRect(x: 0, y: 160, width: self.view.frame.size.width, height: 20))
-        sessionsLabel.textAlignment = .center
-        sessionsLabel.text = "Selected Group Students"
-        
-        GroupStudentsBtnPicker = UIPickerView(frame:CGRect(x: 0, y: 190, width: self.view.frame.size.width, height: 60))
-    
-        GroupStudentsBtnPicker.delegate = self
-        GroupStudentsBtnPicker.dataSource = self
-        
-        GroupStudentsBtnPicker.backgroundColor = UIColor.white
-        
-        GroupStudentsBtnPicker.showsSelectionIndicator = true
-        
-        GroupStudentsBtnPicker.tag = 20;
-        
-        let startDateLbl = UILabel(frame: CGRect(x: 10, y: 270, width: self.view.frame.size.width, height: 20))
+            GroupStudentsBtnPicker.delegate = self
+            GroupStudentsBtnPicker.dataSource = self
+            
+            GroupStudentsBtnPicker.backgroundColor = UIColor.white
+            
+            GroupStudentsBtnPicker.showsSelectionIndicator = true
+            
+            GroupStudentsBtnPicker.tag = 20;
+            
+            let startDateLbl = UILabel(frame: CGRect(x: 10, y: 270, width: self.view.frame.size.width, height: 20))
 
-        startDateLbl.textAlignment = .center
-        
-        startDateLbl.text = "From Date:"
-        
-        startDatePicker = UIDatePicker(frame:CGRect(x: 10, y: 300, width: self.view.frame.size.width - 20, height: 50))
-        
-        startDatePicker.tag = 30
-        
-        startDatePicker.datePickerMode = UIDatePickerMode.date
-        
+            startDateLbl.textAlignment = .center
+            
+            startDateLbl.text = "From Date:"
+            
+            startDatePicker = UIDatePicker(frame:CGRect(x: 10, y: 300, width: self.view.frame.size.width - 20, height: 50))
+            
+            startDatePicker.tag = 30
+            
+            startDatePicker.datePickerMode = UIDatePickerMode.date
 
+            let endDateLbl = UILabel(frame: CGRect(x: 10, y: 370, width: self.view.frame.size.width, height: 20))
+            endDateLbl.textAlignment = .center
+            endDateLbl.text = "To Date:"
         
-//        let startDateStackView   = UIStackView(frame: CGRect(x: 10, y: 360,width: self.view.frame.size.width, height: 60))
-//        startDateStackView.axis  = UILayoutConstraintAxis.horizontal
-//        startDateStackView.distribution  = UIStackViewDistribution.fill
-//        startDateStackView.alignment = UIStackViewAlignment.center
-//        startDateStackView.spacing   = 16.0
-//
-//        startDateStackView.addArrangedSubview(startDateLbl)
-//        startDateStackView.addArrangedSubview(startDatePicker)
+            endDatePicker = UIDatePicker(frame:CGRect(x: 10, y: 400, width: self.view.frame.size.width  - 20, height: 50))
 
-        let endDateLbl = UILabel(frame: CGRect(x: 10, y: 370, width: self.view.frame.size.width, height: 20))
-        endDateLbl.textAlignment = .center
-        endDateLbl.text = "To Date:"
+            endDatePicker.tag = 40
         
-        endDatePicker = UIDatePicker(frame:CGRect(x: 10, y: 400, width: self.view.frame.size.width  - 20, height: 50))
-
-        endDatePicker.tag = 40
-        
-        endDatePicker.datePickerMode = UIDatePickerMode.date
-
-        
-
-        
+            endDatePicker.datePickerMode = UIDatePickerMode.date
+            
+            let helperLbl = UILabel(frame: CGRect(x: 10, y: 460, width: self.view.frame.size.width, height: 20))
+            helperLbl.textAlignment = .center
+            helperLbl.text = "Note: Group Sessions Dates"
+            
+            sessionDatesHelperPicker = UIPickerView(frame:CGRect(x: 10, y: 490, width: self.view.frame.size.width  - 20, height: 50))
+            
+            sessionDatesHelperPicker.tag = 50
+            
+            sessionDatesHelperPicker.delegate = self
+            
+            sessionDatesHelperPicker.dataSource = self
+            
+            sessionDatesHelperPicker.backgroundColor = UIColor.white
+            
+            sessionDatesHelperPicker.showsSelectionIndicator = true
+            
+            
+            //        let startDateStackView   = UIStackView(frame: CGRect(x: 10, y: 360,width: self.view.frame.size.width, height: 60))
+            //        startDateStackView.axis  = UILayoutConstraintAxis.horizontal
+            //        startDateStackView.distribution  = UIStackViewDistribution.fill
+            //        startDateStackView.alignment = UIStackViewAlignment.center
+            //        startDateStackView.spacing   = 16.0
+            //
+            //        startDateStackView.addArrangedSubview(startDateLbl)
+            //        startDateStackView.addArrangedSubview(startDatePicker)
+            
 //        let endDateStackView   = UIStackView(frame: CGRect(x: 10, y: 440, width: self.view.frame.size.width - 10, height: 60))
 //        endDateStackView.axis  = UILayoutConstraintAxis.horizontal
 //        endDateStackView.distribution  = UIStackViewDistribution.fillProportionally
@@ -158,43 +181,53 @@ class SubscriptionsViewController: UIViewController {
 //        endDateStackView.addArrangedSubview(endDateLbl)
 //        endDateStackView.addArrangedSubview(endDatePicker)
 
-        let toolBar = UIToolbar()
-        toolBar.barStyle = UIBarStyle.default
-        toolBar.isTranslucent = true
-        toolBar.tintColor = UIColor(red: 76/255, green: 217/255, blue: 100/255, alpha: 1)
-        toolBar.sizeToFit()
-        
-        let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.plain, target: self, action: #selector(doneAdding))
-        
-        let spaceButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        
-        let cancelButton = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.plain, target: self, action: #selector(cancelView))
-        
-        toolBar.setItems([cancelButton, spaceButton, doneButton], animated: false)
-        
-        toolBar.isUserInteractionEnabled = true
-        
-        newInputView.addSubview(toolBar)
-        
-        newInputView.addSubview(GroupsBtnPicker)
-        
-        newInputView.addSubview(GroupStudentsBtnPicker)
-        
-        newInputView.addSubview(groupLabel)
-        
-        newInputView.addSubview(sessionsLabel)
-        
-        newInputView.addSubview(startDateLbl)
-        
-        newInputView.addSubview(startDatePicker)
+            let toolBar = UIToolbar()
+            toolBar.barStyle = UIBarStyle.default
+            toolBar.isTranslucent = true
+            toolBar.tintColor = UIColor(red: 76/255, green: 217/255, blue: 100/255, alpha: 1)
+            toolBar.sizeToFit()
+            
+            let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.plain, target: self, action: #selector(doneAdding))
+            
+            let spaceButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+            
+            let cancelButton = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.plain, target: self, action: #selector(cancelView))
+            
+            toolBar.setItems([cancelButton, spaceButton, doneButton], animated: false)
+            
+            toolBar.isUserInteractionEnabled = true
+            
+            newInputView.addSubview(toolBar)
+            
+            newInputView.addSubview(GroupsBtnPicker)
+            
+            newInputView.addSubview(GroupStudentsBtnPicker)
+            
+            newInputView.addSubview(groupLabel)
+            
+            newInputView.addSubview(sessionsLabel)
+            
+            newInputView.addSubview(startDateLbl)
+            
+            newInputView.addSubview(startDatePicker)
 
-        newInputView.addSubview(endDateLbl)
+            newInputView.addSubview(endDateLbl)
 
-        newInputView.addSubview(endDatePicker)
+            newInputView.addSubview(endDatePicker)
+            
+            newInputView.addSubview(helperLbl)
+            
+            newInputView.addSubview(sessionDatesHelperPicker)
         
-        newInputView.backgroundColor = UIColor.cyan
-        
-        self.view.addSubview(newInputView)
+            newInputView.backgroundColor = UIColor.cyan
+            
+            newInputView.isUserInteractionEnabled = true
+            
+            scrollView.contentSize = newInputView.bounds.size
+            
+            scrollView.addSubview(newInputView)
+
+            self.view.addSubview(scrollView)
         
         }
     
@@ -209,13 +242,13 @@ class SubscriptionsViewController: UIViewController {
             newInputView = UIView(frame: CGRect(x: 0, y: 70, width: self.view.frame.size.width, height: self.view.frame.size.height - 10))
             
             
-            let startDateLbl = UILabel(frame: CGRect(x: 10, y: 270, width: self.view.frame.size.width, height: 20))
+            let startDateLbl = UILabel(frame: CGRect(x: 10, y: 170, width: self.view.frame.size.width, height: 20))
             
             startDateLbl.textAlignment = .center
             
             startDateLbl.text = "From Date:"
             
-            startDatePicker = UIDatePicker(frame:CGRect(x: 10, y: 300, width: self.view.frame.size.width - 20, height: 50))
+            startDatePicker = UIDatePicker(frame:CGRect(x: 10, y: 200, width: self.view.frame.size.width - 20, height: 50))
             
             startDatePicker.tag = 30
             
@@ -223,11 +256,11 @@ class SubscriptionsViewController: UIViewController {
             
             startDatePicker.date = DateFromString(dateString: (selectedSubscription?.start_date!)!)
             
-            let endDateLbl = UILabel(frame: CGRect(x: 10, y: 370, width: self.view.frame.size.width, height: 20))
+            let endDateLbl = UILabel(frame: CGRect(x: 10, y: 270, width: self.view.frame.size.width, height: 20))
             endDateLbl.textAlignment = .center
             endDateLbl.text = "To Date:"
             
-            endDatePicker = UIDatePicker(frame:CGRect(x: 10, y: 400, width: self.view.frame.size.width  - 20, height: 50))
+            endDatePicker = UIDatePicker(frame:CGRect(x: 10, y: 300, width: self.view.frame.size.width  - 20, height: 50))
             
             endDatePicker.tag = 40
             
@@ -235,6 +268,23 @@ class SubscriptionsViewController: UIViewController {
             
             endDatePicker.date = DateFromString(dateString: (selectedSubscription?.end_date!)!)
 
+            let helperLbl = UILabel(frame: CGRect(x: 10, y: 360, width: self.view.frame.size.width, height: 20))
+            helperLbl.textAlignment = .center
+            helperLbl.text = "Note: Group Sessions Dates"
+            
+            sessionDatesHelperPicker = UIPickerView(frame:CGRect(x: 10, y: 390, width: self.view.frame.size.width  - 20, height: 50))
+            
+            sessionDatesHelperPicker.tag = 50
+            
+            sessionDatesHelperPicker.delegate = self
+            
+            sessionDatesHelperPicker.dataSource = self
+            
+            sessionDatesHelperPicker.backgroundColor = UIColor.white
+            
+            sessionDatesHelperPicker.showsSelectionIndicator = true
+            
+            
             
             let toolBar = UIToolbar()
             toolBar.barStyle = UIBarStyle.default
@@ -252,6 +302,7 @@ class SubscriptionsViewController: UIViewController {
             
             toolBar.isUserInteractionEnabled = true
             
+            
             newInputView.addSubview(toolBar)
             
             newInputView.addSubview(startDateLbl)
@@ -261,6 +312,10 @@ class SubscriptionsViewController: UIViewController {
             newInputView.addSubview(endDateLbl)
             
             newInputView.addSubview(endDatePicker)
+            
+            newInputView.addSubview(helperLbl)
+            
+            newInputView.addSubview(sessionDatesHelperPicker)
             
             newInputView.backgroundColor = UIColor.cyan
             
@@ -308,6 +363,8 @@ class SubscriptionsViewController: UIViewController {
             
             subscriptionTableView.reloadData()
             
+            scrollView.removeFromSuperview()
+            
             newInputView.removeFromSuperview()
 
         }
@@ -340,6 +397,8 @@ class SubscriptionsViewController: UIViewController {
     
     @objc func cancelView(){
         
+        isPickersViewOn = false
+        
         selectedSubscription = nil
         
         GroupsBtnPicker.resignFirstResponder()
@@ -350,6 +409,8 @@ class SubscriptionsViewController: UIViewController {
         
         endDatePicker.resignFirstResponder()
         
+        scrollView.removeFromSuperview()
+
         newInputView.removeFromSuperview()
     }
     
@@ -402,7 +463,22 @@ extension SubscriptionsViewController: UIPickerViewDelegate, UIPickerViewDataSou
                 
             }
         }
-        
+        else if pickerView.tag == 50 {
+            
+            if let helperCount = pickerHelperDatesArray?.count {
+                
+                pickerView.backgroundColor = UIColor.white
+
+                return helperCount
+            }
+            
+            else{
+                
+                pickerView.backgroundColor = UIColor.darkGray
+                
+                return 0
+            }
+        }
         pickerView.backgroundColor = UIColor.darkGray
         
         return 0;
@@ -437,7 +513,13 @@ extension SubscriptionsViewController: UIPickerViewDelegate, UIPickerViewDataSou
                 return "\(student.name!)"
             }
         }
-        else{
+        else if pickerView.tag == 50{
+            
+            let date = DateFromString(dateString: (pickerHelperDatesArray?[row])!)
+            
+            return "\(date.dayOfTheWeek()!) \((pickerHelperDatesArray?[row])!)"
+        }
+        else {
             
             return ""
         }
@@ -454,6 +536,10 @@ extension SubscriptionsViewController: UIPickerViewDelegate, UIPickerViewDataSou
                 
                 allPickerStudentsForAGroup = nil
                 
+                pickerHelperDatesArray = nil
+                
+                sessionDatesHelperPicker.reloadAllComponents()
+                
                 GroupStudentsBtnPicker.reloadAllComponents()
                 
                 pickerSelectedStudentsGroup = nil
@@ -465,11 +551,16 @@ extension SubscriptionsViewController: UIPickerViewDelegate, UIPickerViewDataSou
                 
                 pickerSelectedStudentsGroup = allPickerGroups[row - 1]
                 
+                pickerHelperDatesArray = getDatesArrayforGroupSessions(group: pickerSelectedStudentsGroup)
+                
+                sessionDatesHelperPicker.reloadAllComponents()
+
                 allPickerStudentsForAGroup = StudentViewModel().getGroupStudents(studentsGroup: allPickerGroups[row - 1])
                 
                 GroupStudentsBtnPicker.reloadAllComponents()
                 
                 GroupStudentsBtnPicker.selectRow(0, inComponent: 0, animated: false)
+                
                 
             }
             
@@ -483,6 +574,7 @@ extension SubscriptionsViewController: UIPickerViewDelegate, UIPickerViewDataSou
             else{
                 
                 pickerSelectedStudent = allPickerStudentsForAGroup[row - 1]
+
             }
         }
         
