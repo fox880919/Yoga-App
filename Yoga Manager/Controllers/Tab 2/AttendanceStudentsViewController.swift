@@ -14,6 +14,8 @@ class AttendanceStudentsViewController: UIViewController {
     
     var selectedStudents = [Student]()
     
+    var allCells = [AttendanceStudentCell]()
+    
     var selectedCells = [AttendanceStudentCell]()
     
     var selectedGroup: Group!
@@ -23,6 +25,8 @@ class AttendanceStudentsViewController: UIViewController {
     var defaultColor : UIColor?
     
     let attendanceViewModel = AttendanceModelView()
+    
+    var subscriptions: [StudentSubscription]!
     
     @IBOutlet weak var studentsCollectionView: UICollectionView!
     
@@ -35,6 +39,8 @@ class AttendanceStudentsViewController: UIViewController {
         
         studentsCollectionView.dataSource = self
         studentsCollectionView.delegate = self
+        
+        subscriptions = StudentSubscriptionViewModel().getGroupSubscriptions(studentsGroup: selectedGroup)
         
         // Do any additional setup after loading the view.
     }
@@ -65,17 +71,27 @@ class AttendanceStudentsViewController: UIViewController {
         
         let allStudent = StudentViewModel().getGroupStudents(studentsGroup: selectedGroup)
         
-        let isPaid = selectedCells[i].isPaidCheckBox.on
         
         
         for student in allStudent {
             
+            
+            let count = allCells.count
+            let isPaid = allCells[i].isPaidCheckBox.on
+            
+            let testName = allCells[i].studentNameLabel
+
+
+            i = i + 1;
+
+            
             if (selectedStudents.contains(student))
             {
+
                 
                 attendanceViewModel.addANewAttendance(attendanceDate: date, isPaid: isPaid, attended: true, student: student, session: selectedSession, group: selectedGroup)
                 
-                i = i + 1;
+
             }
 
             else{
@@ -84,6 +100,8 @@ class AttendanceStudentsViewController: UIViewController {
 
             }
             
+            
+
         }
         
 //        for student in selectedStudents {
@@ -117,7 +135,8 @@ extension AttendanceStudentsViewController: UICollectionViewDelegate, UICollecti
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AttendanceStudentCell", for: indexPath)
             as! AttendanceStudentCell
         
-        
+        allCells.append(cell)
+
         if defaultColor == nil {
             defaultColor = cell.backgroundColor
         }
@@ -126,7 +145,28 @@ extension AttendanceStudentsViewController: UICollectionViewDelegate, UICollecti
         //  cell.isPaidCheckBox.isEnabled = false
         // Configure the cell
         
-        cell.studentNameLabel.text! = selectedGroupStudents[indexPath.row].name!
+        let rowStudent = selectedGroupStudents[indexPath.row]
+        
+        cell.studentNameLabel.text! = rowStudent.name!
+        
+        
+        for subscription in subscriptions {
+            
+            if(subscription.student == rowStudent)
+            {
+                if(DateFromString(dateString: subscription.end_date!)  >= Date())
+                {
+                    
+                    cell.isPaidCheckBox.on = true
+                    
+                    break
+                }
+                
+            }
+            
+            
+        }
+     
         
         if let image = UIImage(data: selectedGroupStudents[indexPath.row].photo!)
         {
@@ -142,6 +182,7 @@ extension AttendanceStudentsViewController: UICollectionViewDelegate, UICollecti
         let selectedStudent = selectedGroupStudents[indexPath.row]
         
         let cell = collectionView.cellForItem(at: indexPath) as! AttendanceStudentCell
+        
         
         if(selectedStudents.contains(selectedStudent))
         {
@@ -160,12 +201,33 @@ extension AttendanceStudentsViewController: UICollectionViewDelegate, UICollecti
             
             selectedStudents.append(selectedStudent)
             
-            cell.backgroundColor = UIColor.cyan
             
-            cell.isPaidCheckBox.on = false
             cell.isPaidCheckBox.isHidden = false
             
             
+            for subscription in subscriptions {
+                
+                if(subscription.student == selectedStudent)
+                {
+                    if(DateFromString(dateString: subscription.start_date!)  <= Date() && DateFromString(dateString: subscription.end_date!)  >= Date())
+                    {
+                        
+                        cell.isPaidCheckBox.on = true
+                        
+                        cell.backgroundColor = UIColor.cyan
+
+                        break
+                    }
+
+                }
+                
+                if (cell.isPaidCheckBox.on == false)
+                {
+                 
+                    cell.backgroundColor = UIColor.orange
+                }
+                
+            }
             
             //collectionView.cellForItem(at: indexPath)?.backgroundColor = UIColor.cyan
             

@@ -47,6 +47,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         groups = MainViewModel().getGroups()
         
         tableView.reloadData()
+        
     }
 
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {

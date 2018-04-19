@@ -152,4 +152,21 @@ func getDayDate(date: Date) -> String
     return result
 }
 
+func getCustomizedMagneta() -> UIColor
+{
+    
+    //        var red = self.view.backgroundColor?.cgColor.components![0]
+    //
+    //        var green = self.view.backgroundColor?.cgColor.components![1]
+    //
+    //        var blue = self.view.backgroundColor?.cgColor.components![2]
+    //        var alpha = self.view.backgroundColor?.cgColor.components![3]
+
+    
+    let color = UIColor(red:0.99881380796432495, green:0.86392885446548462, blue:0.97910517454147339, alpha:0.97910517454147339)
+    
+    return color
+}
+
+
 

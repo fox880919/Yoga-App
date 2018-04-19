@@ -374,7 +374,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bsY-hy-DKv" customClass="RoundButton" customModule="Yoga_Manager" customModuleProvider="target">
-                                                <rect key="frame" x="266" y="482.5" width="99" height="30"/>
+                                                <rect key="frame" x="266" y="488.5" width="99" height="18"/>
                                                 <color key="backgroundColor" red="0.97645074129104614" green="0.8691372275352478" blue="0.97256046533584595" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <state key="normal" title="Open Map">
                                                     <color key="titleColor" red="0.016804177310000001" green="0.19835099580000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1238,7 +1238,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="277"/>
                                         <color key="backgroundColor" red="0.97645074129104614" green="0.8691372275352478" blue="0.97256046533584595" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                        <state key="normal" title="Attendance"/>
+                                        <state key="normal" title="Start a New Attendance"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="color" keyPath="backgroundImageColor">
                                                 <color key="value" red="0.97645074129104614" green="0.8691372275352478" blue="0.97256046533584595" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -1255,7 +1255,7 @@
                                         <state key="normal" title="History"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="color" keyPath="backgroundImageColor">
-                                                <color key="value" red="0.022212851419999999" green="0.71104373789999997" blue="0.99193829300000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <color key="value" red="0.79691949141338458" green="0.79184330773750555" blue="0.83130615467512692" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
@@ -1302,7 +1302,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Week Day" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RAm-gi-j9N">
                                                     <rect key="frame" x="149" y="11" width="77" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="1" green="0.77555826520000004" blue="0.98118556130000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="textColor" red="0.016804177310000001" green="0.19835099580000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="vPq-f7-oxi">
@@ -1421,7 +1421,7 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <view hidden="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9RC-oD-QCZ" customClass="BEMCheckBox">
+                                                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9RC-oD-QCZ" customClass="BEMCheckBox">
                                                     <rect key="frame" x="87.5" y="165" width="36" height="36"/>
                                                     <color key="backgroundColor" red="0.0" green="0.97680455450000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </view>
@@ -1829,7 +1829,7 @@
                                 </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Exj-JV-XXB" customClass="RoundButton" customModule="Yoga_Manager" customModuleProvider="target">
-                                <rect key="frame" x="235" y="126.5" width="120" height="30"/>
+                                <rect key="frame" x="235" y="132.5" width="120" height="18"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="120" id="lmF-Di-IZn"/>
                                 </constraints>

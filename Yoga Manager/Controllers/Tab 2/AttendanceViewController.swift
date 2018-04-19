@@ -119,7 +119,10 @@ extension AttendanceViewController: UITableViewDataSource, UITableViewDelegate{
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         let header = view as! UITableViewHeaderFooterView
         header.textLabel?.font = UIFont(name: "Futura", size: 20)!
-        header.backgroundView?.backgroundColor = UIColor.magenta
+        
+        header.textLabel?.textAlignment = .center
+
+        header.backgroundView?.backgroundColor = getCustomizedMagneta()
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat

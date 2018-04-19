@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AttendanceStudentCell : UICollectionViewCell {
+class AttendanceStudentCell : UICollectionViewCell, BEMCheckBoxDelegate {
     
     @IBOutlet weak var studentImage: UIImageView!
     
@@ -20,7 +20,25 @@ class AttendanceStudentCell : UICollectionViewCell {
     override var bounds: CGRect {
         didSet {
             self.layoutIfNeeded()
+            
+            isPaidCheckBox.delegate = self
         }
+    }
+    
+    
+    func didTap(_ checkBox: BEMCheckBox) {
+        
+        if checkBox.on == true {
+            
+            self.backgroundColor = UIColor.cyan
+        }
+        
+            else{
+            
+            self.backgroundColor = UIColor.orange
+            
+        }
+
     }
     
     override func awakeFromNib() {
@@ -36,6 +54,7 @@ class AttendanceStudentCell : UICollectionViewCell {
     }
     
     func setCircularImageView() {
+        
         self.studentImage.layer.cornerRadius = CGFloat(roundf(Float(self.studentImage.frame.size.width / 2.0)))
     }
     

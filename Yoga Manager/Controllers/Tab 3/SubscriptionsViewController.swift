@@ -565,5 +565,19 @@ extension SubscriptionsViewController: UITableViewDataSource, UITableViewDelegat
         
     }
     
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 61.0
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        let header = view as! UITableViewHeaderFooterView
+        header.textLabel?.font = UIFont(name: "Futura", size: 20)!
+        
+        header.textLabel?.textAlignment = .center
+        
+        header.backgroundView?.backgroundColor = getCustomizedMagneta()
+    }
+    
+    
     
 }
