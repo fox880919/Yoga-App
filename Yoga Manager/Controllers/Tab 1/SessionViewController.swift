@@ -230,11 +230,34 @@ class SessionViewController: UIViewController, UIPickerViewDataSource, UIPickerV
                 showConflictAlert()
                 return
             }
+            
+            else{
+                
+                safeToSaveSession()
+            }
         }
     
         else{
             
-        safeToSaveSession()
+            var isWeekly = true
+            if (recurrenceSegment.selectedSegmentIndex == 1)
+            {
+                isWeekly = false
+            }
+            
+            newSession = sessionViewModel.addANewSession(cost: Int(costTextField.text!)!, day: selectedDay, startTime:  startTimePicker.date, endTime: endDatePicker.date, createdDate: Date(), isWeekly: isWeekly, sessionGroup: selectedGroup)
+            
+            if(checkSessionConflict(testingSession: newSession) == true)
+            {
+                
+                showConflictAlert()
+                return
+            }
+                
+            else{
+                
+                safeToSaveSession()
+            }
         }
     }
 
@@ -263,7 +286,7 @@ class SessionViewController: UIViewController, UIPickerViewDataSource, UIPickerV
         
     func showConflictAlert(){
         
-        let alert = UIAlertController(title: "Warning ", message: "The new session has a conflict with this another session in this group, \(selectedGroup.name!), do you want to continue saving the session?", preferredStyle: UIAlertControllerStyle.alert)
+        let alert = UIAlertController(title: "Warning ", message: "The new session has a conflict with another session in this group, \(selectedGroup.name!), do you want to continue saving the session?", preferredStyle: UIAlertControllerStyle.alert)
         
         let yesAction = UIAlertAction(title: "Yes", style: UIAlertActionStyle.default, handler: { action in
             
@@ -300,14 +323,20 @@ class SessionViewController: UIViewController, UIPickerViewDataSource, UIPickerV
                 
                 let addedsessionEndTime = timeFromString(dateString: testingSession.end_time!)
                 
-                if ( addedSessionStartTime > sessionStartTime &&  addedSessionStartTime < sessionEndTime)
+                if ( addedSessionStartTime >= sessionStartTime &&  addedSessionStartTime < sessionEndTime)
                 {
                     
                     return true
                 }
-                else if ( addedsessionEndTime > sessionStartTime &&  addedsessionEndTime < sessionEndTime)
+                else if ( addedsessionEndTime > sessionStartTime &&  addedsessionEndTime <= sessionEndTime)
                 {
                     
+                    return true
+                }
+                
+                    // Should be redundant
+                else if( addedSessionStartTime >= sessionStartTime  && addedsessionEndTime <= sessionEndTime)
+                {
                     return true
                 }
             }

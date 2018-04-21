@@ -309,6 +309,7 @@ extension HistoryViewController: UIPickerViewDelegate, UIPickerViewDataSource {
         return 1;
     }
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+       
         if pickerView.tag == 1000 {
             
             if(isSortedByStudentType)
@@ -325,6 +326,7 @@ extension HistoryViewController: UIPickerViewDelegate, UIPickerViewDataSource {
         }
     }
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+       
         if pickerView.tag == 1000{
             
             if(row == 0)
@@ -393,9 +395,6 @@ extension HistoryViewController: UIPickerViewDelegate, UIPickerViewDataSource {
                     
                 }
             }
-            
-            
-            
         }
         else {
         }

@@ -278,6 +278,24 @@ extension Date {
     }
 }
 
+extension Date {
+    var yesterday: Date {
+        return Calendar.current.date(byAdding: .day, value: -1, to: noon)!
+    }
+    var tomorrow: Date {
+        return Calendar.current.date(byAdding: .day, value: 1, to: noon)!
+    }
+    var noon: Date {
+        return Calendar.current.date(bySettingHour: 12, minute: 0, second: 0, of: self)!
+    }
+    var month: Int {
+        return Calendar.current.component(.month,  from: self)
+    }
+    var isLastDayOfMonth: Bool {
+        return tomorrow.month != month
+    }
+}
+
 func getArrayOfWeekDays(weekDay: Date.Weekday, numberOfForwardDays: Int, numberOfBackwardDays: Int) -> [String]
 {
  
@@ -390,5 +408,37 @@ func getDatesArrayforGroupSessions(group: Group) -> [String]
     }
     
     return stringArray
+}
+
+func countDaysDifference(startDate: Date, endDate: Date) -> Int{
+    
+    
+    let components = Calendar.current.dateComponents([.day], from: startDate, to: endDate)
+    let numberOfDays = components.day ?? 0
+    
+    return numberOfDays
+    
+//    for i in 1...numberOfDays {
+//        let nextDate = Calendar.current.date(byAdding: .day, value: i, to: startDate)
+//    }
+}
+
+func getNext30Days() -> [String]{
+    
+let calendar = Calendar(identifier: .gregorian)
+    
+    var dateComponent = DateComponents()
+    
+   var arrayofDatesString = [String]()
+    for i in 1...30
+    {
+        
+        dateComponent.day = i
+        let newDate = stringFromDate(date: calendar.date(byAdding: dateComponent, to: Date())!)
+       
+        arrayofDatesString.append(newDate)
+    }
+    
+    return arrayofDatesString
 }
 

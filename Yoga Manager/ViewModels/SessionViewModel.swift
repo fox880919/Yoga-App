@@ -67,6 +67,11 @@ class SessionViewModel  : BasicViewModel
         
         let newcost = Int16(cost)
 
+        if currentSession.is_weekly == true && isWeekly == false {
+            
+            currentSession.setValue(Date(), forKey: "created_date")
+        }
+        
         currentSession.setValue(newcost, forKey: "cost")
 
         currentSession.setValue(stringFromTime(date: startTime), forKey: "start_time")

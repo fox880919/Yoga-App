@@ -33,6 +33,8 @@ class MainViewModel : BasicViewModel
         attributes["subscription_price"] = subscriptionPrice
         
         coreDataHelper.createNewEntity(entityName: "Group", attributes: attributes)
+        
+        saveData()
     }
     
     func deleteAGroup(entity: NSManagedObject){

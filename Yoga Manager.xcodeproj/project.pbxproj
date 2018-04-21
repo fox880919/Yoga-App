@@ -38,6 +38,8 @@
 		A3E68596207D56C5000E12F6 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E68595207D56C5000E12F6 /* Constants.swift */; };
 		A3E68598207D59E6000E12F6 /* LocationModelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E68597207D59E6000E12F6 /* LocationModelView.swift */; };
 		A3E78EF52077F5CC001B7706 /* SelectedGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E78EF42077F5CC001B7706 /* SelectedGroupViewController.swift */; };
+		A3F18D442089FD250044E08D /* ScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F18D432089FD250044E08D /* ScheduleViewController.swift */; };
+		A3F18D46208A00320044E08D /* Schedule Cells.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F18D45208A00320044E08D /* Schedule Cells.swift */; };
 		B3F129559F9E0ABCE6CF4FDA /* Pods_Yoga_Manager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EFA20DCDE4B097D7FC1CEB8 /* Pods_Yoga_Manager.framework */; };
 		CB065AAB20873422006C1860 /* StudentSubscriptionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB065AAA20873422006C1860 /* StudentSubscriptionViewModel.swift */; };
 		CB455AFC2070D1DC008EA09D /* AllStudentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB455AFB2070D1DC008EA09D /* AllStudentsViewController.swift */; };
@@ -93,6 +95,8 @@
 		A3E68595207D56C5000E12F6 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		A3E68597207D59E6000E12F6 /* LocationModelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationModelView.swift; sourceTree = "<group>"; };
 		A3E78EF42077F5CC001B7706 /* SelectedGroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedGroupViewController.swift; sourceTree = "<group>"; };
+		A3F18D432089FD250044E08D /* ScheduleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleViewController.swift; sourceTree = "<group>"; };
+		A3F18D45208A00320044E08D /* Schedule Cells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Schedule Cells.swift"; sourceTree = "<group>"; };
 		CB065AAA20873422006C1860 /* StudentSubscriptionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentSubscriptionViewModel.swift; sourceTree = "<group>"; };
 		CB455AFB2070D1DC008EA09D /* AllStudentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllStudentsViewController.swift; sourceTree = "<group>"; };
 		CBB07184207F1A0600DB3DE9 /* LocationTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationTableCell.swift; sourceTree = "<group>"; };
@@ -125,12 +129,13 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		A30DD5D82084EF7800101FC3 /* Tab 3 */ = {
+		A30DD5D82084EF7800101FC3 /* Tab 3 & 4 */ = {
 			isa = PBXGroup;
 			children = (
 				A30DD5D92084EFED00101FC3 /* SubscriptionsViewController.swift */,
+				A3F18D432089FD250044E08D /* ScheduleViewController.swift */,
 			);
-			path = "Tab 3";
+			path = "Tab 3 & 4";
 			sourceTree = "<group>";
 		};
 		A3290EFB207FF90900D05ACB /* Tab 1 */ = {
@@ -280,6 +285,7 @@
 				A36775F42080BC6F00821265 /* AttendanceStudentCell.swift */,
 				A308D21D2081456800A96418 /* AttendanceHistoryCell.swift */,
 				A30DD5DB2084F01F00101FC3 /* SubscriptionCell.swift */,
+				A3F18D45208A00320044E08D /* Schedule Cells.swift */,
 			);
 			path = "Custom Cells";
 			sourceTree = "<group>";
@@ -289,7 +295,7 @@
 			children = (
 				A3290EFB207FF90900D05ACB /* Tab 1 */,
 				A3290EFC207FF91E00D05ACB /* Tab 2 */,
-				A30DD5D82084EF7800101FC3 /* Tab 3 */,
+				A30DD5D82084EF7800101FC3 /* Tab 3 & 4 */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -410,11 +416,23 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Yoga Manager/Pods-Yoga Manager-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/MDFTextAccessibility/MDFTextAccessibility.framework",
+				"${BUILT_PRODUCTS_DIR}/MaterialComponents/MaterialComponents.framework",
+				"${BUILT_PRODUCTS_DIR}/MotionAnimator/MotionAnimator.framework",
+				"${BUILT_PRODUCTS_DIR}/MotionInterchange/MotionInterchange.framework",
+				"${BUILT_PRODUCTS_DIR}/MotionTransitioning/MotionTransitioning.framework",
+				"${BUILT_PRODUCTS_DIR}/SpreadsheetView/SpreadsheetView.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MDFTextAccessibility.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MaterialComponents.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MotionAnimator.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MotionInterchange.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MotionTransitioning.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SpreadsheetView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -429,6 +447,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A3F18D442089FD250044E08D /* ScheduleViewController.swift in Sources */,
 				CBFEA1D22079F5740047A0D0 /* SessionMapViewController.swift in Sources */,
 				A3290EFE207FFC4F00D05ACB /* AttendanceStudentsViewController.swift in Sources */,
 				A3E68596207D56C5000E12F6 /* Constants.swift in Sources */,
@@ -443,6 +462,7 @@
 				CB065AAB20873422006C1860 /* StudentSubscriptionViewModel.swift in Sources */,
 				A3C62F4F206AD8F400D8B295 /* AppDelegate.swift in Sources */,
 				CBB07190207F734A00DB3DE9 /* AttendanceViewModel.swift in Sources */,
+				A3F18D46208A00320044E08D /* Schedule Cells.swift in Sources */,
 				A36775F52080BC6F00821265 /* AttendanceStudentCell.swift in Sources */,
 				CBC77A17206D0387000A8BD5 /* GroupTableCell.swift in Sources */,
 				A36775F12080B9D200821265 /* BEMCheckBoxGroup.m in Sources */,

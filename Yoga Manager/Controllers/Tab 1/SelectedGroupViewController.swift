@@ -269,6 +269,28 @@ class SelectedGroupViewController: UIViewController, UICollectionViewDelegate, U
             cell.sessionStartTimeLabel.text! = "\(session.start_time!)"
 
             cell.sessionsEndTimeLabel.text! = "\(session.end_time!)"
+            
+            if(session.is_weekly == false)
+            {
+                
+                let daysCount = countDaysDifference(startDate: session.created_date!, endDate: Date())
+                
+                if ((Date().dayOfTheWeek() == session.week_day && daysCount > 6) || daysCount > 7)
+                {
+                
+                    cell.backgroundColor = UIColor.lightGray
+                }
+                else
+                {
+                    
+                    cell.backgroundColor = UIColor.yellow
+
+                }
+            }
+            else{
+                
+                cell.backgroundColor = UIColor.white
+            }
 
             return cell //4.
         }

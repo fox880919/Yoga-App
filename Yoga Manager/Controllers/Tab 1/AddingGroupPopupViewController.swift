@@ -63,7 +63,7 @@ class AddingGroupPopupViewController: UIViewController {
         if(grouNameTextField.text!.isEmpty)
         {
          
-            showAlert(message: "Group name can't be emp")
+            showAlert(message: "Group name can't be empty")
         }
         
         else{
