@@ -442,3 +442,15 @@ let calendar = Calendar(identifier: .gregorian)
     return arrayofDatesString
 }
 
+func addAmonthToADate(date: Date) -> Date{
+    
+    var dateComponent = DateComponents()
+    
+    dateComponent.month = 1
+    
+    let afteraMonthDate = Calendar.current.date(byAdding: dateComponent, to: date)
+    
+    return afteraMonthDate!
+    
+}
+
