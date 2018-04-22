@@ -256,7 +256,6 @@ extension AttendanceStudentsViewController: UICollectionViewDelegate, UICollecti
         
         let cell = collectionView.cellForItem(at: indexPath) as! AttendanceStudentCell
         
-        
         if(selectedStudents.contains(selectedStudent))
         {
             cell.backgroundColor = defaultColor
@@ -278,29 +277,40 @@ extension AttendanceStudentsViewController: UICollectionViewDelegate, UICollecti
             cell.isPaidCheckBox.isHidden = false
             
             
-            for subscription in subscriptions {
-                
-                if(subscription.student == selectedStudent)
-                {
-                    if(DateFromString(dateString: subscription.start_date!)  <= Date() && DateFromString(dateString: subscription.end_date!)  >= Date())
+            if(subscriptions.count > 0)
+            {
+                for subscription in subscriptions {
+                    
+                    if(subscription.student == selectedStudent)
+                    {
+                        if(DateFromString(dateString: subscription.start_date!)  <= Date() && DateFromString(dateString: subscription.end_date!)  >= Date())
+                        {
+                            
+                            cell.isPaidCheckBox.on = true
+                            
+                            cell.backgroundColor = UIColor.cyan
+                            
+                            break
+                        }
+                        
+                    }
+                    
+                    if (cell.isPaidCheckBox.on == false)
                     {
                         
-                        cell.isPaidCheckBox.on = true
-                        
-                        cell.backgroundColor = UIColor.cyan
-
-                        break
+                        cell.backgroundColor = UIColor.orange
                     }
-
+                    
                 }
-                
+            }
+            else{
                 if (cell.isPaidCheckBox.on == false)
                 {
-                 
+                    
                     cell.backgroundColor = UIColor.orange
                 }
-                
-            }
+        }
+     
             
             //collectionView.cellForItem(at: indexPath)?.backgroundColor = UIColor.cyan
             

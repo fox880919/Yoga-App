@@ -432,11 +432,16 @@ class SubscriptionsViewController: UIViewController {
         else if(pickerSelectedStudent == nil){
             
             showAlert(message: "No student was selected")
-
         }
             
         
         else{
+            
+            if(startDatePicker.date > endDatePicker.date)
+            {
+                showAlert(message: "Start-date can't be after end-date")
+                return
+            }
             
             let subscriptions = StudentSubscriptionViewModel().getGroupSubscriptions(studentsGroup: pickerSelectedStudentsGroup)
             
@@ -459,7 +464,6 @@ class SubscriptionsViewController: UIViewController {
                 
             }
             else{
-                
                 pickerSelectedStartDate = startDatePicker.date
                 
                 pickerSelectedEndDate = endDatePicker.date
@@ -478,6 +482,12 @@ class SubscriptionsViewController: UIViewController {
     }
     
     @objc func doneEditting(){
+        
+        if(startDatePicker.date > endDatePicker.date)
+        {
+            showAlert(message: "Start-date can't be after end-date")
+            return
+        }
         
         if(selectedSubscription != nil){
             
