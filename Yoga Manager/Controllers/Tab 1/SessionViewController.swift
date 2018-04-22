@@ -127,6 +127,12 @@ class SessionViewController: UIViewController, UIPickerViewDataSource, UIPickerV
                     }
 
                 }
+                else if(newSession != nil)
+                {
+                
+                sessionViewModel.deleteASession(entity: newSession)
+
+                }
             }
             
             else {
@@ -209,10 +215,18 @@ class SessionViewController: UIViewController, UIPickerViewDataSource, UIPickerV
     
     @objc func saveBtnPressed()
     {
+        
+        var isWeekly = true
+        
+        if (recurrenceSegment.selectedSegmentIndex == 1)
+        {
+            isWeekly = false
+        }
+        
+        
         if(selectedSession != nil)
         {
-            
-            let test = selectedSession.start_time
+            sessionViewModel.updateASession(cost: Int(costTextField.text!)!, day: selectedDay, startTime: startTimePicker.date, endTime: endDatePicker.date, isWeekly: isWeekly, currentSession: selectedSession)
             
             if(checkSessionConflict(testingSession: selectedSession) == true)
             {
@@ -228,14 +242,9 @@ class SessionViewController: UIViewController, UIPickerViewDataSource, UIPickerV
             
         }
         else if(newSession != nil){
-            
-            var isWeekly = true
-            
-            if (recurrenceSegment.selectedSegmentIndex == 1)
-            {
-                isWeekly = false
-            }
-            
+        
+            sessionViewModel.deleteASession(entity: newSession)
+
             newSession = sessionViewModel.addANewSession(cost: Int(costTextField.text!)!, day: selectedDay, startTime:  startTimePicker.date, endTime: endDatePicker.date, createdDate: Date(), isWeekly: isWeekly, sessionGroup: selectedGroup)
             
             if(checkSessionConflict(testingSession: newSession) == true)
@@ -256,13 +265,6 @@ class SessionViewController: UIViewController, UIPickerViewDataSource, UIPickerV
             }
         }
         else{
-            
-            var isWeekly = true
-            
-            if (recurrenceSegment.selectedSegmentIndex == 1)
-            {
-                isWeekly = false
-            }
             
             newSession = sessionViewModel.addANewSession(cost: Int(costTextField.text!)!, day: selectedDay, startTime:  startTimePicker.date, endTime: endDatePicker.date, createdDate: Date(), isWeekly: isWeekly, sessionGroup: selectedGroup)
             
@@ -338,36 +340,85 @@ class SessionViewController: UIViewController, UIPickerViewDataSource, UIPickerV
             
             let sessions = sessionViewModel.getGroupSessions(studentsGroup: group)
             
-            for session in sessions{
+            var currentSession: Session
+            
+            if selectedSession != nil {
+             
+                currentSession = selectedSession
+            }
+            else{
                 
-                if(session.week_day! == testingSession.week_day! && session != selectedSession)
+                currentSession = newSession
+            }
+    
+            
+            for session in sessions{
+
+                
+                if(newCopyOfSession == nil)
                 {
                     
-                    let sessionStartTime = timeFromString(dateString: session.start_time!)
-                    
-                    let sessionEndTime = timeFromString(dateString: session.end_time!)
-                    
-                    let addedSessionStartTime = timeFromString(dateString: testingSession.start_time!)
-                    
-                    let addedSessionEndTime = timeFromString(dateString: testingSession.end_time!)
-                    
-                    if ( addedSessionStartTime >= sessionStartTime &&  addedSessionStartTime < sessionEndTime)
+                    if(session.week_day! == testingSession.week_day! && session.objectID != currentSession.objectID)
                     {
-                        conflictGroup = group
-                        return true
-                    }
-                    else if ( addedSessionEndTime > sessionStartTime &&  addedSessionEndTime <= sessionEndTime)
-                    {
-                        conflictGroup = group
-                        return true
-                    }
+                        
+                        let sessionStartTime = timeFromString(dateString: session.start_time!)
+                        
+                        let sessionEndTime = timeFromString(dateString: session.end_time!)
+                        
+                        let addedSessionStartTime = timeFromString(dateString: testingSession.start_time!)
+                        
+                        let addedSessionEndTime = timeFromString(dateString: testingSession.end_time!)
+                        
+                        if ( addedSessionStartTime >= sessionStartTime &&  addedSessionStartTime < sessionEndTime)
+                        {
+                            conflictGroup = group
+                            return true
+                        }
+                        else if ( addedSessionEndTime > sessionStartTime &&  addedSessionEndTime <= sessionEndTime)
+                        {
+                            conflictGroup = group
+                            return true
+                        }
                         
                         // Should be redundant
-//                    else if( addedSessionStartTime >= sessionStartTime  && addedSessionEndTime <= sessionEndTime)
-//                    {
-//                        conflictGroup = group
-//                        return true
-//                    }
+                        //                    else if( addedSessionStartTime >= sessionStartTime  && addedSessionEndTime <= sessionEndTime)
+                        //                    {
+                        //                        conflictGroup = group
+                        //                        return true
+                        //                    }
+                    }
+                }
+                else{
+                    
+                    if(session.week_day! == testingSession.week_day! && session.objectID != currentSession.objectID && session.objectID != newCopyOfSession.objectID )
+                    {
+                        
+                        let sessionStartTime = timeFromString(dateString: session.start_time!)
+                        
+                        let sessionEndTime = timeFromString(dateString: session.end_time!)
+                        
+                        let addedSessionStartTime = timeFromString(dateString: testingSession.start_time!)
+                        
+                        let addedSessionEndTime = timeFromString(dateString: testingSession.end_time!)
+                        
+                        if ( addedSessionStartTime >= sessionStartTime &&  addedSessionStartTime < sessionEndTime)
+                        {
+                            conflictGroup = group
+                            return true
+                        }
+                        else if ( addedSessionEndTime > sessionStartTime &&  addedSessionEndTime <= sessionEndTime)
+                        {
+                            conflictGroup = group
+                            return true
+                        }
+                        
+                        // Should be redundant
+                        //                    else if( addedSessionStartTime >= sessionStartTime  && addedSessionEndTime <= sessionEndTime)
+                        //                    {
+                        //                        conflictGroup = group
+                        //                        return true
+                        //                    }
+                    }
                 }
             }
         }

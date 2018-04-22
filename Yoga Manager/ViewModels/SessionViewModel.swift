@@ -101,3 +101,13 @@ class SessionViewModel  : BasicViewModel
     }
 
 }
+
+class tempSession{
+    
+    var cost: Int!
+    var weekDay: String!
+    var startTime: Date!
+    var endTime: Date!
+    var isWeekly: Bool!
+
+}
