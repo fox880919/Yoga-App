@@ -45,6 +45,8 @@ class SessionViewController: UIViewController, UIPickerViewDataSource, UIPickerV
     
     var rotationAngle : CGFloat!
     
+    var conflictGroup: Group!
+    
     let sessionViewModel = SessionViewModel()
     
     let locationViewModel = LocationModelView()
@@ -209,6 +211,9 @@ class SessionViewController: UIViewController, UIPickerViewDataSource, UIPickerV
     {
         if(selectedSession != nil)
         {
+            
+            let test = selectedSession.start_time
+            
             if(checkSessionConflict(testingSession: selectedSession) == true)
             {
                 
@@ -224,22 +229,8 @@ class SessionViewController: UIViewController, UIPickerViewDataSource, UIPickerV
         }
         else if(newSession != nil){
             
-            if(checkSessionConflict(testingSession: newSession) == true)
-            {
-                
-                showConflictAlert()
-                return
-            }
-            
-            else{
-                
-                safeToSaveSession()
-            }
-        }
-    
-        else{
-            
             var isWeekly = true
+            
             if (recurrenceSegment.selectedSegmentIndex == 1)
             {
                 isWeekly = false
@@ -249,6 +240,39 @@ class SessionViewController: UIViewController, UIPickerViewDataSource, UIPickerV
             
             if(checkSessionConflict(testingSession: newSession) == true)
             {
+                
+                sessionViewModel.deleteASession(entity: newSession)
+                
+                newSession = nil
+                
+                showConflictAlert()
+                
+                return
+            }
+            
+            else{
+                
+                safeToSaveSession()
+            }
+        }
+        else{
+            
+            var isWeekly = true
+            
+            if (recurrenceSegment.selectedSegmentIndex == 1)
+            {
+                isWeekly = false
+            }
+            
+            newSession = sessionViewModel.addANewSession(cost: Int(costTextField.text!)!, day: selectedDay, startTime:  startTimePicker.date, endTime: endDatePicker.date, createdDate: Date(), isWeekly: isWeekly, sessionGroup: selectedGroup)
+            
+            sessionViewModel.saveData()
+            
+            if(checkSessionConflict(testingSession: newSession) == true)
+            {
+                sessionViewModel.deleteASession(entity: newSession)
+                
+                newSession = nil
                 
                 showConflictAlert()
                 return
@@ -286,20 +310,20 @@ class SessionViewController: UIViewController, UIPickerViewDataSource, UIPickerV
         
     func showConflictAlert(){
         
-        let alert = UIAlertController(title: "Warning ", message: "The new session has a conflict with another session in this group, \(selectedGroup.name!), do you want to continue saving the session?", preferredStyle: UIAlertControllerStyle.alert)
+        let alert = UIAlertController(title: "Error ", message: "The new session has a conflict with another session in \(conflictGroup.name!)", preferredStyle: UIAlertControllerStyle.alert)
         
-        let yesAction = UIAlertAction(title: "Yes", style: UIAlertActionStyle.default, handler: { action in
-            
-            self.safeToSaveSession()
-            
-        })
+//        let yesAction = UIAlertAction(title: "Yes", style: UIAlertActionStyle.default, handler: { action in
+//
+//            self.safeToSaveSession()
+//
+//        })
         
-        let noAction = UIAlertAction(title: "No", style: UIAlertActionStyle.cancel, handler: { action in
+        let noAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.cancel, handler: { action in
             print("testing deletion")
             
         })
         
-        alert.addAction(yesAction)
+//        alert.addAction(yesAction)
         alert.addAction(noAction)
         
         
@@ -308,41 +332,45 @@ class SessionViewController: UIViewController, UIPickerViewDataSource, UIPickerV
 
     func checkSessionConflict(testingSession: Session) -> Bool
     {
-        let sessions = sessionViewModel.getGroupSessions(studentsGroup: selectedGroup)
+        let groups = MainViewModel().getGroups()
         
-        for session in sessions{
+        for group in groups {
             
-            if(session.week_day! == testingSession.week_day!)
-            {
+            let sessions = sessionViewModel.getGroupSessions(studentsGroup: group)
+            
+            for session in sessions{
                 
-                let sessionStartTime = timeFromString(dateString: session.start_time!)
-                
-                let sessionEndTime = timeFromString(dateString: session.end_time!)
-                
-                let addedSessionStartTime = timeFromString(dateString: testingSession.start_time!)
-                
-                let addedsessionEndTime = timeFromString(dateString: testingSession.end_time!)
-                
-                if ( addedSessionStartTime >= sessionStartTime &&  addedSessionStartTime < sessionEndTime)
+                if(session.week_day! == testingSession.week_day! && session != selectedSession)
                 {
                     
-                    return true
-                }
-                else if ( addedsessionEndTime > sessionStartTime &&  addedsessionEndTime <= sessionEndTime)
-                {
+                    let sessionStartTime = timeFromString(dateString: session.start_time!)
                     
-                    return true
-                }
-                
-                    // Should be redundant
-                else if( addedSessionStartTime >= sessionStartTime  && addedsessionEndTime <= sessionEndTime)
-                {
-                    return true
+                    let sessionEndTime = timeFromString(dateString: session.end_time!)
+                    
+                    let addedSessionStartTime = timeFromString(dateString: testingSession.start_time!)
+                    
+                    let addedSessionEndTime = timeFromString(dateString: testingSession.end_time!)
+                    
+                    if ( addedSessionStartTime >= sessionStartTime &&  addedSessionStartTime < sessionEndTime)
+                    {
+                        conflictGroup = group
+                        return true
+                    }
+                    else if ( addedSessionEndTime > sessionStartTime &&  addedSessionEndTime <= sessionEndTime)
+                    {
+                        conflictGroup = group
+                        return true
+                    }
+                        
+                        // Should be redundant
+//                    else if( addedSessionStartTime >= sessionStartTime  && addedSessionEndTime <= sessionEndTime)
+//                    {
+//                        conflictGroup = group
+//                        return true
+//                    }
                 }
             }
-            
         }
-        
         return false
     }
     

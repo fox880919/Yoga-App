@@ -27,6 +27,14 @@ class SessionViewModel  : BasicViewModel
         return sessions
     }
     
+    func getSessionGroups(session: Session) -> [Group]{
+        
+        let groups = coreDataHelper.getEntitiesWithPredicate(entityName: "Group", predicate: NSPredicate(format: "ANY sessions == %@",session)) as! [Group]
+        
+        return groups
+    }
+    
+    
     func getLocationSessions(location: Location) -> [Session]{
         
         let sessions = coreDataHelper.getEntitiesWithPredicate(entityName: "Session", predicate: NSPredicate(format: "ANY locations == %@",location)) as! [Session]

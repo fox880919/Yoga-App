@@ -26,7 +26,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Yoga Manager/ViewModels/MainViewModel.swift"
-            timestampString = "545998528.876871"
+            timestampString = "546048922.341301"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "19"
@@ -264,7 +264,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Yoga Manager/ViewModels/MainViewModel.swift"
-            timestampString = "545998528.877143"
+            timestampString = "546048922.341713"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "21"
@@ -456,7 +456,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Yoga Manager/ViewModels/MainViewModel.swift"
-            timestampString = "545998528.877408"
+            timestampString = "546048922.342126"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "47"
@@ -472,7 +472,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Yoga Manager/ViewModels/MainViewModel.swift"
-            timestampString = "545998528.877463"
+            timestampString = "546048922.342369"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "53"
@@ -957,8 +957,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "44"
             endingLineNumber = "44"
-            landmarkName = "StudentViewModel"
-            landmarkType = "3">
+            landmarkName = "addANewStudent(studentName:studentEmail:studentAddress:studentPhone:studentPhoto:studentDateOfBirth:studentIsMale:studentGroup:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy

@@ -14,7 +14,7 @@ class ScheduleViewController: UIViewController, SpreadsheetViewDataSource, Sprea
     @IBOutlet weak var scheduleView: SpreadsheetView!
     
     var dates = ["7/10/2017", "7/11/2017", "7/12/2017", "7/13/2017", "7/14/2017", "7/15/2017", "7/16/2017"]
-    let days = ["MONDAY", "TUESDAY", "WEDNSDAY", "THURSDAY", "FRIDAY", "SATURDAY", "SUNDAY"]
+    let days = [ "SUNDAY", "MONDAY", "TUESDAY", "WEDNSDAY", "THURSDAY", "FRIDAY", "SATURDAY"]
     let dayColors = [UIColor(red: 0.918, green: 0.224, blue: 0.153, alpha: 1),
                      UIColor(red: 0.106, green: 0.541, blue: 0.827, alpha: 1),
                      UIColor(red: 0.200, green: 0.620, blue: 0.565, alpha: 1),
@@ -22,11 +22,11 @@ class ScheduleViewController: UIViewController, SpreadsheetViewDataSource, Sprea
                      UIColor(red: 0.400, green: 0.584, blue: 0.141, alpha: 1),
                      UIColor(red: 0.835, green: 0.655, blue: 0.051, alpha: 1),
                      UIColor(red: 0.153, green: 0.569, blue: 0.835, alpha: 1)]
-    let hours = ["6:00 AM", "7:00 AM", "8:00 AM", "9:00 AM", "10:00 AM", "11:00 AM", "12:00 AM", "1:00 PM", "2:00 PM",
-                 "3:00 PM", "4:00 PM", "5:00 PM", "6:00 PM", "7:00 PM", "8:00 PM", "9:00 PM", "10:00 PM", "11:00 PM"]
+    let hours = ["6:00 AM", "6:30 AM", "7:00 AM", "7:30 AM", "8:00 AM", "8:30 AM", "9:00 AM", "9:30 AM", "10:00 AM", "10:30 AM", "11:00 AM", "11:30 AM", "12:00 AM", "12:30 PM", "1:00 PM", "1:30 PM", "2:00 PM",
+                 "2:30 PM", "3:00 PM", "3:30 PM", "4:00 PM", "4:30 PM", "5:00 PM", "5:30 PM", "6:00 PM", "6:30 PM", "7:00 PM", "7:30 PM", "8:00 PM", "8:30 PM", "9:00 PM", "9:30 PM", "10:00 PM", "10:30 PM", "11:00 PM"]
     let evenRowColor = UIColor(red: 0.914, green: 0.914, blue: 0.906, alpha: 1)
     let oddRowColor: UIColor = .white
-    let data = [
+    var data = [
         ["", "", "Take medicine", "", "", "", "", "", "", "", "", "", "", "Movie with family", "", "", "", "", "", ""],
         ["Leave for cabin", "", "", "", "", "Lunch with Tim", "", "", "", "", "", "", "", "", "", "", "", "", "", ""],
         ["", "", "", "", "Downtown parade", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""],
@@ -36,10 +36,13 @@ class ScheduleViewController: UIViewController, SpreadsheetViewDataSource, Sprea
         ["", "", "", "", "", "", "", "", "", "", "", "", "", "Return home", "", "", "", "", "", ""]
     ]
     
+    var sessions = SessionViewModel().getAllSessions()
+    
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
 
         dates = getNext30Days()
         scheduleView.dataSource = self
@@ -48,7 +51,7 @@ class ScheduleViewController: UIViewController, SpreadsheetViewDataSource, Sprea
         scheduleView.contentInset = UIEdgeInsets(top: 4, left: 0, bottom: 4, right: 0)
         
         scheduleView.intercellSpacing = CGSize(width: 4, height: 1)
-        scheduleView.gridStyle = .none
+        scheduleView.gridStyle = .solid(width: 1, color: UIColor.blue)
         
         scheduleView.register(DateCell.self, forCellWithReuseIdentifier: String(describing: DateCell.self))
         scheduleView.register(TimeTitleCell.self, forCellWithReuseIdentifier: String(describing: TimeTitleCell.self))
@@ -57,8 +60,182 @@ class ScheduleViewController: UIViewController, SpreadsheetViewDataSource, Sprea
         scheduleView.register(ScheduleCell.self, forCellWithReuseIdentifier: String(describing: ScheduleCell.self))
         
         // Do any additional setup after loading the view.
+        setValues()
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        
+        setValues()
+    }
+    
+    func setValues()
+    {
+    
+        sessions = SessionViewModel().getAllSessions()
+
+        data =  [[String]]()
+        
+        var sundaySessions = [Session]()
+        
+        var mondaySessions = [Session]()
+
+        var tuesdaySessions = [Session]()
+
+        var wednesdaySessions = [Session]()
+
+        var thursdaySessions = [Session]()
+
+        var fridaySessions = [Session]()
+
+        var saturdaySessions = [Session]()
+
+        
+        for session in sessions {
+            
+            //let sessionGroupsNames = returnSessionGroupsName(Session: session)
+            
+            let test = session.week_day
+            
+            if(session.week_day == "Sunday")
+            {
+                
+                sundaySessions.append(session)
+            }
+            else if(session.week_day == "Monday")
+            {
+                
+                mondaySessions.append(session)
+            }
+            else if(session.week_day == "Tuesday")
+            {
+                
+                tuesdaySessions.append(session)
+            }
+            else if(session.week_day == "Wednesday")
+            {
+             
+                wednesdaySessions.append(session)
+
+            }
+            else if(session.week_day == "Thursday")
+            {
+                
+                thursdaySessions.append(session)
+            }
+            else if(session.week_day == "Friday")
+            {
+             
+                fridaySessions.append(session)
+            }
+            else if(session.week_day == "Saturday")
+            {
+                
+                saturdaySessions.append(session)
+            }
+        }
+        
+        let sundaySessionsStrings = organizingSessionsWithinADay(sessions: sundaySessions)
+        
+        let mondaySessionsStrings = organizingSessionsWithinADay(sessions: mondaySessions)
+        
+        let tuesdaySessionsStrings = organizingSessionsWithinADay(sessions: tuesdaySessions)
+        
+        let wednesdaySessionsStrings = organizingSessionsWithinADay(sessions: wednesdaySessions)
+        
+        let thursdaySessionsStrings = organizingSessionsWithinADay(sessions: thursdaySessions)
+        
+        let fridaySessionsStrings = organizingSessionsWithinADay(sessions: fridaySessions)
+        
+        let saturdaySessionsStrings = organizingSessionsWithinADay(sessions: saturdaySessions)
+        
+        data.append(sundaySessionsStrings)
+        data.append(mondaySessionsStrings)
+        data.append(tuesdaySessionsStrings)
+        data.append(wednesdaySessionsStrings)
+        data.append(thursdaySessionsStrings)
+        data.append(fridaySessionsStrings)
+        data.append(saturdaySessionsStrings)
+
+    }
+    
+    func returnSessionGroupsName(session: Session) -> String{
+    
+        var sessionGroupsNames : String?
+        
+        let sessionGroups = SessionViewModel().getSessionGroups(session: session)
+        
+        for group in sessionGroups{
+            
+            if(sessionGroupsNames == nil)
+            {
+                
+                sessionGroupsNames = group.name!
+            }
+            else{
+                
+                sessionGroupsNames =  sessionGroupsNames! + " & " + group.name!
+            }
+        }
+        
+        return sessionGroupsNames!
+    }
+    
+    func organizingSessionsWithinADay(sessions: [Session]) -> [String]{
+        
+//        let organizedSessions = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20"]
+        
+        var organizedSessions = ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""]
+        
+        for session in sessions{
+            
+            
+            
+            let startIndex = returnIndexOfTimeInTimeTable(timeString: session.start_time!)
+            
+            let endIndex = returnIndexOfTimeInTimeTable(timeString: session.end_time!)
+            
+            var difference = endIndex - startIndex
+            
+            organizedSessions[startIndex] = returnSessionGroupsName(session: session)
+            
+            var i = 1
+            
+            let sessionGroupName = returnSessionGroupsName(session: session)
+            
+            while(difference != 0)
+            {
+
+                organizedSessions[startIndex + i] = sessionGroupName
+                
+                i = i + 1
+            
+                difference = difference - 1
+            }
+        }
+        
+        return organizedSessions
+    }
+    
+    func returnIndexOfTimeInTimeTable(timeString: String) -> Int{
+        
+        let time = timeFromString(dateString: timeString)
+        
+        let hour = (Calendar.current.component(.hour, from: time) - 6) * 2
+        
+        let minutes = Calendar.current.component(.hour, from: time)
+        
+        var index = hour
+        
+        if(minutes == 30)
+        {
+            
+            index = hour + 1
+        }
+
+        
+        return index
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

@@ -258,6 +258,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             alert.addAction(cancelAction)
 
             self.present(alert, animated: true)
+        
         })
             
             let EditGroupAction = UITableViewRowAction(style: UITableViewRowActionStyle.normal, title: "Edit" , handler: { (action:UITableViewRowAction, indexPath: IndexPath) -> Void in

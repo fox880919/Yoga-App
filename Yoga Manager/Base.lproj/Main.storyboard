@@ -331,7 +331,7 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="tTo-BY-eBl">
+                                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="30" translatesAutoresizingMaskIntoConstraints="NO" id="tTo-BY-eBl">
                                                 <rect key="frame" x="124" y="310" width="246" height="48"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="48" id="Dge-MA-TLW"/>
@@ -341,8 +341,14 @@
                                                 <date key="date" timeIntervalSinceReferenceDate="544129393.318694">
                                                     <!--2018-03-30 19:03:13 +0000-->
                                                 </date>
+                                                <date key="minimumDate" timeIntervalSinceReferenceDate="-975704400">
+                                                    <!--1970-01-31 03:00:00 +0000-->
+                                                </date>
+                                                <date key="maximumDate" timeIntervalSinceReferenceDate="1167593400">
+                                                    <!--2037-12-31 19:30:00 +0000-->
+                                                </date>
                                             </datePicker>
-                                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="7aY-17-Di1">
+                                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="30" translatesAutoresizingMaskIntoConstraints="NO" id="7aY-17-Di1">
                                                 <rect key="frame" x="129" y="368" width="236" height="48"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="48" id="BXh-SK-FrI"/>
@@ -350,6 +356,12 @@
                                                 </constraints>
                                                 <date key="date" timeIntervalSinceReferenceDate="544129393.318694">
                                                     <!--2018-03-30 19:03:13 +0000-->
+                                                </date>
+                                                <date key="minimumDate" timeIntervalSinceReferenceDate="-978294600">
+                                                    <!--1970-01-01 03:30:00 +0000-->
+                                                </date>
+                                                <date key="maximumDate" timeIntervalSinceReferenceDate="1167595200">
+                                                    <!--2037-12-31 20:00:00 +0000-->
                                                 </date>
                                             </datePicker>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cost:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yeq-r1-w7g">
@@ -1906,7 +1918,7 @@
                                 </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Exj-JV-XXB" customClass="RoundButton" customModule="Yoga_Manager" customModuleProvider="target">
-                                <rect key="frame" x="235" y="126.5" width="120" height="30"/>
+                                <rect key="frame" x="235" y="132.5" width="120" height="18"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="120" id="lmF-Di-IZn"/>
                                 </constraints>

@@ -794,11 +794,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Yoga Manager/ViewModels/SessionViewModel.swift"
-            timestampString = "545915351.7954839"
+            timestampString = "546051892.9033999"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "61"
-            endingLineNumber = "61"
+            startingLineNumber = "69"
+            endingLineNumber = "69"
             landmarkName = "addANewSession(cost:day:startTime:endTime:createdDate:isWeekly:sessionGroup:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -810,11 +810,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Yoga Manager/ViewModels/SessionViewModel.swift"
-            timestampString = "545915351.796223"
+            timestampString = "546051892.903476"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "60"
-            endingLineNumber = "60"
+            startingLineNumber = "68"
+            endingLineNumber = "68"
             landmarkName = "addANewSession(cost:day:startTime:endTime:createdDate:isWeekly:sessionGroup:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1370,11 +1370,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Yoga Manager/Controllers/Tab 1/SessionViewController.swift"
-            timestampString = "545998528.873099"
+            timestampString = "546052110.29037"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "449"
-            endingLineNumber = "449"
+            startingLineNumber = "477"
+            endingLineNumber = "477"
             landmarkName = "prepare(for:sender:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1386,11 +1386,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Yoga Manager/Controllers/Tab 1/SessionViewController.swift"
-            timestampString = "545998528.8732181"
+            timestampString = "546052110.290876"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "444"
-            endingLineNumber = "444"
+            startingLineNumber = "472"
+            endingLineNumber = "472"
             landmarkName = "prepare(for:sender:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1402,7 +1402,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Yoga Manager/Controllers/Tab 1/SessionMapViewController.swift"
-            timestampString = "545501581.428249"
+            timestampString = "546051892.904951"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "56"
@@ -1418,7 +1418,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Yoga Manager/Controllers/Tab 1/SessionMapViewController.swift"
-            timestampString = "545501581.428306"
+            timestampString = "546051892.905002"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "76"
@@ -1434,7 +1434,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Yoga Manager/Controllers/Tab 1/SessionMapViewController.swift"
-            timestampString = "545501581.428359"
+            timestampString = "546051892.90505"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "65"
@@ -1450,7 +1450,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Yoga Manager/Controllers/Tab 1/SessionMapViewController.swift"
-            timestampString = "545501581.428412"
+            timestampString = "546051892.905098"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "86"
@@ -1466,11 +1466,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Yoga Manager/Controllers/Tab 1/SessionViewController.swift"
-            timestampString = "545998528.873389"
+            timestampString = "546052110.291334"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "377"
-            endingLineNumber = "377"
+            startingLineNumber = "405"
+            endingLineNumber = "405"
             landmarkName = "saveSession()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1482,11 +1482,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Yoga Manager/Controllers/Tab 1/SessionViewController.swift"
-            timestampString = "545998528.8734519"
+            timestampString = "546052110.29171"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "209"
-            endingLineNumber = "209"
+            startingLineNumber = "211"
+            endingLineNumber = "211"
             landmarkName = "saveBtnPressed()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1498,7 +1498,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Yoga Manager/Controllers/Tab 1/SessionMapViewController.swift"
-            timestampString = "545501581.42857"
+            timestampString = "546051892.9057961"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "54"
@@ -1514,23 +1514,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Yoga Manager/Controllers/Tab 1/SessionViewController.swift"
-            timestampString = "545998528.873529"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "82"
-            endingLineNumber = "82"
-            landmarkName = "viewDidAppear(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Yoga Manager/Controllers/Tab 1/SessionViewController.swift"
-            timestampString = "545998528.873587"
+            timestampString = "546052110.2921031"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "84"
@@ -1546,11 +1530,27 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Yoga Manager/Controllers/Tab 1/SessionViewController.swift"
-            timestampString = "545998528.873642"
+            timestampString = "546052110.292437"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "447"
-            endingLineNumber = "447"
+            startingLineNumber = "86"
+            endingLineNumber = "86"
+            landmarkName = "viewDidAppear(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Yoga Manager/Controllers/Tab 1/SessionViewController.swift"
+            timestampString = "546052110.29274"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "475"
+            endingLineNumber = "475"
             landmarkName = "prepare(for:sender:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1562,11 +1562,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Yoga Manager/Controllers/Tab 1/SessionViewController.swift"
-            timestampString = "545998528.873697"
+            timestampString = "546052110.2930501"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "373"
-            endingLineNumber = "373"
+            startingLineNumber = "401"
+            endingLineNumber = "401"
             landmarkName = "saveSession()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1578,7 +1578,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Yoga Manager/Controllers/Tab 1/SessionMapViewController.swift"
-            timestampString = "545501581.428884"
+            timestampString = "546051892.907114"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "213"
@@ -1594,7 +1594,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Yoga Manager/Controllers/Tab 1/SessionMapViewController.swift"
-            timestampString = "545501581.428936"
+            timestampString = "546051892.907163"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "262"
@@ -1610,7 +1610,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Yoga Manager/Controllers/Tab 1/SessionMapViewController.swift"
-            timestampString = "545501581.428987"
+            timestampString = "546051892.9072109"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "264"
@@ -1626,23 +1626,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Yoga Manager/Controllers/Tab 1/SessionViewController.swift"
-            timestampString = "545998528.8738101"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "102"
-            endingLineNumber = "102"
-            landmarkName = "viewWillDisappear(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Yoga Manager/Controllers/Tab 1/SessionViewController.swift"
-            timestampString = "545998528.873866"
+            timestampString = "546052110.293418"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "104"
@@ -1657,8 +1641,24 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
+            filePath = "Yoga Manager/Controllers/Tab 1/SessionViewController.swift"
+            timestampString = "546052110.2937191"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "106"
+            endingLineNumber = "106"
+            landmarkName = "viewWillDisappear(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
             filePath = "Yoga Manager/Controllers/Tab 1/SessionMapViewController.swift"
-            timestampString = "545501581.429145"
+            timestampString = "546051892.907903"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "277"
@@ -1674,11 +1674,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Yoga Manager/Controllers/Tab 1/ViewController.swift"
-            timestampString = "545782067.70855"
+            timestampString = "546051892.907954"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "266"
-            endingLineNumber = "266"
+            startingLineNumber = "267"
+            endingLineNumber = "267"
             landmarkName = "tableView(_:editActionsForRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1690,7 +1690,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Yoga Manager/Controllers/Tab 1/ViewController.swift"
-            timestampString = "545782067.708635"
+            timestampString = "546051892.908006"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "146"
@@ -1738,7 +1738,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Yoga Manager/Controllers/Tab 1/SelectedGroupViewController.swift"
-            timestampString = "545915351.802587"
+            timestampString = "546049509.080562"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "665"
@@ -1754,7 +1754,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Yoga Manager/Controllers/Tab 1/SelectedGroupViewController.swift"
-            timestampString = "545915351.803591"
+            timestampString = "546049509.080624"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "732"
@@ -1770,7 +1770,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Yoga Manager/Controllers/Tab 1/SelectedGroupViewController.swift"
-            timestampString = "545915351.803957"
+            timestampString = "546049509.0806741"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "736"
@@ -1786,7 +1786,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Yoga Manager/Controllers/Tab 1/SelectedGroupViewController.swift"
-            timestampString = "545915351.804369"
+            timestampString = "546049509.080726"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "691"
@@ -1802,7 +1802,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Yoga Manager/Controllers/Tab 1/SelectedGroupViewController.swift"
-            timestampString = "545915351.804715"
+            timestampString = "546049509.080777"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "687"
@@ -1818,7 +1818,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Yoga Manager/Controllers/Tab 1/SelectedGroupViewController.swift"
-            timestampString = "545915351.805057"
+            timestampString = "546049509.080827"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "700"
@@ -1834,7 +1834,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Yoga Manager/Controllers/Tab 1/SelectedGroupViewController.swift"
-            timestampString = "545915351.8054709"
+            timestampString = "546049509.080878"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "706"
@@ -1850,7 +1850,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Yoga Manager/Controllers/Tab 1/SelectedGroupViewController.swift"
-            timestampString = "545915351.8057491"
+            timestampString = "546049509.080929"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "669"
@@ -1866,7 +1866,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Yoga Manager/Controllers/Tab 1/SelectedGroupViewController.swift"
-            timestampString = "545915351.805995"
+            timestampString = "546049509.0809799"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "676"
@@ -1882,7 +1882,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Yoga Manager/Controllers/Tab 1/SelectedGroupViewController.swift"
-            timestampString = "545915351.806282"
+            timestampString = "546049509.081032"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "682"
@@ -1898,7 +1898,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Yoga Manager/Controllers/Tab 1/SelectedGroupViewController.swift"
-            timestampString = "545915351.806651"
+            timestampString = "546049509.0810831"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "683"
@@ -1914,7 +1914,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Yoga Manager/Controllers/Tab 1/SelectedGroupViewController.swift"
-            timestampString = "545915351.806976"
+            timestampString = "546049509.081133"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "684"
@@ -1930,7 +1930,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Yoga Manager/Controllers/Tab 1/SelectedGroupViewController.swift"
-            timestampString = "545915351.807409"
+            timestampString = "546049509.081184"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "697"
@@ -1946,7 +1946,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Yoga Manager/Controllers/Tab 1/SelectedGroupViewController.swift"
-            timestampString = "545915351.807731"
+            timestampString = "546049509.081234"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "658"
@@ -1962,7 +1962,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Yoga Manager/Controllers/Tab 1/SelectedGroupViewController.swift"
-            timestampString = "545915351.808025"
+            timestampString = "546049509.081285"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "674"
@@ -1978,7 +1978,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Yoga Manager/Controllers/Tab 1/SelectedGroupViewController.swift"
-            timestampString = "545915351.8083301"
+            timestampString = "546049509.0813349"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "663"
@@ -1994,7 +1994,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Yoga Manager/Controllers/Tab 1/SelectedGroupViewController.swift"
-            timestampString = "545915351.808836"
+            timestampString = "546049509.081386"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "695"
@@ -2010,7 +2010,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Yoga Manager/Controllers/Tab 1/SelectedGroupViewController.swift"
-            timestampString = "545915351.809302"
+            timestampString = "546049509.081436"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "679"
@@ -2026,7 +2026,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Yoga Manager/Controllers/Tab 1/SelectedGroupViewController.swift"
-            timestampString = "545915351.809666"
+            timestampString = "546049509.0814871"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "680"
@@ -2042,7 +2042,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Yoga Manager/Controllers/Tab 1/SelectedGroupViewController.swift"
-            timestampString = "545915351.810012"
+            timestampString = "546049509.081537"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "68"
@@ -2058,7 +2058,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Yoga Manager/Controllers/Tab 1/SelectedGroupViewController.swift"
-            timestampString = "545915351.8104841"
+            timestampString = "546049509.081588"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "62"
@@ -2074,7 +2074,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Yoga Manager/Controllers/Tab 1/SelectedGroupViewController.swift"
-            timestampString = "545915351.810816"
+            timestampString = "546049509.0816391"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "715"
@@ -2090,7 +2090,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Yoga Manager/Controllers/Tab 1/SelectedGroupViewController.swift"
-            timestampString = "545915351.811124"
+            timestampString = "546049509.081689"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "728"
@@ -2106,7 +2106,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Yoga Manager/Controllers/Tab 1/SelectedGroupViewController.swift"
-            timestampString = "545915351.81144"
+            timestampString = "546049509.08174"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "747"
@@ -2122,7 +2122,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Yoga Manager/Controllers/Tab 1/SelectedGroupViewController.swift"
-            timestampString = "545915351.811788"
+            timestampString = "546049509.081791"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "751"
@@ -2138,7 +2138,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Yoga Manager/Controllers/Tab 1/SelectedGroupViewController.swift"
-            timestampString = "545915351.812111"
+            timestampString = "546049509.0818419"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "761"
@@ -2154,7 +2154,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Yoga Manager/Controllers/Tab 1/SelectedGroupViewController.swift"
-            timestampString = "545915351.812462"
+            timestampString = "546049509.081893"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "775"
@@ -2170,7 +2170,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Yoga Manager/Controllers/Tab 1/SelectedGroupViewController.swift"
-            timestampString = "545915351.81279"
+            timestampString = "546049509.081944"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "788"
@@ -2186,7 +2186,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Yoga Manager/Controllers/Tab 1/SelectedGroupViewController.swift"
-            timestampString = "545915351.81311"
+            timestampString = "546049509.081995"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "768"
@@ -2202,7 +2202,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Yoga Manager/Controllers/Tab 1/SelectedGroupViewController.swift"
-            timestampString = "545915351.8133709"
+            timestampString = "546049509.082045"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "766"
@@ -2218,7 +2218,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Yoga Manager/Controllers/Tab 1/SelectedGroupViewController.swift"
-            timestampString = "545915351.8136719"
+            timestampString = "546049509.082096"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "770"
@@ -2234,7 +2234,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Yoga Manager/Controllers/Tab 1/SelectedGroupViewController.swift"
-            timestampString = "545915351.813983"
+            timestampString = "546049509.082146"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "772"
@@ -2250,7 +2250,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Yoga Manager/Controllers/Tab 1/ViewController.swift"
-            timestampString = "545782067.709267"
+            timestampString = "546051892.908639"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "49"
@@ -2266,7 +2266,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Yoga Manager/Controllers/Tab 1/ViewController.swift"
-            timestampString = "545782067.70936"
+            timestampString = "546051892.908689"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "47"
@@ -2330,7 +2330,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Yoga Manager/Controllers/Tab 1/ViewController.swift"
-            timestampString = "545782067.709446"
+            timestampString = "546051892.908759"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "244"
@@ -2346,7 +2346,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Yoga Manager/Controllers/Tab 1/ViewController.swift"
-            timestampString = "545782067.709512"
+            timestampString = "546051892.908808"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "247"
@@ -2362,7 +2362,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Yoga Manager/Controllers/Tab 1/ViewController.swift"
-            timestampString = "545782067.709577"
+            timestampString = "546051892.908856"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "242"
@@ -2378,7 +2378,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Yoga Manager/Controllers/Tab 1/ViewController.swift"
-            timestampString = "545782067.7096421"
+            timestampString = "546051892.908904"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "239"
@@ -2394,7 +2394,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Yoga Manager/Controllers/Tab 1/ViewController.swift"
-            timestampString = "545782067.709707"
+            timestampString = "546051892.908952"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "237"
@@ -2586,11 +2586,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Yoga Manager/Controllers/Tab 1/SessionViewController.swift"
-            timestampString = "545998528.875486"
+            timestampString = "546052110.295122"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "215"
-            endingLineNumber = "215"
+            startingLineNumber = "220"
+            endingLineNumber = "220"
             landmarkName = "saveBtnPressed()"
             landmarkType = "7">
          </BreakpointContent>
@@ -2602,71 +2602,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Yoga Manager/Controllers/Tab 1/SessionViewController.swift"
-            timestampString = "545998528.875558"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "210"
-            endingLineNumber = "210"
-            landmarkName = "saveBtnPressed()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Yoga Manager/Controllers/Tab 1/SessionViewController.swift"
-            timestampString = "545998528.875614"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "227"
-            endingLineNumber = "227"
-            landmarkName = "saveBtnPressed()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Yoga Manager/Controllers/Tab 1/SessionViewController.swift"
-            timestampString = "545998528.87567"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "260"
-            endingLineNumber = "260"
-            landmarkName = "saveBtnPressed()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Yoga Manager/Controllers/Tab 1/SessionViewController.swift"
-            timestampString = "545998528.875725"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "225"
-            endingLineNumber = "225"
-            landmarkName = "saveBtnPressed()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Yoga Manager/Controllers/Tab 1/SessionViewController.swift"
-            timestampString = "545998528.875779"
+            timestampString = "546052110.295525"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "212"
@@ -2678,15 +2614,79 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Yoga Manager/Controllers/Tab 1/SessionViewController.swift"
+            timestampString = "546052110.295897"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "241"
+            endingLineNumber = "241"
+            landmarkName = "saveBtnPressed()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Yoga Manager/Controllers/Tab 1/SessionViewController.swift"
-            timestampString = "545998528.875834"
+            timestampString = "546052110.296281"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "224"
-            endingLineNumber = "224"
+            startingLineNumber = "284"
+            endingLineNumber = "284"
+            landmarkName = "saveBtnPressed()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Yoga Manager/Controllers/Tab 1/SessionViewController.swift"
+            timestampString = "546052110.296631"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "230"
+            endingLineNumber = "230"
+            landmarkName = "saveBtnPressed()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Yoga Manager/Controllers/Tab 1/SessionViewController.swift"
+            timestampString = "546052110.2969919"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "217"
+            endingLineNumber = "217"
+            landmarkName = "saveBtnPressed()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Yoga Manager/Controllers/Tab 1/SessionViewController.swift"
+            timestampString = "546052110.297372"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "229"
+            endingLineNumber = "229"
             landmarkName = "saveBtnPressed()"
             landmarkType = "7">
          </BreakpointContent>
@@ -3178,11 +3178,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Yoga Manager/Controllers/Tab 3 &amp; 4/ScheduleViewController.swift"
-            timestampString = "546025269.07889"
+            timestampString = "546051892.911868"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "44"
-            endingLineNumber = "44"
+            startingLineNumber = "47"
+            endingLineNumber = "47"
             landmarkName = "viewDidLoad()"
             landmarkType = "7">
          </BreakpointContent>
@@ -3290,7 +3290,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Yoga Manager/Controllers/Tab 3 &amp; 4/SubscriptionsViewController.swift"
-            timestampString = "546025269.079079"
+            timestampString = "546051892.912035"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "490"
@@ -3302,95 +3302,15 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Yoga Manager/Controllers/Tab 1/SessionViewController.swift"
-            timestampString = "545998528.879037"
+            timestampString = "546052110.2985179"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "262"
-            endingLineNumber = "262"
-            landmarkName = "saveBtnPressed()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Yoga Manager/Controllers/Tab 1/SessionViewController.swift"
-            timestampString = "545998528.8791111"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "240"
-            endingLineNumber = "240"
-            landmarkName = "saveBtnPressed()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Yoga Manager/Controllers/Tab 1/SessionViewController.swift"
-            timestampString = "545998528.879232"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "230"
-            endingLineNumber = "230"
-            landmarkName = "saveBtnPressed()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Yoga Manager/Controllers/Tab 1/SessionViewController.swift"
-            timestampString = "545998528.879299"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "238"
-            endingLineNumber = "238"
-            landmarkName = "saveBtnPressed()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Yoga Manager/Controllers/Tab 1/SessionViewController.swift"
-            timestampString = "545998528.87936"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "261"
-            endingLineNumber = "261"
-            landmarkName = "saveBtnPressed()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Yoga Manager/Controllers/Tab 1/SessionViewController.swift"
-            timestampString = "545998528.879424"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "236"
-            endingLineNumber = "236"
+            startingLineNumber = "286"
+            endingLineNumber = "286"
             landmarkName = "saveBtnPressed()"
             landmarkType = "7">
          </BreakpointContent>
@@ -3402,12 +3322,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Yoga Manager/Controllers/Tab 1/SessionViewController.swift"
-            timestampString = "545998528.879483"
+            timestampString = "546052110.298898"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "311"
-            endingLineNumber = "311"
-            landmarkName = "checkSessionConflict(testingSession:)"
+            startingLineNumber = "258"
+            endingLineNumber = "258"
+            landmarkName = "saveBtnPressed()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -3418,12 +3338,60 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Yoga Manager/Controllers/Tab 1/SessionViewController.swift"
-            timestampString = "545998528.879542"
+            timestampString = "546052110.299258"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "315"
-            endingLineNumber = "315"
-            landmarkName = "checkSessionConflict(testingSession:)"
+            startingLineNumber = "248"
+            endingLineNumber = "248"
+            landmarkName = "saveBtnPressed()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Yoga Manager/Controllers/Tab 1/SessionViewController.swift"
+            timestampString = "546052110.299618"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "257"
+            endingLineNumber = "257"
+            landmarkName = "saveBtnPressed()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Yoga Manager/Controllers/Tab 1/SessionViewController.swift"
+            timestampString = "546052110.299978"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "285"
+            endingLineNumber = "285"
+            landmarkName = "saveBtnPressed()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Yoga Manager/Controllers/Tab 1/SessionViewController.swift"
+            timestampString = "546052110.300346"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "255"
+            endingLineNumber = "255"
+            landmarkName = "saveBtnPressed()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -3434,7 +3402,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Yoga Manager/ViewModels/MainViewModel.swift"
-            timestampString = "545998528.8796"
+            timestampString = "546048922.339974"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "37"
@@ -3450,7 +3418,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Yoga Manager/ViewModels/MainViewModel.swift"
-            timestampString = "545998528.879654"
+            timestampString = "546048922.340323"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "38"
@@ -3466,7 +3434,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Yoga Manager/Controllers/Tab 3 &amp; 4/SubscriptionsViewController.swift"
-            timestampString = "546025269.079695"
+            timestampString = "546051892.9139971"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "151"
@@ -3482,7 +3450,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Yoga Manager/Controllers/Tab 3 &amp; 4/SubscriptionsViewController.swift"
-            timestampString = "546025269.079986"
+            timestampString = "546051892.914048"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "140"
@@ -3498,7 +3466,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Yoga Manager/Controllers/Tab 3 &amp; 4/SubscriptionsViewController.swift"
-            timestampString = "546025269.080251"
+            timestampString = "546051892.914098"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "119"
@@ -3514,7 +3482,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Yoga Manager/Controllers/Tab 3 &amp; 4/SubscriptionsViewController.swift"
-            timestampString = "546025269.080502"
+            timestampString = "546051892.914147"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "150"
@@ -3530,7 +3498,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Yoga Manager/Controllers/Tab 3 &amp; 4/SubscriptionsViewController.swift"
-            timestampString = "546025269.080752"
+            timestampString = "546051892.914196"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "653"
@@ -3546,7 +3514,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Yoga Manager/Controllers/Tab 3 &amp; 4/SubscriptionsViewController.swift"
-            timestampString = "546025269.081017"
+            timestampString = "546051892.914246"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "655"
@@ -3562,7 +3530,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Yoga Manager/Controllers/Tab 3 &amp; 4/SubscriptionsViewController.swift"
-            timestampString = "546025269.081257"
+            timestampString = "546051892.914295"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "649"
@@ -3578,7 +3546,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Yoga Manager/Controllers/Tab 3 &amp; 4/SubscriptionsViewController.swift"
-            timestampString = "546025269.081513"
+            timestampString = "546051892.914344"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "659"
@@ -3594,7 +3562,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Yoga Manager/Controllers/Tab 3 &amp; 4/SubscriptionsViewController.swift"
-            timestampString = "546025269.081758"
+            timestampString = "546051892.9143929"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "138"
@@ -3610,7 +3578,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Yoga Manager/Controllers/Tab 3 &amp; 4/SubscriptionsViewController.swift"
-            timestampString = "546025269.082057"
+            timestampString = "546051892.9144419"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "726"
@@ -3631,8 +3599,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "49"
             endingLineNumber = "49"
-            landmarkName = "updateASubscrtiption(subscription:startDate:endDate:)"
-            landmarkType = "7">
+            landmarkName = "unknown"
+            landmarkType = "0">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -3647,8 +3615,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "48"
             endingLineNumber = "48"
-            landmarkName = "updateASubscrtiption(subscription:startDate:endDate:)"
-            landmarkType = "7">
+            landmarkName = "unknown"
+            landmarkType = "0">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -3658,11 +3626,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Yoga Manager/Controllers/Tab 3 &amp; 4/SubscriptionsViewController.swift"
-            timestampString = "546025269.0823931"
+            timestampString = "546051892.914528"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "855"
-            endingLineNumber = "855"
+            startingLineNumber = "861"
+            endingLineNumber = "861"
             landmarkName = "tableView(_:heightForRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -3674,7 +3642,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Yoga Manager/Controllers/Tab 3 &amp; 4/SubscriptionsViewController.swift"
-            timestampString = "546025269.0826809"
+            timestampString = "546051892.914577"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "754"
@@ -3689,13 +3657,445 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Yoga Manager/Controllers/Tab 3 &amp; 4/SubscriptionsViewController.swift"
-            timestampString = "546025269.084074"
+            filePath = "Yoga Manager/Controllers/Tab 3 &amp; 4/ScheduleViewController.swift"
+            timestampString = "546051892.915781"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "799"
-            endingLineNumber = "799"
-            landmarkName = "tableView(_:didSelectRowAt:)"
+            startingLineNumber = "208"
+            endingLineNumber = "208"
+            landmarkName = "organizingSessionsWithinADay(sessions:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Yoga Manager/Controllers/Tab 3 &amp; 4/ScheduleViewController.swift"
+            timestampString = "546051892.915841"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "159"
+            endingLineNumber = "159"
+            landmarkName = "setValues()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Yoga Manager/Controllers/Tab 3 &amp; 4/ScheduleViewController.swift"
+            timestampString = "546051892.915899"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "101"
+            endingLineNumber = "101"
+            landmarkName = "setValues()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Yoga Manager/Controllers/Tab 3 &amp; 4/ScheduleViewController.swift"
+            timestampString = "546051892.9159549"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "100"
+            endingLineNumber = "100"
+            landmarkName = "setValues()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Yoga Manager/Controllers/Tab 3 &amp; 4/ScheduleViewController.swift"
+            timestampString = "546051892.916011"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "99"
+            endingLineNumber = "99"
+            landmarkName = "setValues()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Yoga Manager/Controllers/Tab 3 &amp; 4/ScheduleViewController.swift"
+            timestampString = "546051892.916067"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "93"
+            endingLineNumber = "93"
+            landmarkName = "setValues()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Yoga Manager/ViewModels/SessionViewModel.swift"
+            timestampString = "546051892.916122"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "20"
+            endingLineNumber = "20"
+            landmarkName = "getAllSessions()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Yoga Manager/Controllers/Tab 1/SessionViewController.swift"
+            timestampString = "546052110.301028"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "341"
+            endingLineNumber = "341"
+            landmarkName = "checkSessionConflict(testingSession:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Yoga Manager/Controllers/Tab 1/SessionViewController.swift"
+            timestampString = "546052110.301335"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "225"
+            endingLineNumber = "225"
+            landmarkName = "saveBtnPressed()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Yoga Manager/Controllers/Tab 1/SessionViewController.swift"
+            timestampString = "546052110.301635"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "226"
+            endingLineNumber = "226"
+            landmarkName = "saveBtnPressed()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Yoga Manager/Controllers/Tab 1/SessionViewController.swift"
+            timestampString = "546052110.301936"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "110"
+            endingLineNumber = "110"
+            landmarkName = "viewWillDisappear(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Yoga Manager/Controllers/Tab 1/SessionViewController.swift"
+            timestampString = "546052110.302336"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "136"
+            endingLineNumber = "136"
+            landmarkName = "viewWillDisappear(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Yoga Manager/Controllers/Tab 1/SessionViewController.swift"
+            timestampString = "546052110.302731"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "144"
+            endingLineNumber = "144"
+            landmarkName = "viewWillDisappear(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Yoga Manager/Controllers/Tab 1/SessionViewController.swift"
+            timestampString = "546052110.303115"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "143"
+            endingLineNumber = "143"
+            landmarkName = "viewWillDisappear(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Yoga Manager/Controllers/Tab 1/SessionViewController.swift"
+            timestampString = "546052110.30348"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "222"
+            endingLineNumber = "222"
+            landmarkName = "saveBtnPressed()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Yoga Manager/Controllers/Tab 1/SessionViewController.swift"
+            timestampString = "546052110.303804"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "224"
+            endingLineNumber = "224"
+            landmarkName = "saveBtnPressed()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Yoga Manager/Controllers/Tab 1/SessionViewController.swift"
+            timestampString = "546052110.304162"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "250"
+            endingLineNumber = "250"
+            landmarkName = "saveBtnPressed()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Yoga Manager/Controllers/Tab 1/SessionViewController.swift"
+            timestampString = "546052110.3045419"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "277"
+            endingLineNumber = "277"
+            landmarkName = "saveBtnPressed()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Yoga Manager/Controllers/Tab 1/SessionViewController.swift"
+            timestampString = "546052110.304875"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "278"
+            endingLineNumber = "278"
+            landmarkName = "saveBtnPressed()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Yoga Manager/Controllers/Tab 1/SessionViewController.swift"
+            timestampString = "546052110.305251"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "279"
+            endingLineNumber = "279"
+            landmarkName = "saveBtnPressed()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Yoga Manager/Controllers/Tab 1/SessionViewController.swift"
+            timestampString = "546052110.305598"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "267"
+            endingLineNumber = "267"
+            landmarkName = "saveBtnPressed()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Yoga Manager/Controllers/Tab 1/SessionViewController.swift"
+            timestampString = "546052110.305914"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "354"
+            endingLineNumber = "354"
+            landmarkName = "checkSessionConflict(testingSession:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Yoga Manager/Controllers/Tab 1/SessionViewController.swift"
+            timestampString = "546052110.306226"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "271"
+            endingLineNumber = "271"
+            landmarkName = "saveBtnPressed()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Yoga Manager/Controllers/Tab 1/SessionViewController.swift"
+            timestampString = "546052110.3065341"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "357"
+            endingLineNumber = "357"
+            landmarkName = "checkSessionConflict(testingSession:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Yoga Manager/Controllers/Tab 1/SessionViewController.swift"
+            timestampString = "546052110.306843"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "362"
+            endingLineNumber = "362"
+            landmarkName = "checkSessionConflict(testingSession:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Yoga Manager/Controllers/Tab 1/SessionViewController.swift"
+            timestampString = "546052110.3072079"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "221"
+            endingLineNumber = "221"
+            landmarkName = "saveBtnPressed()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Yoga Manager/Controllers/Tab 1/SessionViewController.swift"
+            timestampString = "546052110.307559"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "346"
+            endingLineNumber = "346"
+            landmarkName = "checkSessionConflict(testingSession:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Yoga Manager/ViewModels/SessionViewModel.swift"
+            timestampString = "546051892.922565"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "27"
+            endingLineNumber = "27"
+            landmarkName = "getGroupSessions(studentsGroup:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

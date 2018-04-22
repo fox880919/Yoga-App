@@ -784,28 +784,34 @@ extension SubscriptionsViewController: UITableViewDataSource, UITableViewDelegat
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let alert = UIAlertController(title: "Renew Subscription", message: "Do you want to renew this subscription for a month from Today?", preferredStyle: UIAlertControllerStyle.alert)
-        
-        let deleteAction = UIAlertAction(title: "Yes", style: UIAlertActionStyle.default, handler: { action in
+        let cell = tableView.cellForRow(at: indexPath)
+        if(cell?.backgroundColor == UIColor.lightGray)
+        {
             
-            let subscription = StudentSubscriptionViewModel().getGroupSubscriptions(studentsGroup: self.groups[indexPath.section])[indexPath.row]
+            let alert = UIAlertController(title: "Renew Subscription", message: "Do you want to renew this subscription for a month from Today?", preferredStyle: UIAlertControllerStyle.alert)
             
-            let todayDate = Date()
+            let deleteAction = UIAlertAction(title: "Yes", style: UIAlertActionStyle.default, handler: { action in
+                
+                let subscription = StudentSubscriptionViewModel().getGroupSubscriptions(studentsGroup: self.groups[indexPath.section])[indexPath.row]
+                
+                let todayDate = Date()
+                
+                
+                let afterAMonthDate = addAmonthToADate(date: todayDate)
+                
+                
+                StudentSubscriptionViewModel().updateASubscrtiption(subscription: subscription, startDate: Date(), endDate: afterAMonthDate)
+                
+                tableView.reloadData()
+            })
+            let cancelAction = UIAlertAction(title: "No", style: UIAlertActionStyle.cancel, handler: nil)
             
-
-            let afterAMonthDate = addAmonthToADate(date: todayDate)
-
-
-            StudentSubscriptionViewModel().updateASubscrtiption(subscription: subscription, startDate: Date(), endDate: afterAMonthDate)
+            alert.addAction(deleteAction)
+            alert.addAction(cancelAction)
             
-            tableView.reloadData()
-        })
-        let cancelAction = UIAlertAction(title: "No", style: UIAlertActionStyle.cancel, handler: nil)
-        
-        alert.addAction(deleteAction)
-        alert.addAction(cancelAction)
-        
-        self.present(alert, animated: true)
+            self.present(alert, animated: true)
+        }
+       
         
     }
     
