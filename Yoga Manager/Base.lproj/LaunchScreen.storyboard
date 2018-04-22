@@ -17,13 +17,39 @@
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iTunesArtwork" translatesAutoresizingMaskIntoConstraints="NO" id="ARw-FW-yIP">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="By: Fayez Altamimi" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1DT-iC-eIa">
+                                <rect key="frame" x="10" y="40" width="355" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="rkF-8o-JTa"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.34509803921568627" green="0.70588235294117652" blue="0.78823529411764703" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="1DT-iC-eIa" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="Fid-QT-cn0"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="1DT-iC-eIa" secondAttribute="trailing" constant="10" id="P31-gG-AIy"/>
+                            <constraint firstItem="1DT-iC-eIa" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="YGG-fm-ssW"/>
+                            <constraint firstItem="ARw-FW-yIP" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Z6g-2D-0Dd"/>
+                            <constraint firstItem="ARw-FW-yIP" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="i7F-lY-qin"/>
+                            <constraint firstItem="ARw-FW-yIP" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="oDi-hV-yfm"/>
+                            <constraint firstItem="ARw-FW-yIP" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="wfM-jp-ndz"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="53" y="375"/>
+            <point key="canvasLocation" x="52" y="374.66266866566718"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="iTunesArtwork" width="512" height="512"/>
+    </resources>
 </document>
