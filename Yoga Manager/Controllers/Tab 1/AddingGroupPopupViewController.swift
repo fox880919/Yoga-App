@@ -18,6 +18,8 @@ class AddingGroupPopupViewController: UIViewController {
     
     var selectedGroup: Group?
     
+    var allGroups = MainViewModel().getGroups()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -65,8 +67,19 @@ class AddingGroupPopupViewController: UIViewController {
          
             showAlert(message: "Group name can't be empty")
         }
-        
         else{
+            
+            if allGroups.count > 0 {
+                
+                for group in allGroups{
+                    
+                    if group.name! ==  grouNameTextField.text!{
+                        
+                        showAlert(message: "Another group with the same name exists")
+                        return
+                    }
+                }
+            }
          
             if let group = selectedGroup {
                 

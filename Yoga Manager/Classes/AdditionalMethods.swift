@@ -454,6 +454,15 @@ func addAmonthToADate(date: Date) -> Date{
 
 }
 
+func getMonthFromDate(date: Date) -> Int{
+    
+    let calendar = Calendar.current
+    
+    let month = calendar.component(.month, from: date)
+    
+    return month
+}
+
 func getHourFromDate(date: Date) -> Int
 {
     
@@ -472,5 +481,18 @@ func getMinutesFromDate(date: Date) -> Int
     let minute = calendar.component(.minute, from: date)
     
     return minute
+}
+
+extension UIView {
+    func toImage() -> UIImage {
+        
+        UIGraphicsBeginImageContextWithOptions(bounds.size, false, UIScreen.main.scale)
+        
+        drawHierarchy(in: self.bounds, afterScreenUpdates: true)
+        
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return image!
+    }
 }
 

@@ -13,6 +13,8 @@ class ScheduleViewController: UIViewController, SpreadsheetViewDataSource, Sprea
 
     @IBOutlet weak var scheduleView: SpreadsheetView!
     
+    @IBOutlet weak var groupsPickerView: UIPickerView!
+    
     var dates = ["7/10/2017", "7/11/2017", "7/12/2017", "7/13/2017", "7/14/2017", "7/15/2017", "7/16/2017"]
     let days = [ "SUNDAY", "MONDAY", "TUESDAY", "WEDNSDAY", "THURSDAY", "FRIDAY", "SATURDAY"]
     let dayColors = [UIColor(red: 0.918, green: 0.224, blue: 0.153, alpha: 1),
@@ -21,12 +23,24 @@ class ScheduleViewController: UIViewController, SpreadsheetViewDataSource, Sprea
                      UIColor(red: 0.953, green: 0.498, blue: 0.098, alpha: 1),
                      UIColor(red: 0.400, green: 0.584, blue: 0.141, alpha: 1),
                      UIColor(red: 0.835, green: 0.655, blue: 0.051, alpha: 1),
-                     UIColor(red: 0.153, green: 0.569, blue: 0.835, alpha: 1)]
+                     UIColor(red: 0.153, green: 0.569, blue: 0.835, alpha: 1),
+                     UIColor(red:0.00, green:0.04, blue:1.00, alpha:1.0),
+                     UIColor(red:0.64, green:0.15, blue:0.27, alpha:1.0),
+                     UIColor(red:0.10, green:0.67, blue:0.43, alpha:1.0),
+                     UIColor(red:0.74, green:0.67, blue:0.68, alpha:1.0),
+                     UIColor(red:0.81, green:0.31, blue:0.81, alpha:1.0),
+                     UIColor(red:0.69, green:1.00, blue:1.00, alpha:1.0),
+                     UIColor(red:0.67, green:0.69, blue:0.00, alpha:1.0),
+                     UIColor(red:0.71, green:0.48, blue:0.33, alpha:1.0),
+                     UIColor(red:0.95, green:0.95, blue:0.95, alpha:1.0),
+                     UIColor(red:1.00, green:0.87, blue:0.92, alpha:1.0),
+                     UIColor(red:0.49, green:0.69, blue:0.69, alpha:1.0),
+                     UIColor(red:0.60, green:0.59, blue:0.90, alpha:1.0)]
     
 //    let hours = ["6:00 AM", "6:15 AM", "6:30 AM", "6:45 AM", "7:00 AM", "7:15 AM", "7:30 AM", "7:45 AM", "8:00 AM", "8:15 AM", "8:30 AM", "8:45 AM", "9:00 AM", "9:15 AM", "9:30 AM", "9:45 AM", "10:00 AM", "10:15 AM", "10:30 AM", "10:45 AM", "11:00 AM", "11:15 AM", "11:30 AM", "11:45 AM", "12:00 AM", "12:15 AM", "12:30 PM", "12:45 AM", "1:00 PM", "1:15 PM", "1:30 PM", "1:45 PM", "2:00 PM",
 //                 "2:15 PM", "2:30 PM", "2:45 AM", "3:00 PM", "3:15 PM", "3:30 PM", "3:45 PM", "4:00 PM", "4:15 PM", "4:30 PM", "4:45 PM", "5:00 PM", "5:15 PM", "5:30 PM", "5:45 PM", "6:00 PM", "6:15 PM", "6:30 PM", "6:45 PM", "7:00 PM", "7:15 PM", "7:30 PM", "7:45 PM", "8:00 PM", "8:15 PM", "8:30 PM", "8:45 PM", "9:00 PM", "9:15 PM", "9:30 PM", "9:45 AM", "10:00 PM", "10:15 PM", "10:30 PM", "10:45 PM", "11:00 PM"]
     
-    let hours = ["6:00 AM", "", "", "", "7:00 AM", "", "", "", "8:00 AM", "", "", "", "9:00 AM", "", "", "", "10:00 AM", "", "", "", "11:00 AM", "", "", "", "12:00 AM", "", "", "","1:00 PM", "", "", "", "2:00 PM", "", "", "", "3:00 PM", "", "", "", "4:00 PM", "", "", "", "5:00 PM", "", "", "", "6:00 PM", "", "", "", "7:00 PM", "", "", "", "8:00 PM", "", "", "","9:00 PM", "", "", "","10:00 PM", "10:15 PM", "", "", "", "11:00 PM"]
+    let hours = ["6:00 AM", "", "", "", "7:00 AM", "", "", "", "8:00 AM", "", "", "", "9:00 AM", "", "", "", "10:00 AM", "", "", "", "11:00 AM", "", "", "", "12:00 AM", "", "", "", "1:00 PM", "", "", "", "2:00 PM", "", "", "", "3:00 PM", "", "", "", "4:00 PM", "", "", "", "5:00 PM", "", "", "", "6:00 PM", "", "", "", "7:00 PM", "", "", "", "8:00 PM", "", "", "","9:00 PM", "", "", "", "10:00 PM", "", "", "", "11:00 PM"]
     let evenRowColor = UIColor(red: 0.914, green: 0.914, blue: 0.906, alpha: 1)
     let oddRowColor: UIColor = .white
     var data = [
@@ -39,6 +53,10 @@ class ScheduleViewController: UIViewController, SpreadsheetViewDataSource, Sprea
         ["", "", "", "", "", "", "", "", "", "", "", "", "", "Return home", "", "", "", "", "", ""]
     ]
     
+    var allGroupsNames: [String]!
+    
+    var allGroups : [Group]!
+    
     var sessions = SessionViewModel().getAllSessions()
     
 
@@ -46,7 +64,11 @@ class ScheduleViewController: UIViewController, SpreadsheetViewDataSource, Sprea
     override func viewDidLoad() {
         super.viewDidLoad()
         
-
+        getGroupsNames()
+        
+        groupsPickerView.dataSource = self
+        groupsPickerView.delegate = self
+        
         dates = getNext30Days()
         scheduleView.dataSource = self
         scheduleView.delegate = self
@@ -62,20 +84,59 @@ class ScheduleViewController: UIViewController, SpreadsheetViewDataSource, Sprea
         scheduleView.register(DayTitleCell.self, forCellWithReuseIdentifier: String(describing: DayTitleCell.self))
         scheduleView.register(ScheduleCell.self, forCellWithReuseIdentifier: String(describing: ScheduleCell.self))
         
+
         // Do any additional setup after loading the view.
+        sessions = SessionViewModel().getAllSessions()
+
         setValues()
     }
 
     override func viewDidAppear(_ animated: Bool) {
         
+       getGroupsNames()
+
+        sessions = SessionViewModel().getAllSessions()
+        
         setValues()
+        
+        //prt()
+    }
+    
+   func getGroupsNames()
+    {
+        allGroupsNames = [String]()
+        
+        allGroups = MainViewModel().getGroups()
+        
+        if(allGroups.count > 0)
+        {
+            
+            for group in allGroups{
+                
+                allGroupsNames.append(group.name!)
+            }
+        }
+    }
+    
+    func getGroupNameIndex(groupName: String) -> Int{
+        
+        var i = 0
+        
+        for name in allGroupsNames{
+            
+            if(groupName == name)
+            {
+                return i
+            }
+            i = i + 1
+        }
+        
+        return i - 1
     }
     
     func setValues()
     {
     
-        sessions = SessionViewModel().getAllSessions()
-
         data =  [[String]]()
         
         var sundaySessions = [Session]()
@@ -160,6 +221,7 @@ class ScheduleViewController: UIViewController, SpreadsheetViewDataSource, Sprea
 
     }
     
+    
     func returnSessionGroupsName(session: Session) -> String{
     
         var sessionGroupsNames : String?
@@ -186,12 +248,9 @@ class ScheduleViewController: UIViewController, SpreadsheetViewDataSource, Sprea
         
 //        let organizedSessions = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20"]
         
-        var organizedSessions = ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""]
-        
+        var organizedSessions = ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""]
         
         for session in sessions{
-            
-            
             
             let startIndex = returnIndexOfTimeInTimeTable(timeString: session.start_time!)
             
@@ -225,13 +284,15 @@ class ScheduleViewController: UIViewController, SpreadsheetViewDataSource, Sprea
         
         let hour = (Calendar.current.component(.hour, from: time) - 6) * 4
         
-        let minutes = Calendar.current.component(.hour, from: time)
+        let minutes = Calendar.current.component(.minute, from: time)
         
         var index = hour
         
         if(minutes == 15)
         {
             
+            index = hour + 1
+
         }
         else if(minutes == 30)
         {
@@ -312,7 +373,15 @@ class ScheduleViewController: UIViewController, SpreadsheetViewDataSource, Sprea
             let text = data[indexPath.column - 1][indexPath.row - 2]
             if !text.isEmpty {
                 cell.label.text = text
-                let color = dayColors[indexPath.column - 1]
+                
+                var nameIndex = getGroupNameIndex(groupName: text)
+                
+                while(nameIndex >= dayColors.count){
+                    
+                    nameIndex = nameIndex - dayColors.count
+                }
+                
+                let color = dayColors[nameIndex]
                 cell.label.textColor = color
                 cell.color = color.withAlphaComponent(0.2)
                 cell.borders.top = .solid(width: 2, color: color)
@@ -328,9 +397,103 @@ class ScheduleViewController: UIViewController, SpreadsheetViewDataSource, Sprea
         return nil
     }
     
+//    func mergedCells(in spreadsheetView: SpreadsheetView) -> [CellRange] {
+//
+//        var cellRange = [CellRange]()
+//
+//        var k = 0
+//
+//        while (k < 8)
+//        {
+//            var i = 2
+//
+//            while(i < 70)
+//            {
+//
+//                cellRange.append(CellRange(from: (row: i, column: k), to: (row: i + 3, column: k)))
+//
+//                i = i + 4
+//            }
+//
+//             k = k + 1
+//        }
+//
+//        return cellRange
+//    }
+    
     /// Delegate
     
     func spreadsheetView(_ spreadsheetView: SpreadsheetView, didSelectItemAt indexPath: IndexPath) {
         print("Selected: (row: \(indexPath.row), column: \(indexPath.column))")
     }
+    
+    func prt() {
+        
+        let printInfo = UIPrintInfo(dictionary:nil)
+        printInfo.outputType = UIPrintInfoOutputType.general
+        printInfo.jobName = "My Print Job"
+        
+        // Set up print controller
+        let printController = UIPrintInteractionController.shared
+        printController.printInfo = printInfo
+        
+        // Assign a UIImage version of my UIView as a printing iten
+        printController.printingItem = self.view.toImage()
+        
+        // Do it
+        
+        printController.present(from: self.view.frame, in: self.view, animated: true, completionHandler: nil)
+        
+    }
 }
+
+extension ScheduleViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1;
+    }
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        
+       
+        return allGroups.count + 1
+    }
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        
+        if(row == 0)
+        {
+         
+            return "All Groups"
+        }
+        else{
+            
+            return allGroups[row - 1].name!
+
+        }
+        
+    }
+    
+    func pickerView( _ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        
+        if(row == 0)
+        {
+            sessions = SessionViewModel().getAllSessions()
+            
+            setValues()
+            
+            scheduleView.reloadData()
+        }
+        else{
+            
+            sessions = SessionViewModel().getGroupSessions(studentsGroup: allGroups[row - 1])
+            
+            setValues()
+            
+            scheduleView.reloadData()
+        }
+    }
+            
+}
+
+
+
+

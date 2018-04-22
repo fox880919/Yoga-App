@@ -336,7 +336,7 @@ class SelectedGroupViewController: UIViewController, UICollectionViewDelegate, U
                     }
                     else{
                         
-                        self.sessionViewModel.deleteASession(entity: self.allGroupSessions[indexPath.row])
+                        self.sessionViewModel.deleteASession(entity: sessionToDelete)
                         
                         self.allGroupSessions = self.sessionViewModel.getGroupSessions(studentsGroup: self.studentsGroup)
                         

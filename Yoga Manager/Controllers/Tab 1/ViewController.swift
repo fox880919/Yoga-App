@@ -63,7 +63,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
         return mainViewModel.getGroups().count + 1
         
-        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -78,7 +77,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
            cell.textLabel?.text = "Add a new group"
             
             return cell //4.
-
         }
         
         else{
@@ -98,11 +96,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             cell.sessionsLabel.text = "\(groups[indexPath.row].sessions!.count)"
             
             return cell //4.
-
         }
-        
-        
-      
     }
     
     @IBAction func settingsBtnPressed(_ sender: Any) {
