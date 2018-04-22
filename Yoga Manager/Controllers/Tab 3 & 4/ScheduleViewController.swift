@@ -22,8 +22,11 @@ class ScheduleViewController: UIViewController, SpreadsheetViewDataSource, Sprea
                      UIColor(red: 0.400, green: 0.584, blue: 0.141, alpha: 1),
                      UIColor(red: 0.835, green: 0.655, blue: 0.051, alpha: 1),
                      UIColor(red: 0.153, green: 0.569, blue: 0.835, alpha: 1)]
-    let hours = ["6:00 AM", "6:30 AM", "7:00 AM", "7:30 AM", "8:00 AM", "8:30 AM", "9:00 AM", "9:30 AM", "10:00 AM", "10:30 AM", "11:00 AM", "11:30 AM", "12:00 AM", "12:30 PM", "1:00 PM", "1:30 PM", "2:00 PM",
-                 "2:30 PM", "3:00 PM", "3:30 PM", "4:00 PM", "4:30 PM", "5:00 PM", "5:30 PM", "6:00 PM", "6:30 PM", "7:00 PM", "7:30 PM", "8:00 PM", "8:30 PM", "9:00 PM", "9:30 PM", "10:00 PM", "10:30 PM", "11:00 PM"]
+    
+//    let hours = ["6:00 AM", "6:15 AM", "6:30 AM", "6:45 AM", "7:00 AM", "7:15 AM", "7:30 AM", "7:45 AM", "8:00 AM", "8:15 AM", "8:30 AM", "8:45 AM", "9:00 AM", "9:15 AM", "9:30 AM", "9:45 AM", "10:00 AM", "10:15 AM", "10:30 AM", "10:45 AM", "11:00 AM", "11:15 AM", "11:30 AM", "11:45 AM", "12:00 AM", "12:15 AM", "12:30 PM", "12:45 AM", "1:00 PM", "1:15 PM", "1:30 PM", "1:45 PM", "2:00 PM",
+//                 "2:15 PM", "2:30 PM", "2:45 AM", "3:00 PM", "3:15 PM", "3:30 PM", "3:45 PM", "4:00 PM", "4:15 PM", "4:30 PM", "4:45 PM", "5:00 PM", "5:15 PM", "5:30 PM", "5:45 PM", "6:00 PM", "6:15 PM", "6:30 PM", "6:45 PM", "7:00 PM", "7:15 PM", "7:30 PM", "7:45 PM", "8:00 PM", "8:15 PM", "8:30 PM", "8:45 PM", "9:00 PM", "9:15 PM", "9:30 PM", "9:45 AM", "10:00 PM", "10:15 PM", "10:30 PM", "10:45 PM", "11:00 PM"]
+    
+    let hours = ["6:00 AM", "", "", "", "7:00 AM", "", "", "", "8:00 AM", "", "", "", "9:00 AM", "", "", "", "10:00 AM", "", "", "", "11:00 AM", "", "", "", "12:00 AM", "", "", "","1:00 PM", "", "", "", "2:00 PM", "", "", "", "3:00 PM", "", "", "", "4:00 PM", "", "", "", "5:00 PM", "", "", "", "6:00 PM", "", "", "", "7:00 PM", "", "", "", "8:00 PM", "", "", "","9:00 PM", "", "", "","10:00 PM", "10:15 PM", "", "", "", "11:00 PM"]
     let evenRowColor = UIColor(red: 0.914, green: 0.914, blue: 0.906, alpha: 1)
     let oddRowColor: UIColor = .white
     var data = [
@@ -94,8 +97,7 @@ class ScheduleViewController: UIViewController, SpreadsheetViewDataSource, Sprea
             
             //let sessionGroupsNames = returnSessionGroupsName(Session: session)
             
-            let test = session.week_day
-            
+        
             if(session.week_day == "Sunday")
             {
                 
@@ -184,7 +186,8 @@ class ScheduleViewController: UIViewController, SpreadsheetViewDataSource, Sprea
         
 //        let organizedSessions = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20"]
         
-        var organizedSessions = ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""]
+        var organizedSessions = ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""]
+        
         
         for session in sessions{
             
@@ -220,16 +223,25 @@ class ScheduleViewController: UIViewController, SpreadsheetViewDataSource, Sprea
         
         let time = timeFromString(dateString: timeString)
         
-        let hour = (Calendar.current.component(.hour, from: time) - 6) * 2
+        let hour = (Calendar.current.component(.hour, from: time) - 6) * 4
         
         let minutes = Calendar.current.component(.hour, from: time)
         
         var index = hour
         
-        if(minutes == 30)
+        if(minutes == 15)
         {
             
-            index = hour + 1
+        }
+        else if(minutes == 30)
+        {
+            
+            index = hour + 2
+        }
+        else if(minutes == 45)
+        {
+            
+            index = hour + 3
         }
 
         

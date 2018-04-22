@@ -215,7 +215,25 @@ class SessionViewController: UIViewController, UIPickerViewDataSource, UIPickerV
     
     @objc func saveBtnPressed()
     {
+
+        if(getHourFromDate(date: startTimePicker.date) < 6)
+        {
+            
+            showAlert(message: "Start-time can't be before 6:00 AM")
+            return
+        }
+        else if((getHourFromDate(date: endDatePicker.date) == 23 && getMinutesFromDate(date: endDatePicker.date) > 0) || getHourFromDate(date: endDatePicker.date) > 23)
+        {
+            
+            showAlert(message: "End-time can't be after 11:00 PM")
+            return
+        }
         
+        else if(getHourFromDate(date: startTimePicker.date) > getHourFromDate(date: endDatePicker.date))
+        {
+            
+            showAlert(message: "Start-time can't be after end-time")
+        }
         var isWeekly = true
         
         if (recurrenceSegment.selectedSegmentIndex == 1)
@@ -321,7 +339,6 @@ class SessionViewController: UIViewController, UIPickerViewDataSource, UIPickerV
 //        })
         
         let noAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.cancel, handler: { action in
-            print("testing deletion")
             
         })
         
@@ -454,6 +471,18 @@ class SessionViewController: UIViewController, UIPickerViewDataSource, UIPickerV
           // newSession.location =
             
         }
+    }
+    
+    func showAlert(message: String!){
+        
+        let alert = UIAlertController(title: "Error", message: message, preferredStyle: UIAlertControllerStyle.alert)
+        
+        let okAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: { action in
+        })
+        
+        alert.addAction(okAction)
+        
+        self.present(alert, animated: true)
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {

@@ -331,7 +331,7 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="30" translatesAutoresizingMaskIntoConstraints="NO" id="tTo-BY-eBl">
+                                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="15" translatesAutoresizingMaskIntoConstraints="NO" id="tTo-BY-eBl">
                                                 <rect key="frame" x="124" y="310" width="246" height="48"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="48" id="Dge-MA-TLW"/>
@@ -348,7 +348,7 @@
                                                     <!--2037-12-31 19:30:00 +0000-->
                                                 </date>
                                             </datePicker>
-                                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="30" translatesAutoresizingMaskIntoConstraints="NO" id="7aY-17-Di1">
+                                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="15" translatesAutoresizingMaskIntoConstraints="NO" id="7aY-17-Di1">
                                                 <rect key="frame" x="129" y="368" width="236" height="48"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="48" id="BXh-SK-FrI"/>
@@ -386,7 +386,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bsY-hy-DKv" customClass="RoundButton" customModule="Yoga_Manager" customModuleProvider="target">
-                                                <rect key="frame" x="266" y="482.5" width="99" height="30"/>
+                                                <rect key="frame" x="266" y="488.5" width="99" height="18"/>
                                                 <color key="backgroundColor" red="0.97645074129104614" green="0.8691372275352478" blue="0.97256046533584595" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <state key="normal" title="Open Map">
                                                     <color key="titleColor" red="0.016804177310000001" green="0.19835099580000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1433,7 +1433,7 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <view hidden="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9RC-oD-QCZ" customClass="BEMCheckBox">
+                                                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9RC-oD-QCZ" customClass="BEMCheckBox">
                                                     <rect key="frame" x="87.5" y="165" width="36" height="36"/>
                                                     <color key="backgroundColor" red="0.0" green="0.97680455450000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </view>

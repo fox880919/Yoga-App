@@ -451,6 +451,26 @@ func addAmonthToADate(date: Date) -> Date{
     let afteraMonthDate = Calendar.current.date(byAdding: dateComponent, to: date)
     
     return afteraMonthDate!
+
+}
+
+func getHourFromDate(date: Date) -> Int
+{
     
+    let calendar = Calendar.current
+
+    let hour = calendar.component(.hour, from: date)
+
+    return hour
+}
+
+func getMinutesFromDate(date: Date) -> Int
+{
+    
+    let calendar = Calendar.current
+    
+    let minute = calendar.component(.minute, from: date)
+    
+    return minute
 }
 
