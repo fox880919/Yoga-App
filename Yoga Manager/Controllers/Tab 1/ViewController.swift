@@ -54,12 +54,16 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
 
     func numberOfSections(in tableView: UITableView) -> Int {
+       
         if(mainViewModel.getGroups().count > 0)
         {
             lastRowPosition = mainViewModel.getGroups().count + 1
+            
+            return mainViewModel.getGroups().count + 2
+
         }
         
-        return mainViewModel.getGroups().count + 2
+        return 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -203,7 +207,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         {
             addGroup()
         }
-        
+        else if(indexPath.section == lastRowPosition - 1)
+        {
+            
+        }
         else{
             
             currentSelectedGroup = mainViewModel.getGroups()[indexPath.section]

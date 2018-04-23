@@ -206,6 +206,7 @@ class SelectedGroupViewController: UIViewController, UICollectionViewDelegate, U
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize
     {
         let cellSize = CGSize(width: (collectionView.bounds.width - (3 * 10))/2, height: 220)
+        
         return cellSize
         
         //return CGSize(width: (collectionView.frame.width/2) - 5, height: collectionView.frame.width/2)
@@ -224,30 +225,30 @@ class SelectedGroupViewController: UIViewController, UICollectionViewDelegate, U
     }
     
      func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+     
         return "Sessions"
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         
-        return 1
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-
         let sessionCount = sessionViewModel.getGroupSessions(studentsGroup: studentsGroup).count
         
         if(sessionCount > 0)
         {
             lastRowPosition = sessionCount
         }
-
+        
         return sessionCount  + 1
+    }
     
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+
+        return 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        if(indexPath.row == lastRowPosition)
+        if(indexPath.section == lastRowPosition)
         {
             
             let cell = tableView.dequeueReusableCell(withIdentifier: "addSessionCell")!
@@ -262,7 +263,7 @@ class SelectedGroupViewController: UIViewController, UICollectionViewDelegate, U
             
             let cell = tableView.dequeueReusableCell(withIdentifier: "sessionsCell1") as! SessionCell
             
-            let session = allGroupSessions[indexPath.row]
+            let session = allGroupSessions[indexPath.section]
             
             cell.sessionDayLabel.text! = session.week_day!
             
@@ -303,14 +304,14 @@ class SelectedGroupViewController: UIViewController, UICollectionViewDelegate, U
         
         tableView.deselectRow(at: indexPath, animated: true)
         
-        if(indexPath.row == lastRowPosition)
+        if(indexPath.section == lastRowPosition)
         {
             addSession()
         }
             
         else{
             
-            selectedSession = allGroupSessions[indexPath.row]
+            selectedSession = allGroupSessions[indexPath.section]
             
             self.performSegue(withIdentifier: "editSessionSegue", sender: self)
             
@@ -320,14 +321,14 @@ class SelectedGroupViewController: UIViewController, UICollectionViewDelegate, U
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]?
     {
-        if (indexPath.row != lastRowPosition) {
+        if (indexPath.section != lastRowPosition) {
             let shareAction = UITableViewRowAction(style: UITableViewRowActionStyle.default, title: "Delete" , handler: { (action:UITableViewRowAction, indexPath: IndexPath) -> Void in
                 
-                let alert = UIAlertController(title: "Deleting Session number \(indexPath.row + 1)", message: "Are your sure?", preferredStyle: UIAlertControllerStyle.alert)
+                let alert = UIAlertController(title: "Deleting Session number \(indexPath.section + 1)", message: "Are your sure?", preferredStyle: UIAlertControllerStyle.alert)
                 
                 let deleteAction = UIAlertAction(title: "Delete", style: UIAlertActionStyle.default, handler: { action in
                     
-                    let sessionToDelete = self.allGroupSessions[indexPath.row]
+                    let sessionToDelete = self.allGroupSessions[indexPath.section]
                     
                     
                     if(sessionToDelete.groups!.count > 1)
@@ -365,8 +366,8 @@ class SelectedGroupViewController: UIViewController, UICollectionViewDelegate, U
             
             return []
         }
-        
     }
+    
     
     func addSession()
     {
@@ -781,7 +782,6 @@ extension SelectedGroupViewController: UIPickerViewDelegate, UIPickerViewDataSou
                 pickerSelectedSession = allPickerSessionsForAGroup[row - 1]
             }
         }
-        
     }
 }
     /*
