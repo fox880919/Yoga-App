@@ -15,5 +15,17 @@ class LocationTableCell : UITableViewCell {
     @IBOutlet weak var addressLbl: UILabel!
     
     @IBOutlet weak var googleUrlLbl: UILabel!
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        
+        locationNameLbl.textColor =  UIColor.blue
+        
+        addressLbl.textColor =  UIColor.blue
+        
+        googleUrlLbl.textColor =  UIColor.blue
+    }
+    
 }
 

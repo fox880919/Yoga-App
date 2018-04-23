@@ -23,6 +23,10 @@ class SettingsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.view.backgroundColor = primaryColor
+        
+        locationTableView.backgroundColor = primaryColor
+        
         locationTableView.delegate = self
         locationTableView.dataSource = self
         

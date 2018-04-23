@@ -29,6 +29,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
+        self.view.backgroundColor = primaryColor
+        
+        tableView.backgroundColor = lightPrimaryColor
     
         
         // mainViewModel.updateAgroup(oldGroup: groups[0], newName: "Updated")
@@ -42,7 +45,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
         super.viewDidAppear(animated)
         
-        lastRowPosition = mainViewModel.getGroups().count
+        lastRowPosition = mainViewModel.getGroups().count + 1
         
         groups = MainViewModel().getGroups()
         
@@ -50,50 +53,73 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
     }
 
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
+    func numberOfSections(in tableView: UITableView) -> Int {
+        if(mainViewModel.getGroups().count > 0)
+        {
+            lastRowPosition = mainViewModel.getGroups().count + 1
+        }
+        
+        return mainViewModel.getGroups().count + 2
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
        
-        if(mainViewModel.getGroups().count > 0)
-        {
-            lastRowPosition = mainViewModel.getGroups().count
-        }
-    
-        return mainViewModel.getGroups().count + 1
-        
+       
+        return 1
     }
     
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        
+        return 30
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplayFooterView view: UIView, forSection section: Int) {
+        
+        view.tintColor = lightPrimaryColor
+    }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
 
-        
-        if(indexPath.row == lastRowPosition)
+        if(indexPath.section == lastRowPosition)
         {
             
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell2")!
+            
+            cell.backgroundColor =  buttonColor
+
+            cell.layer.cornerRadius = 30
+            cell.layer.masksToBounds = true
             
            cell.textLabel?.text = "Add a new group"
             
             return cell //4.
         }
-        
+        else if(indexPath.section == lastRowPosition - 1)
+            {
+                let cell = UITableViewCell()
+                
+                cell.backgroundColor = lightPrimaryColor
+                
+                return cell
+            }
         else{
         
-            let cell = tableView.dequeueReusableCell(withIdentifier: "cell1")  as! GroupTableCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "cell1")
+                as! GroupTableCell
+            
+            cell.backgroundColor =  secondaryColor
+            
+            cell.layer.cornerRadius = 30
+            cell.layer.masksToBounds = true
             
             let groups = mainViewModel.getGroups()
             
-            // let row = indexPath.row
-        
-            let text = groups[indexPath.row].name! //2.
+            let text = groups[indexPath.section].name! //2.
             
             cell.groupNameLabel.text = text //3.
             
-            cell.studentsLabel.text = "\(studentViewModel.getGroupStudents(studentsGroup: groups[indexPath.row]).count)"
+            cell.studentsLabel.text = "\(studentViewModel.getGroupStudents(studentsGroup: groups[indexPath.section]).count)"
             
-            cell.sessionsLabel.text = "\(groups[indexPath.row].sessions!.count)"
+            cell.sessionsLabel.text = "\(groups[indexPath.section].sessions!.count)"
             
             return cell //4.
         }
@@ -173,14 +199,14 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         tableView.deselectRow(at: indexPath, animated: true)
 
-        if(indexPath.row == lastRowPosition)
+        if(indexPath.section == lastRowPosition)
         {
             addGroup()
         }
         
         else{
             
-            currentSelectedGroup = mainViewModel.getGroups()[indexPath.row]
+            currentSelectedGroup = mainViewModel.getGroups()[indexPath.section]
             
             performSegue(withIdentifier: "selectedGroupSegue", sender: self)
 
@@ -189,47 +215,19 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     
-//    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-//
-//        return true
-//    }
-//
-//    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-//
-//        if editingStyle == .delete {
-//
-//            if (indexPath.row != lastRowPosition) {
-//
-//
-//                let shareMenu = UIAlertController(title: "Deleting \(self.mainViewModel.getGroups()[indexPath.row].name!) Group", message: "Are your sure?", preferredStyle: UIAlertControllerStyle.alert)
-//
-//                let twitterAction = UIAlertAction(title: "Delete", style: UIAlertActionStyle.default, handler: { action in
-//                    print("testing deletion")
-//                })
-//                let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil)
-//
-//                shareMenu.addAction(twitterAction)
-//                shareMenu.addAction(cancelAction)
-//
-//                self.present(shareMenu, animated: true)
-//
-//
-//            }
-//        }
-//    }
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]?
     {
-        if (indexPath.row != lastRowPosition) {
+        if (indexPath.section != lastRowPosition) {
         let deleteGroupAction = UITableViewRowAction(style: UITableViewRowActionStyle.default, title: "Delete" , handler: { (action:UITableViewRowAction, indexPath: IndexPath) -> Void in
 
-            let alert = UIAlertController(title: "Deleting \(self.mainViewModel.getGroups()[indexPath.row].name!) Group", message: "Deleting this group will delete its attendance history as well?", preferredStyle: UIAlertControllerStyle.alert)
+            let alert = UIAlertController(title: "Deleting \(self.mainViewModel.getGroups()[indexPath.section].name!) Group", message: "Deleting this group will delete its attendance history as well?", preferredStyle: UIAlertControllerStyle.alert)
             
 
 
             let deleteAction = UIAlertAction(title: "Delete", style: UIAlertActionStyle.default, handler: { action in
                 
-                let group = self.mainViewModel.getGroups()[indexPath.row]
+                let group = self.mainViewModel.getGroups()[indexPath.section]
                 
                 let groupAttendance = AttendanceModelView().getGroupAttendance(studentsGroup: group)
                 
@@ -241,7 +239,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 
                 self.mainViewModel.deleteAGroup(entity: group)
 
-                self.lastRowPosition = self.mainViewModel.getGroups().count
+                self.lastRowPosition = self.mainViewModel.getGroups().count + 1
                 
                 tableView.reloadData()
                 
@@ -257,7 +255,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             
             let EditGroupAction = UITableViewRowAction(style: UITableViewRowActionStyle.normal, title: "Edit" , handler: { (action:UITableViewRowAction, indexPath: IndexPath) -> Void in
                 
-                self.currentSelectedGroup = self.mainViewModel.getGroups()[indexPath.row]
+                self.currentSelectedGroup = self.mainViewModel.getGroups()[indexPath.section]
                 
                 self.performSegue(withIdentifier: "editGroupSegue", sender: self)
                 
