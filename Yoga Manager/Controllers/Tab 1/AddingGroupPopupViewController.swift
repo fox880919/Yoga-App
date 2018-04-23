@@ -16,6 +16,7 @@ class AddingGroupPopupViewController: UIViewController {
     
     @IBOutlet weak var subscriptionPriceTextField: UITextField!
     
+    @IBOutlet weak var shownView: UIView!
     var selectedGroup: Group?
     
     var allGroups = MainViewModel().getGroups()
@@ -24,7 +25,9 @@ class AddingGroupPopupViewController: UIViewController {
         super.viewDidLoad()
         
 
-
+        shownView.layer.cornerRadius = 30
+        shownView.layer.masksToBounds = true
+        
         priceTextField.keyboardType = UIKeyboardType.numberPad
         
         priceTextField.text! = "0"

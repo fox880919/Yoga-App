@@ -226,10 +226,25 @@ class SelectedGroupViewController: UIViewController, UICollectionViewDelegate, U
     
      func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
      
-        return "Sessions"
+        if (section == 0)
+        {
+
+            return "Sessions"
+        }
+        return ""
     }
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        
+        return 30
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplayFooterView view: UIView, forSection section: Int) {
+        
+        view.tintColor = lightPrimaryColor
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
         
         let sessionCount = sessionViewModel.getGroupSessions(studentsGroup: studentsGroup).count
         
@@ -253,6 +268,13 @@ class SelectedGroupViewController: UIViewController, UICollectionViewDelegate, U
             
             let cell = tableView.dequeueReusableCell(withIdentifier: "addSessionCell")!
             
+            cell.layer.cornerRadius = 30
+            cell.layer.masksToBounds = true
+            
+            cell.backgroundColor = buttonColor
+            
+            cell.textLabel?.backgroundColor = buttonColor
+            
             cell.textLabel?.text = "Add a new session"
             
             return cell //4.
@@ -262,6 +284,9 @@ class SelectedGroupViewController: UIViewController, UICollectionViewDelegate, U
         else{
             
             let cell = tableView.dequeueReusableCell(withIdentifier: "sessionsCell1") as! SessionCell
+            
+            cell.layer.cornerRadius = 30
+            cell.layer.masksToBounds = true
             
             let session = allGroupSessions[indexPath.section]
             

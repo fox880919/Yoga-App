@@ -45,7 +45,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
         super.viewDidAppear(animated)
         
-        lastRowPosition = mainViewModel.getGroups().count + 1
+        if(mainViewModel.getGroups().count > 0)
+        {
+            
+            lastRowPosition = mainViewModel.getGroups().count + 1
+
+        }
         
         groups = MainViewModel().getGroups()
         
@@ -60,6 +65,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             lastRowPosition = mainViewModel.getGroups().count + 1
             
             return mainViewModel.getGroups().count + 2
+
+        }
+        else{
+            
+            lastRowPosition = 0
 
         }
         
@@ -79,7 +89,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func tableView(_ tableView: UITableView, willDisplayFooterView view: UIView, forSection section: Int) {
         
-        view.tintColor = lightPrimaryColor
+        view.tintColor = primaryColor
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
@@ -90,7 +100,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             
             cell.backgroundColor =  buttonColor
 
-            cell.layer.cornerRadius = 30
+            cell.layer.cornerRadius = 10
             cell.layer.masksToBounds = true
             
            cell.textLabel?.text = "Add a new group"

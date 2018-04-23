@@ -759,6 +759,16 @@ extension SubscriptionsViewController: UITableViewDataSource, UITableViewDelegat
         return groupSubscriptions.count
     }
     
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        
+        return 30
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplayFooterView view: UIView, forSection section: Int) {
+        
+        view.tintColor = lightPrimaryColor
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let groupSubscriptions = StudentSubscriptionViewModel().getGroupSubscriptions(studentsGroup: groups[indexPath.section])
@@ -768,6 +778,8 @@ extension SubscriptionsViewController: UITableViewDataSource, UITableViewDelegat
         let cell = tableView.dequeueReusableCell(withIdentifier: "subscriptionCell", for: indexPath)
             as! SubscriptionCell
         
+        cell.layer.cornerRadius = 30
+        cell.layer.masksToBounds = true
         
         cell.costLbl.text! = "\((studentSubscription.group?.subscription_price)!)"
 
@@ -888,7 +900,9 @@ extension SubscriptionsViewController: UITableViewDataSource, UITableViewDelegat
         
         header.textLabel?.textAlignment = .center
         
-        header.backgroundView?.backgroundColor = getCustomizedMagneta()
+        header.textLabel?.textColor = secondaryColor
+        
+        header.backgroundView?.backgroundColor = primaryColor
     }
     
     

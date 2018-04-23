@@ -75,6 +75,10 @@ extension AttendanceViewController: UITableViewDataSource, UITableViewDelegate{
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "attendanceCell1") as! SessionCell
         
+        cell.layer.cornerRadius = 30
+        cell.layer.masksToBounds = true
+        
+        
         let sectionGroup = groupViewModel.getGroups()[indexPath.section]
         
         let allSessions = sessionViewModel.getGroupSessions(studentsGroup: sectionGroup)
@@ -121,13 +125,25 @@ extension AttendanceViewController: UITableViewDataSource, UITableViewDelegate{
         header.textLabel?.font = UIFont(name: "Futura", size: 20)!
         
         header.textLabel?.textAlignment = .center
+        
+        header.textLabel?.textColor = secondaryColor
 
-        header.backgroundView?.backgroundColor = getCustomizedMagneta()
+        header.backgroundView?.backgroundColor = primaryColor
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        
+        return 30
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplayFooterView view: UIView, forSection section: Int) {
+        
+        view.tintColor = primaryColor
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
     {
-        return 150;//Choose your custom row height
+        return 90//Choose your custom row height
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
