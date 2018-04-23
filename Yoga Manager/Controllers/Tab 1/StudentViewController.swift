@@ -208,8 +208,7 @@ UINavigationControllerDelegate, UIPopoverPresentationControllerDelegate {
                 studentViewModel.updateAStudent(oldStudent: oldStudent, studentName: studentNameTxtField.text, studentEmail: studentEmailTxtField.text, studentAddress: studentAddressTxtField.text, studentPhone: studentPhoneTxtField.text, studentPhoto: studentImage.image!, studentDateOfBirth: studentDOBPicker.date, studentIsMale: isMale)
             }
             else if let studentGroup = studentGroup{
-                
-               
+                               
                 studentViewModel.addANewStudent(studentName: studentNameTxtField.text, studentEmail: studentEmailTxtField.text, studentAddress: studentAddressTxtField.text, studentPhone: studentPhoneTxtField.text, studentPhoto: studentImage.image!, studentDateOfBirth: studentDOBPicker.date, studentIsMale: isMale, studentGroup: studentGroup)
             }
             
