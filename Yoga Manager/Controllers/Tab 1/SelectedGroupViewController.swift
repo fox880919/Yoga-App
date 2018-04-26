@@ -139,6 +139,18 @@ class SelectedGroupViewController: UIViewController, UICollectionViewDelegate, U
         }
         return UICollectionReusableView()
     }
+    
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        let header = view as! UITableViewHeaderFooterView
+        header.textLabel?.font = UIFont(name: "Futura", size: 20)!
+        
+        header.textLabel?.textAlignment = .center
+        
+        header.textLabel?.textColor = secondaryColor
+        
+        header.backgroundView?.backgroundColor = primaryColor
+    }
+
 
 
      func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -205,7 +217,7 @@ class SelectedGroupViewController: UIViewController, UICollectionViewDelegate, U
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize
     {
-        let cellSize = CGSize(width: (collectionView.bounds.width - (3 * 10))/2, height: 220)
+        let cellSize = CGSize(width: (collectionView.bounds.width - (3 * 10))/2, height: 180)
         
         return cellSize
         

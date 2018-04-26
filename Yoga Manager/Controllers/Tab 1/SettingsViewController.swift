@@ -12,6 +12,8 @@ class SettingsViewController: UIViewController {
 
     @IBOutlet weak var langauageSegmentedControl: UISegmentedControl!
     
+    @IBOutlet weak var themeSegmentedControl: UISegmentedControl!
+    
     @IBOutlet weak var locationTableView: UITableView!
     
     let locationViewModel = LocationModelView()
@@ -36,10 +38,16 @@ class SettingsViewController: UIViewController {
         
         self.navigationItem.rightBarButtonItem = saveBtn
         
-        if(isArabic())
+        if(isArabic)
         {
             langauageSegmentedControl.selectedSegmentIndex = 1
         }
+        
+        if(isThemeLight)
+        {
+            langauageSegmentedControl.selectedSegmentIndex = 1
+        }
+        
         // Do any additional setup after loading the view.
     }
 
@@ -51,6 +59,7 @@ class SettingsViewController: UIViewController {
    
         locationTableView.reloadData()
     }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -58,14 +67,29 @@ class SettingsViewController: UIViewController {
     
     @objc func saveBtnPressed()
     {
+        
         let languageIndex = langauageSegmentedControl.selectedSegmentIndex
         
         if(languageIndex == 1)
         {
+            
             saveLang(isArabic: true)
         }
         else{
+            
             saveLang(isArabic: false)
+        }
+        
+        let themeIndex = themeSegmentedControl.selectedSegmentIndex
+        
+        if(themeIndex == 1)
+        {
+            
+            saveTheme(isThemeLight: true)
+        }
+        else{
+            
+            saveTheme(isThemeLight: false)
         }
         
         navigationController?.popViewController(animated: true)

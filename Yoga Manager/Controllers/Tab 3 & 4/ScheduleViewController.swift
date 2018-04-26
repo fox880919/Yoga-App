@@ -325,19 +325,19 @@ class ScheduleViewController: UIViewController, SpreadsheetViewDataSource, Sprea
     
     func spreadsheetView(_ spreadsheetView: SpreadsheetView, widthForColumn column: Int) -> CGFloat {
         if case 0 = column {
-            return 70
+            return ((self.view.frame.width ) / 9)
         } else {
-            return 120
+            return ((self.view.frame.width ) / 9)
         }
     }
     
     func spreadsheetView(_ spreadsheetView: SpreadsheetView, heightForRow row: Int) -> CGFloat {
         if case 0 = row {
-            return 24
+            return 20
         } else if case 1 = row {
-            return 32
+            return 20
         } else {
-            return 40
+            return 20
         }
     }
     
@@ -353,24 +353,40 @@ class ScheduleViewController: UIViewController, SpreadsheetViewDataSource, Sprea
         if case (1...(dates.count + 1), 0) = (indexPath.column, indexPath.row) {
             let cell = spreadsheetView.dequeueReusableCell(withReuseIdentifier: String(describing: DateCell.self), for: indexPath) as! DateCell
             cell.label.text = dates[indexPath.column - 1]
+            
+            cell.label.font = UIFont.boldSystemFont(ofSize: 6.0)
             return cell
         } else if case (1...(days.count + 1), 1) = (indexPath.column, indexPath.row) {
             let cell = spreadsheetView.dequeueReusableCell(withReuseIdentifier: String(describing: DayTitleCell.self), for: indexPath) as! DayTitleCell
             cell.label.text = days[indexPath.column - 1]
+
+            cell.label.font = UIFont.boldSystemFont(ofSize: 6.0)
+
             cell.label.textColor = dayColors[indexPath.column - 1]
             return cell
         } else if case (0, 1) = (indexPath.column, indexPath.row) {
             let cell = spreadsheetView.dequeueReusableCell(withReuseIdentifier: String(describing: TimeTitleCell.self), for: indexPath) as! TimeTitleCell
             cell.label.text = "TIME"
+            
+            cell.label.font = UIFont.boldSystemFont(ofSize: 6.0)
+
             return cell
         } else if case (0, 2...(hours.count + 2)) = (indexPath.column, indexPath.row) {
             let cell = spreadsheetView.dequeueReusableCell(withReuseIdentifier: String(describing: TimeCell.self), for: indexPath) as! TimeCell
             cell.label.text = hours[indexPath.row - 2]
+            
+            cell.label.font = UIFont.boldSystemFont(ofSize: 6.0)
+
             cell.backgroundColor = indexPath.row % 2 == 0 ? evenRowColor : oddRowColor
             return cell
         } else if case (1...(days.count + 1), 2...(hours.count + 2)) = (indexPath.column, indexPath.row) {
             let cell = spreadsheetView.dequeueReusableCell(withReuseIdentifier: String(describing: ScheduleCell.self), for: indexPath) as! ScheduleCell
             let text = data[indexPath.column - 1][indexPath.row - 2]
+            
+            cell.label.font = UIFont.boldSystemFont(ofSize: 6.0)
+            
+            cell.label.numberOfLines = 0
+
             if !text.isEmpty {
                 cell.label.text = text
                 

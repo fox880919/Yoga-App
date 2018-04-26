@@ -129,7 +129,12 @@ extension BirthdayViewController: UITableViewDataSource, UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return organizedStudents[section].count
+        if(organizedStudents.count > 0)
+        {
+            return organizedStudents[section].count
+        }
+        
+        return 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

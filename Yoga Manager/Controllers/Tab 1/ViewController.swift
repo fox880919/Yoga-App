@@ -10,8 +10,9 @@ import UIKit
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate{
     
+    @IBOutlet weak var groupTitleLbl: UILabel!
+    
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var barAddGroupButton: UIBarButtonItem!
     
     let mainViewModel = MainViewModel()
     
@@ -27,23 +28,39 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
         
-        self.view.backgroundColor = primaryColor
+        let addGroupBtn = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addGroup))
         
-        tableView.backgroundColor = lightPrimaryColor
-    
-        
-        // mainViewModel.updateAgroup(oldGroup: groups[0], newName: "Updated")
-        
+        self.navigationItem.rightBarButtonItem = addGroupBtn
         
         tableView.delegate = self
         tableView.dataSource = self
     }
 
+    func prepareLanguage()
+    {
+
+            self.title = langauageStrings.AppTitle
+
+        groupTitleLbl.text! = langauageStrings.GroupTitle
+    }
+    
+    func prepareLayout(){
+     
+        self.view.backgroundColor = primaryColor
+        
+        tableView.backgroundColor = primaryColor
+        
+        groupTitleLbl.textColor = secondaryColor
+        
+    }
     override func viewDidAppear(_ animated: Bool) {
 
         super.viewDidAppear(animated)
+        
+        prepareLayout()
+        
+        prepareLanguage()
         
         if(mainViewModel.getGroups().count > 0)
         {
@@ -98,13 +115,15 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell2")!
             
-            cell.backgroundColor =  buttonColor
+            cell.textLabel?.textColor = buttonFontColor
 
+            cell.backgroundColor =  buttonColor
+            
             cell.layer.cornerRadius = 10
             cell.layer.masksToBounds = true
             
-           cell.textLabel?.text = "Add a new group"
-            
+           cell.textLabel?.text = langauageStrings.GroupCellAddNewTitle
+                        
             return cell //4.
         }
         else if(indexPath.section == lastRowPosition - 1)
@@ -117,8 +136,19 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             }
         else{
         
-            let cell = tableView.dequeueReusableCell(withIdentifier: "cell1")
+            
+            var cell: GroupTableCell!
+            
+            
+            cell = tableView.dequeueReusableCell(withIdentifier: "cell1")
                 as! GroupTableCell
+            
+            if(isArabic){
+                
+                cell = tableView.dequeueReusableCell(withIdentifier: "cell1-1")
+                    as! GroupTableCell
+            }
+
             
             cell.backgroundColor =  secondaryColor
             
@@ -150,12 +180,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
     }
     
-    @IBAction func addGroupBtnPressed(_ sender: Any) {
-        
-        addGroup()
-    }
     
-    func addGroup()
+    @objc func addGroup()
     {
         performSegue(withIdentifier: "addingGroupSegue", sender: self)
         

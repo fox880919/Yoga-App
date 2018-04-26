@@ -10,7 +10,12 @@ import UIKit
 
 class GroupTableCell : UITableViewCell {
     
-
+    @IBOutlet weak var sessionTitleLbl: UILabel!
+    
+    @IBOutlet weak var cellTitleLbl: UILabel!
+    
+    @IBOutlet weak var studentsTitleLbl: UILabel!
+    
     @IBOutlet weak var groupNameLabel: UILabel!
     
     @IBOutlet weak var studentsLabel: UILabel!
@@ -46,18 +51,39 @@ class GroupTableCell : UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-//        self.backgroundView?.backgroundColor = UIColor.red
-//        backgroundColor =  secondaryColor
-//
-//        groupNameLabel.backgroundColor =  secondaryColor
-//        
-//        studentsLabel.backgroundColor =  secondaryColor
-//        
-//        sessionsLabel.backgroundColor =  secondaryColor
         
+      //  self.backgroundView?.backgroundColor = primaryColor
+        
+     //   self.backgroundColor = primaryColor
+
+        
+        self.contentView.backgroundColor = secondaryColor
+            
+        
+        sessionTitleLbl.backgroundColor = secondaryColor
+        
+        studentsTitleLbl.backgroundColor = secondaryColor
+        
+        studentsLabel.backgroundColor = secondaryColor
+        
+        sessionsLabel.backgroundColor = secondaryColor
+        
+        cellTitleLbl .backgroundColor = secondaryColor
+        
+        
+        cellTitleLbl.textColor = primaryColor
+        
+        sessionTitleLbl.textColor = primaryColor
+        
+        studentsTitleLbl.textColor = primaryColor
+
         studentsLabel.textColor =  UIColor.blue
         
         sessionsLabel.textColor =  UIColor.blue
+        
+        sessionTitleLbl.text = langauageStrings.GroupCellSessionTitle
+        
+        studentsTitleLbl.text = langauageStrings.GroupCellStudentTitle
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

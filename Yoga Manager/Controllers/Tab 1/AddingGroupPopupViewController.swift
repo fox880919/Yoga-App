@@ -76,7 +76,7 @@ class AddingGroupPopupViewController: UIViewController {
                 
                 for group in allGroups{
                     
-                    if group.name! ==  grouNameTextField.text!{
+                    if group.name! ==  grouNameTextField.text! && group.objectID != selectedGroup?.objectID{
                         
                         showAlert(message: "Another group with the same name exists")
                         return

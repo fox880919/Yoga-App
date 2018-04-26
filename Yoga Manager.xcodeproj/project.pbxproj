@@ -14,6 +14,7 @@
 		A3290EFE207FFC4F00D05ACB /* AttendanceStudentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3290EFD207FFC4F00D05ACB /* AttendanceStudentsViewController.swift */; };
 		A344D413206EC97300262E80 /* StudentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A344D412206EC97300262E80 /* StudentViewController.swift */; };
 		A354722C207E464300C1C1C5 /* AdditionalMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = A354722B207E464300C1C1C5 /* AdditionalMethods.swift */; };
+		A35CA1CA208FC09900AAF65A /* DateMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = A35CA1C9208FC09900AAF65A /* DateMethods.swift */; };
 		A35F3101208CDF8800CB494F /* BirthdayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A35F3100208CDF8800CB494F /* BirthdayViewController.swift */; };
 		A365BDAE208D3A0900C04AFD /* MColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = A365BDAD208D3A0900C04AFD /* MColors.swift */; };
 		A36775EF2080B9D200821265 /* BEMAnimationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A36775E82080B9D200821265 /* BEMAnimationManager.m */; };
@@ -37,9 +38,11 @@
 		A3C62F68206AE62F00D8B295 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C62F67206AE62F00D8B295 /* MainViewModel.swift */; };
 		A3C62F6B206AE6BD00D8B295 /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C62F6A206AE6BD00D8B295 /* CoreDataHelper.swift */; };
 		A3CC61DE208143C2006EBCFF /* AttendanceHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CC61DD208143C2006EBCFF /* AttendanceHistoryViewController.swift */; };
+		A3E060B7209101140023FD45 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3E060B6209101140023FD45 /* CloudKit.framework */; };
 		A3E68596207D56C5000E12F6 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E68595207D56C5000E12F6 /* Constants.swift */; };
 		A3E68598207D59E6000E12F6 /* LocationModelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E68597207D59E6000E12F6 /* LocationModelView.swift */; };
 		A3E78EF52077F5CC001B7706 /* SelectedGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E78EF42077F5CC001B7706 /* SelectedGroupViewController.swift */; };
+		A3E7AC9620908C3300C5BB67 /* LanguageStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E7AC9520908C3300C5BB67 /* LanguageStrings.swift */; };
 		A3F18D442089FD250044E08D /* ScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F18D432089FD250044E08D /* ScheduleViewController.swift */; };
 		A3F18D46208A00320044E08D /* Schedule Cells.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F18D45208A00320044E08D /* Schedule Cells.swift */; };
 		B3F129559F9E0ABCE6CF4FDA /* Pods_Yoga_Manager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EFA20DCDE4B097D7FC1CEB8 /* Pods_Yoga_Manager.framework */; };
@@ -66,6 +69,7 @@
 		A3290EFD207FFC4F00D05ACB /* AttendanceStudentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttendanceStudentsViewController.swift; sourceTree = "<group>"; };
 		A344D412206EC97300262E80 /* StudentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentViewController.swift; sourceTree = "<group>"; };
 		A354722B207E464300C1C1C5 /* AdditionalMethods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalMethods.swift; sourceTree = "<group>"; };
+		A35CA1C9208FC09900AAF65A /* DateMethods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateMethods.swift; sourceTree = "<group>"; };
 		A35F3100208CDF8800CB494F /* BirthdayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthdayViewController.swift; sourceTree = "<group>"; };
 		A365BDAD208D3A0900C04AFD /* MColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MColors.swift; sourceTree = "<group>"; };
 		A36775E72080B9D200821265 /* BEMCheckBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BEMCheckBox.h; sourceTree = "<group>"; };
@@ -96,9 +100,12 @@
 		A3C62F67206AE62F00D8B295 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		A3C62F6A206AE6BD00D8B295 /* CoreDataHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataHelper.swift; sourceTree = "<group>"; };
 		A3CC61DD208143C2006EBCFF /* AttendanceHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttendanceHistoryViewController.swift; sourceTree = "<group>"; };
+		A3E060B5209101060023FD45 /* Yoga Manager.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Yoga Manager.entitlements"; sourceTree = "<group>"; };
+		A3E060B6209101140023FD45 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		A3E68595207D56C5000E12F6 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		A3E68597207D59E6000E12F6 /* LocationModelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationModelView.swift; sourceTree = "<group>"; };
 		A3E78EF42077F5CC001B7706 /* SelectedGroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedGroupViewController.swift; sourceTree = "<group>"; };
+		A3E7AC9520908C3300C5BB67 /* LanguageStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageStrings.swift; sourceTree = "<group>"; };
 		A3F18D432089FD250044E08D /* ScheduleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleViewController.swift; sourceTree = "<group>"; };
 		A3F18D45208A00320044E08D /* Schedule Cells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Schedule Cells.swift"; sourceTree = "<group>"; };
 		CB065AAA20873422006C1860 /* StudentSubscriptionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentSubscriptionViewModel.swift; sourceTree = "<group>"; };
@@ -119,6 +126,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B3F129559F9E0ABCE6CF4FDA /* Pods_Yoga_Manager.framework in Frameworks */,
+				A3E060B7209101140023FD45 /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -128,6 +136,7 @@
 		3DD4202EF3AD567480DFED21 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A3E060B6209101140023FD45 /* CloudKit.framework */,
 				3EFA20DCDE4B097D7FC1CEB8 /* Pods_Yoga_Manager.framework */,
 			);
 			name = Frameworks;
@@ -204,6 +213,7 @@
 		A3C62F4D206AD8F400D8B295 /* Yoga Manager */ = {
 			isa = PBXGroup;
 			children = (
+				A3E060B5209101060023FD45 /* Yoga Manager.entitlements */,
 				CBB0718A207F62F900DB3DE9 /* IBDesignables */,
 				A3ED16EE207BBEA300387489 /* Classes */,
 				CBC77A15206D0364000A8BD5 /* Custom Cells */,
@@ -259,6 +269,8 @@
 				A3E68595207D56C5000E12F6 /* Constants.swift */,
 				A354722B207E464300C1C1C5 /* AdditionalMethods.swift */,
 				A365BDAD208D3A0900C04AFD /* MColors.swift */,
+				A35CA1C9208FC09900AAF65A /* DateMethods.swift */,
+				A3E7AC9520908C3300C5BB67 /* LanguageStrings.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -342,6 +354,14 @@
 					A3C62F4A206AD8F400D8B295 = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+							com.apple.iCloud = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -464,8 +484,10 @@
 				A3C62F6B206AE6BD00D8B295 /* CoreDataHelper.swift in Sources */,
 				A3C62F68206AE62F00D8B295 /* MainViewModel.swift in Sources */,
 				A354722C207E464300C1C1C5 /* AdditionalMethods.swift in Sources */,
+				A35CA1CA208FC09900AAF65A /* DateMethods.swift in Sources */,
 				A3C62F51206AD8F400D8B295 /* ViewController.swift in Sources */,
 				CB455AFC2070D1DC008EA09D /* AllStudentsViewController.swift in Sources */,
+				A3E7AC9620908C3300C5BB67 /* LanguageStrings.swift in Sources */,
 				CB065AAB20873422006C1860 /* StudentSubscriptionViewModel.swift in Sources */,
 				A3C62F4F206AD8F400D8B295 /* AppDelegate.swift in Sources */,
 				CBB07190207F734A00DB3DE9 /* AttendanceViewModel.swift in Sources */,
@@ -632,6 +654,7 @@
 			baseConfigurationReference = 121603224B8F240A854BCAFC /* Pods-Yoga Manager.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Yoga Manager/Yoga Manager.entitlements";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = S6F7P72E5D;
@@ -651,6 +674,7 @@
 			baseConfigurationReference = 005F6E47C38891D11993EFB2 /* Pods-Yoga Manager.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Yoga Manager/Yoga Manager.entitlements";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = S6F7P72E5D;
