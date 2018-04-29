@@ -49,6 +49,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
      
         self.view.backgroundColor = primaryColor
         
+            
+        
         tableView.backgroundColor = primaryColor
         
         groupTitleLbl.textColor = secondaryColor
@@ -188,6 +190,15 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if(isArabic)
+        {
+            
+            let backItem = UIBarButtonItem()
+            backItem.title = "العودة"
+            navigationItem.backBarButtonItem = backItem
+
+        }
         
         if segue.identifier == "addingGroupSegue" {
             

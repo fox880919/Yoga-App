@@ -10,9 +10,15 @@ import UIKit
 
 class SettingsViewController: UIViewController {
 
+    @IBOutlet weak var languageLbl: UILabel!
+    
+    @IBOutlet weak var themeLbl: UILabel!
+    
     @IBOutlet weak var langauageSegmentedControl: UISegmentedControl!
     
     @IBOutlet weak var themeSegmentedControl: UISegmentedControl!
+    
+    @IBOutlet weak var AllLocationsListTitleLbl: UILabel!
     
     @IBOutlet weak var locationTableView: UITableView!
     
@@ -45,7 +51,7 @@ class SettingsViewController: UIViewController {
         
         if(isThemeLight)
         {
-            langauageSegmentedControl.selectedSegmentIndex = 1
+            themeSegmentedControl.selectedSegmentIndex = 1
         }
         
         // Do any additional setup after loading the view.
@@ -55,11 +61,43 @@ class SettingsViewController: UIViewController {
         
         super.viewDidAppear(animated)
         
+        prepareLayout()
+        
         allLocations = locationViewModel.getAllLocations()
    
         locationTableView.reloadData()
+        
+        langauageSegmentedControl.isEnabled = false
+        
+        themeSegmentedControl.isEnabled = false
     }
     
+    func prepareLayout(){
+        
+        self.title = langauageStrings.settingsitle
+        
+        self.view.backgroundColor = primaryColor
+        
+        locationTableView.backgroundColor = primaryColor
+        
+        themeLbl.text = langauageStrings.ThemeLblTitle
+        
+        themeLbl.textColor = secondaryColor
+        
+        languageLbl.text = langauageStrings.langaugeLblTitle
+        
+        languageLbl.textColor = secondaryColor
+        
+        AllLocationsListTitleLbl.text = langauageStrings.AllLocationsListTitle
+        
+        AllLocationsListTitleLbl.textColor = secondaryColor
+        
+        themeSegmentedControl.setTitle(langauageStrings.DarkThemeSegmentTitle1, forSegmentAt: 0)
+        
+        themeSegmentedControl.setTitle(langauageStrings.DarkThemeSegmentTitle2, forSegmentAt: 1)
+        
+        themeSegmentedControl.tintColor = secondaryColor
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

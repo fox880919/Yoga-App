@@ -85,6 +85,7 @@ class SubscriptionsViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         
+        allPickerGroups = MainViewModel().getGroups()
         subscriptionTableView.reloadData()
     }
 

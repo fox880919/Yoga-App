@@ -85,12 +85,20 @@ class SelectedGroupViewController: UIViewController, UICollectionViewDelegate, U
         
         students = studentViewModel.getGroupStudents(studentsGroup: studentsGroup)
         
+        prepareLayout()
+        
         self.studentsCollectionView.reloadData()
         
         allGroupSessions = sessionViewModel.getGroupSessions(studentsGroup: studentsGroup)
         
         self.sessionsTableView.reloadData()
     }
+    
+    func prepareLayout()
+    {
+        
+    }
+
     
     @objc func addStudent ()
     {
@@ -361,7 +369,7 @@ class SelectedGroupViewController: UIViewController, UICollectionViewDelegate, U
         if (indexPath.section != lastRowPosition) {
             let shareAction = UITableViewRowAction(style: UITableViewRowActionStyle.default, title: "Delete" , handler: { (action:UITableViewRowAction, indexPath: IndexPath) -> Void in
                 
-                let alert = UIAlertController(title: "Deleting Session number \(indexPath.section + 1)", message: "Are your sure?", preferredStyle: UIAlertControllerStyle.alert)
+                let alert = UIAlertController(title: "Deleting Session number \(indexPath.section + 1)", message: "Are you sure?", preferredStyle: UIAlertControllerStyle.alert)
                 
                 let deleteAction = UIAlertAction(title: "Delete", style: UIAlertActionStyle.default, handler: { action in
                     

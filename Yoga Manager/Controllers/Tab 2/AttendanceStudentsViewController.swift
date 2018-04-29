@@ -61,6 +61,16 @@ class AttendanceStudentsViewController: UIViewController {
         pickerArray = getArrayOfWeekDays(weekDay: Date.Weekday(rawValue: selectedSession.week_day!.lowercased())!, numberOfForwardDays: 0, numberOfBackwardDays: 4)
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        subscriptions = StudentSubscriptionViewModel().getGroupSubscriptions(studentsGroup: selectedGroup)
+        
+        // Do any additional setup after loading the view.
+        
+        pickerArray = getArrayOfWeekDays(weekDay: Date.Weekday(rawValue: selectedSession.week_day!.lowercased())!, numberOfForwardDays: 0, numberOfBackwardDays: 4)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

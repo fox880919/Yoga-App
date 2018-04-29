@@ -14,6 +14,17 @@ class AddingGroupPopupViewController: UIViewController {
     
     @IBOutlet weak var priceTextField: UITextField!
     
+    @IBOutlet weak var AddingGroupTitleLbl: UILabel!
+    
+    @IBOutlet weak var sessionPriceTitleLbl: UILabel!
+    
+    @IBOutlet weak var subscriptionPriceTitleLbl: UILabel!
+    
+    
+    @IBOutlet weak var submitButton: UIButton!
+    
+    @IBOutlet weak var cancelButton: UIButton!
+    
     @IBOutlet weak var subscriptionPriceTextField: UITextField!
     
     @IBOutlet weak var shownView: UIView!
@@ -48,7 +59,36 @@ class AddingGroupPopupViewController: UIViewController {
         
         // Do any additional setup after loading the view.
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        prepareLayout()
+    }
+    
+    func prepareLayout(){
+        
+        self.title = langauageStrings.GroupTitle
+        
+        shownView.backgroundColor = secondaryColor
+        
+        AddingGroupTitleLbl.text = langauageStrings.addingGroupTitle
+        
+        AddingGroupTitleLbl.textColor = primaryColor
+        
+        subscriptionPriceTitleLbl.text = langauageStrings.subscriptionPriceTitle
+        
+        subscriptionPriceTitleLbl.textColor = primaryColor
 
+        sessionPriceTitleLbl.text = langauageStrings.sessionPriceTitle
+        
+        sessionPriceTitleLbl.textColor = primaryColor
+        
+        cancelButton.titleLabel?.text = langauageStrings.cancelButtonTitle
+        
+        submitButton.titleLabel?.text = langauageStrings.submitButtonTitle
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

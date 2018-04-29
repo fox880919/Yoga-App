@@ -27,11 +27,11 @@ import Foundation
     private let _lightPrimaryColor = UIColor(red:0.07, green:0.18, blue:0.24, alpha:1.0)
 
 
-    private let _secondPrimaryColor = UIColor(red:0.94, green:0.97, blue:0.98, alpha:1.0)
+    private let _secondPrimaryColor = UIColor(red:1.00, green:0.80, blue:0.80, alpha:1.0)
 
-    private let _secondSecondaryColor = UIColor(red:0.94, green:0.97, blue:0.98, alpha:1.0)
+    private let _secondSecondaryColor = UIColor(red:0.98, green:0.67, blue:0.36, alpha:1.0)
 
-    private let _lightSecondPrimaryColor = UIColor(red:0.94, green:0.97, blue:0.98, alpha:1.0)
+    private let _lightSecondPrimaryColor = UIColor(red:1.00, green:0.80, blue:0.80, alpha:1.0)
 
 
 

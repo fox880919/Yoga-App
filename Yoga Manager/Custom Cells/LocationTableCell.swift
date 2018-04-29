@@ -12,13 +12,19 @@ class LocationTableCell : UITableViewCell {
     
     @IBOutlet weak var locationNameLbl: UILabel!
     
+    @IBOutlet weak var addressTitleLbl: UILabel!
+    
     @IBOutlet weak var addressLbl: UILabel!
     
+    @IBOutlet weak var coordinatestTtleLbl: UILabel!
     @IBOutlet weak var googleUrlLbl: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
+        addressLbl.text = langauageStrings.addressLbl
+        
+        coordinatestTtleLbl.text = langauageStrings.coordinatesLbl
         
         locationNameLbl.textColor =  UIColor.blue
         
