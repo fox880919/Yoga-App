@@ -102,22 +102,27 @@ class SelectedGroupViewController: UIViewController, UICollectionViewDelegate, U
     
     @objc func addStudent ()
     {
-        let PhotoAlert = UIAlertController(title: "Student", message: "", preferredStyle: UIAlertControllerStyle.alert)
+        let newStudentAlert = UIAlertController(title: "Student", message: "", preferredStyle: UIAlertControllerStyle.alert)
         
         
-        PhotoAlert.addAction(UIAlertAction(title: "New", style: .default, handler: { (action: UIAlertAction!) in
+        newStudentAlert.addAction(UIAlertAction(title: "New", style: .default, handler: { (action: UIAlertAction!) in
             
             self.performSegue(withIdentifier: "addStudentSegue", sender: self)
             
         }))
         
-        PhotoAlert.addAction(UIAlertAction(title: "Existing", style: .default, handler: { (action: UIAlertAction!) in
+        newStudentAlert.addAction(UIAlertAction(title: "Existing", style: .default, handler: { (action: UIAlertAction!) in
             
             self.performSegue(withIdentifier: "goToAllStudentsSegue", sender: self)
             
         }))
         
-        present(PhotoAlert, animated: true, completion: nil)
+        newStudentAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action: UIAlertAction!) in
+            
+            
+        }))
+        
+        present(newStudentAlert, animated: true, completion: nil)
         
     }
     
@@ -417,22 +422,25 @@ class SelectedGroupViewController: UIViewController, UICollectionViewDelegate, U
     func addSession()
     {
         
-        let PhotoAlert = UIAlertController(title: "Adding Session", message: "Add a new or an existing session?", preferredStyle: UIAlertControllerStyle.alert)
+        let newSessionALert = UIAlertController(title: "Adding Session", message: "Add a new or an existing session?", preferredStyle: UIAlertControllerStyle.alert)
         
         
-        PhotoAlert.addAction(UIAlertAction(title: "New", style: .default, handler: { (action: UIAlertAction!) in
+        newSessionALert.addAction(UIAlertAction(title: "New", style: .default, handler: { (action: UIAlertAction!) in
             
             self.performSegue(withIdentifier: "addSessionSegue", sender: self)
 
         }))
         
-        PhotoAlert.addAction(UIAlertAction(title: "Existing", style: .default, handler: { (action: UIAlertAction!) in
+        newSessionALert.addAction(UIAlertAction(title: "Existing", style: .default, handler: { (action: UIAlertAction!) in
             
             self.addExistingSession()
             
         }))
         
-        present(PhotoAlert, animated: true, completion: nil)
+        newSessionALert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action: UIAlertAction!) in
+                        
+        }))
+        present(newSessionALert, animated: true, completion: nil)
         
 
     }

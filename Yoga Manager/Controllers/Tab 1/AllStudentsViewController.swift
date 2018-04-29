@@ -29,8 +29,6 @@ class AllStudentsViewController: UIViewController, UICollectionViewDelegate, UIC
         allStudentsCollectionView.dataSource = self
         allStudentsCollectionView.delegate = self
         
-          allStudentsCollectionView.roundCorners([.topLeft,.topRight], radius: 5)
-
         filterStudents()
         
         allStudentsCollectionView.allowsMultipleSelection = false
